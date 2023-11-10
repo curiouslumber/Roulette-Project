@@ -1,0 +1,4 @@
+enum GameStatus {
+  idle,
+  wheelSet
+}
