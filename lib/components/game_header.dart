@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:roulette_project/backend/user_data.dart';
 import 'package:roulette_project/user/login.dart';
-import 'package:roulette_project/user/signup.dart';
 
 import '../user/profile.dart';
 
 enum MenuItem { profile, logout }
 
 class GameHeader extends StatelessWidget {
-  const GameHeader({super.key});
+  GameHeader({super.key});
+
+  final UserData userData = Get.put(UserData());
 
   @override
   Widget build(BuildContext context) {
@@ -31,27 +34,25 @@ class GameHeader extends StatelessWidget {
               width: 30,
               child: Image.asset('assets/images/avatar.jpg')),
           const SizedBox(width: 10),
-          Container(
-            margin: const EdgeInsets.only(right: 65),
-            child: const Text(
-              'User',
-              style: TextStyle(color: Colors.white),
+          Obx(
+            () => Container(
+              margin: const EdgeInsets.only(right: 65),
+              child: Text(
+                userData.user_name.value == ""
+                    ? 'User'
+                    : userData.user_name.value,
+                style: const TextStyle(color: Colors.white),
+              ),
             ),
           ),
           PopupMenuButton<MenuItem>(
             color: Colors.white,
             onSelected: (value) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) {
-                  if (value == MenuItem.profile) {
-                    return const Profile();
-                  } else if (value == MenuItem.logout) {
-                    return const SignUp();
-                  }
-                  return const Login();
-                }),
-              );
+              if (value == MenuItem.profile) {
+                Get.to(() => const Profile());
+              } else if (value == MenuItem.logout) {
+                Get.offAll(() => Login());
+              }
             },
             itemBuilder: (BuildContext context) => <PopupMenuEntry<MenuItem>>[
               const PopupMenuItem<MenuItem>(

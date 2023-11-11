@@ -19,7 +19,7 @@ class HomeState extends State<Home> {
 
     return Scaffold(
       body: Column(children: [
-        const GameHeader(),
+        GameHeader(),
         Expanded(
           flex: 1,
           child: Container(

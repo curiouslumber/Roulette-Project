@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "/home/noelpinto47/Downloads/roulette_project-master/linux"
+    "cmake.sourceDirectory": "/home/noelpinto47/Downloads/roulette_project-master/linux",
+    "cmake.configureOnOpen": false
 }

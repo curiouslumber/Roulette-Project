@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:roulette_project/providers/game_provider.dart';
 import 'package:roulette_project/providers/game_score_provider.dart';
 import 'package:roulette_project/providers/table_select_provider.dart';
-import 'package:roulette_project/user/signup.dart';
+import 'package:roulette_project/user/login.dart';
 
 void main() {
   runApp(MultiProvider(
@@ -32,8 +32,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      child: GetMaterialApp(debugShowCheckedModeBanner: false, home: SignUp()),
+    return SafeArea(
+      child: GetMaterialApp(debugShowCheckedModeBanner: false, home: Login()),
     );
   }
 }

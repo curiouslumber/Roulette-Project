@@ -1,12 +1,16 @@
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:roulette_project/backend/requests.dart';
+import 'package:roulette_project/backend/user_data.dart';
 import 'package:roulette_project/user/signup.dart';
 import '../home.dart';
 
 class Login extends StatelessWidget {
-  const Login({super.key});
+  Login({super.key});
+
+  final UserData userData = Get.put(UserData());
 
   @override
   Widget build(BuildContext context) {
@@ -82,21 +86,25 @@ class Login extends StatelessWidget {
                   var res = await backendRequests.checkPassword(email.text);
 
                   if (res != null) {
-                    print(res['password']);
+                    print(res);
                     var bytes = utf8.encode(password.text);
                     var digest = sha256.convert(bytes);
                     var val = digest.toString();
                     if (val.compareTo(res['password']) == 0) {
+                      userData.user_name.value = res['name'];
+                      userData.user_email.value = res['email'];
                       // ignore: use_build_context_synchronously
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const Home()),
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Signed In Successfully"),
+                        ),
                       );
+                      Get.offAll(() => const Home());
                     } else {
                       // ignore: use_build_context_synchronously
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          content: Text("Password doesn't match"),
+                          content: Text("Wrong password. Please try again"),
                         ),
                       );
                     }
@@ -104,7 +112,7 @@ class Login extends StatelessWidget {
                     // ignore: use_build_context_synchronously
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
-                        content: Text("User doesn't exist"),
+                        content: Text("Login failed. Please try again"),
                       ),
                     );
                   }
@@ -134,10 +142,7 @@ class Login extends StatelessWidget {
                         color: Color.fromARGB(255, 255, 255, 255)),
                   ),
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const SignUp()),
-                    );
+                    Get.to(() => const SignUp());
                   },
                 )
               ]),

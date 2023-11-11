@@ -49,7 +49,7 @@ class GameDeckState extends State<GameDeck> {
           ),
         ),
       ),
-      const Positioned(child: GameHeader()),
+      Positioned(child: GameHeader()),
       Consumer<GameProvider>(
         builder: (ccontext, gameProvider, child) {
           bool betWon = Provider.of<TableSelectProvider>(context, listen: false)

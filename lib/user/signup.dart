@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:roulette_project/backend/requests.dart';
 import 'package:roulette_project/user/login.dart';
 import 'package:crypto/crypto.dart';
@@ -110,11 +111,7 @@ class SignUp extends StatelessWidget {
                         content: Text("Sign Up Successful! Please Log In"),
                       ),
                     );
-                    // ignore: use_build_context_synchronously
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Login()),
-                    );
+                    Get.to(() => Login());
                   } else {
                     // ignore: use_build_context_synchronously
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -149,10 +146,7 @@ class SignUp extends StatelessWidget {
                         color: Color.fromARGB(255, 255, 255, 255)),
                   ),
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Login()),
-                    );
+                    Get.to(() => Login());
                   },
                 )
               ]),
