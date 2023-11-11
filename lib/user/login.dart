@@ -1,10 +1,8 @@
 import 'dart:convert';
-
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:roulette_project/backend/requests.dart';
 import 'package:roulette_project/user/signup.dart';
-
 import '../home.dart';
 
 class Login extends StatelessWidget {
