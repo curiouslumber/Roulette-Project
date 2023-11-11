@@ -50,6 +50,14 @@ class GameHeader extends StatelessWidget {
               if (value == MenuItem.profile) {
                 Get.to(() => const Profile());
               } else if (value == MenuItem.logout) {
+                userData.user_email.value = "";
+                userData.user_name.value = "";
+                // ignore: use_build_context_synchronously
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text("Successfully logged out"),
+                  ),
+                );
                 Get.offAll(() => Login());
               }
             },
