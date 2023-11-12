@@ -61,4 +61,58 @@ class BackendRequests {
       return null;
     }
   }
+
+  Future<bool> makeUserActive(
+      String userId, String lastActiveDate, String lastActiveTime) async {
+    try {
+      final response = await http.post(
+        Uri.parse('http://192.168.1.35:3000/users/active'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'user_id': userId,
+          'last_active_date': lastActiveDate,
+          'last_active_time': lastActiveTime,
+        }),
+      );
+      if (response.statusCode == 201) {
+        // Handle successful response
+        print(response.body);
+        return true;
+      } else {
+        print("object");
+        // Handle error response
+        print('Request failed with status: ${response.statusCode}.');
+        return false;
+      }
+    } catch (e) {
+      print('Error: $e');
+      return false;
+    }
+  }
+
+  // Delete Active User before logout
+  Future<bool> deleteActiveUser(String userId) async {
+    try {
+      final response = await http.delete(
+        Uri.parse('http://192.168.1.35:3000/users/active/$userId'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+      if (response.statusCode == 204) {
+        // Handle successful response
+        print(response.body);
+        return true;
+      } else {
+        // Handle error response
+        print('Request failed with status: ${response.statusCode}.');
+        return false;
+      }
+    } catch (e) {
+      print('Error: $e');
+      return false;
+    }
+  }
 }

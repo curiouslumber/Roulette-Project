@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:roulette_project/backend/requests.dart';
 import 'package:roulette_project/backend/user_data.dart';
 import 'package:roulette_project/user/login.dart';
 import '../user/profile.dart';
@@ -46,19 +47,28 @@ class GameHeader extends StatelessWidget {
           ),
           PopupMenuButton<MenuItem>(
             color: Colors.white,
-            onSelected: (value) {
+            onSelected: (value) async {
               if (value == MenuItem.profile) {
                 Get.to(() => const Profile());
               } else if (value == MenuItem.logout) {
+                var deleteActiveUsers = await BackendRequests()
+                    .deleteActiveUser(userData.user_id.value);
                 userData.user_email.value = "";
                 userData.user_name.value = "";
-                // ignore: use_build_context_synchronously
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text("Successfully logged out"),
-                  ),
-                );
-                Get.offAll(() => Login());
+                userData.user_id.value = "";
+
+                if (deleteActiveUsers) {
+                  // ignore: use_build_context_synchronously
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text("Successfully logged out"),
+                    ),
+                  );
+                  Get.offAll(() => Login());
+                  print("Successfully deleted active user");
+                } else {
+                  print("Failed to delete active user");
+                }
               }
             },
             itemBuilder: (BuildContext context) => <PopupMenuEntry<MenuItem>>[

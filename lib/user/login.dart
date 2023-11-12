@@ -82,24 +82,47 @@ class Login extends StatelessWidget {
                         const EdgeInsets.all(20) //content padding inside button
                     ),
                 onPressed: () async {
+                  DateTime now = DateTime.now();
+                  var date = now.toString().split(' ')[0];
+                  var time = now.toString().split(' ')[1];
+                  time = time[0] +
+                      time[1] +
+                      time[2] +
+                      time[3] +
+                      time[4] +
+                      time[5] +
+                      time[6] +
+                      time[7];
+
                   BackendRequests backendRequests = BackendRequests();
                   var res = await backendRequests.checkPassword(email.text);
 
                   if (res != null) {
-                    print(res);
                     var bytes = utf8.encode(password.text);
                     var digest = sha256.convert(bytes);
                     var val = digest.toString();
                     if (val.compareTo(res['password']) == 0) {
-                      userData.user_name.value = res['name'];
-                      userData.user_email.value = res['email'];
-                      // ignore: use_build_context_synchronously
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("Signed In Successfully"),
-                        ),
-                      );
-                      Get.offAll(() => const Home());
+                      var userActive = await backendRequests.makeUserActive(
+                          res['user_id'].toString(), date, time);
+                      if (userActive) {
+                        userData.user_id.value = res['user_id'].toString();
+                        userData.user_name.value = res['name'];
+                        userData.user_email.value = res['email'];
+                        // ignore: use_build_context_synchronously
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Signed In Successfully"),
+                          ),
+                        );
+                        Get.offAll(() => const Home());
+                      } else {
+                        // ignore: use_build_context_synchronously
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("User active on another device"),
+                          ),
+                        );
+                      }
                     } else {
                       // ignore: use_build_context_synchronously
                       ScaffoldMessenger.of(context).showSnackBar(
