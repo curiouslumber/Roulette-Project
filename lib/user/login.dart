@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:roulette_project/backend/loginhandler.dart';
 import 'package:roulette_project/backend/requests.dart';
 import 'package:roulette_project/backend/user_data.dart';
 import 'package:roulette_project/user/signup.dart';
@@ -108,12 +109,16 @@ class Login extends StatelessWidget {
                         userData.user_id.value = res['user_id'].toString();
                         userData.user_name.value = res['name'];
                         userData.user_email.value = res['email'];
+
+                        LoginHandler().loginUser(
+                            res['name'], res['email'], res['password']);
                         // ignore: use_build_context_synchronously
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text("Signed In Successfully"),
                           ),
                         );
+                        LoginHandler().checkUserLoginStatus();
                         Get.offAll(() => const Home());
                       } else {
                         // ignore: use_build_context_synchronously

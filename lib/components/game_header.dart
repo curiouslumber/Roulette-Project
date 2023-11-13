@@ -67,7 +67,12 @@ class GameHeader extends StatelessWidget {
                   Get.offAll(() => Login());
                   print("Successfully deleted active user");
                 } else {
-                  print("Failed to delete active user");
+                  // ignore: use_build_context_synchronously
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text("Error logging out. Try again"),
+                    ),
+                  );
                 }
               }
             },
