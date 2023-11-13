@@ -49,7 +49,7 @@ class GameHeader extends StatelessWidget {
             color: Colors.white,
             onSelected: (value) async {
               if (value == MenuItem.profile) {
-                Get.to(() => const Profile());
+                Get.to(() => Profile());
               } else if (value == MenuItem.logout) {
                 var deleteActiveUsers = await BackendRequests()
                     .deleteActiveUser(userData.user_id.value);

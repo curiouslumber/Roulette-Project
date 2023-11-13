@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:roulette_project/backend/user_data.dart';
 import 'package:roulette_project/user/wallet.dart';
 
 class Profile extends StatelessWidget {
-  const Profile({super.key});
+  Profile({super.key});
+
+  final UserData userData = Get.put(UserData());
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +59,13 @@ class Profile extends StatelessWidget {
                 width: 100,
                 child: Image.asset('assets/images/avatar.jpg')),
             const SizedBox(height: 10),
-            const Text(
-              'UserName',
-              style: TextStyle(color: Colors.white, fontSize: 18),
+            Obx(
+              () => Text(
+                userData.user_name.value == ""
+                    ? 'UserName'
+                    : userData.user_name.value,
+                style: const TextStyle(color: Colors.white, fontSize: 18),
+              ),
             ),
             const SizedBox(height: 40),
             Container(
