@@ -3,8 +3,8 @@ import 'package:http/http.dart' as http;
 
 class BackendRequests {
   Future<void> getUser(String email) async {
-    final response =
-        await http.get(Uri.parse('http://localhost:3000/users/email/$email'));
+    final response = await http
+        .get(Uri.parse('http://192.168.1.35:3000/users/email/$email'));
     if (response.statusCode == 200) {
       // Handle successful response
       print(response.body);
@@ -17,7 +17,7 @@ class BackendRequests {
   Future<bool> insertUsers(String name, String email, String password) async {
     try {
       final response = await http.post(
-        Uri.parse('http://localhost:3000/users'),
+        Uri.parse('http://192.168.1.35:3000/users'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -45,8 +45,8 @@ class BackendRequests {
 
   Future<Map<String, dynamic>?> checkPassword(String email) async {
     try {
-      final response =
-          await http.get(Uri.parse('http://localhost:3000/users/email/$email'));
+      final response = await http
+          .get(Uri.parse('http://192.168.1.35:3000/users/email/$email'));
       if (response.statusCode == 200) {
         // Handle successful response
         final Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -66,7 +66,7 @@ class BackendRequests {
       String userId, String lastActiveDate, String lastActiveTime) async {
     try {
       final response = await http.post(
-        Uri.parse('http://localhost:3000/users/active'),
+        Uri.parse('http://192.168.1.35:3000/users/active'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -96,7 +96,7 @@ class BackendRequests {
   Future<bool> deleteActiveUser(String userId) async {
     try {
       final response = await http.delete(
-        Uri.parse('http://localhost:3000/users/active/$userId'),
+        Uri.parse('http://192.168.1.35:3000/users/active/$userId'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -119,7 +119,7 @@ class BackendRequests {
   Future<bool> createUserDashboard(String userId) async {
     try {
       final response = await http.post(
-        Uri.parse('http://localhost:3000/users/dashboard'),
+        Uri.parse('http://192.168.1.35:3000/users/dashboard'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },

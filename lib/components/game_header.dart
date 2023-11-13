@@ -51,8 +51,11 @@ class GameHeader extends StatelessWidget {
               if (value == MenuItem.profile) {
                 Get.to(() => Profile());
               } else if (value == MenuItem.logout) {
-                var deleteActiveUsers = await BackendRequests()
-                    .deleteActiveUser(userData.user_id.value);
+                BackendRequests backendRequests = BackendRequests();
+                var res = await backendRequests
+                    .checkPassword(userData.user_email.value);
+                var deleteActiveUsers = await backendRequests
+                    .deleteActiveUser(res!['user_id'].toString());
                 userData.user_email.value = "";
                 userData.user_name.value = "";
                 userData.user_id.value = "";
