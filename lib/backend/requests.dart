@@ -115,4 +115,30 @@ class BackendRequests {
       return false;
     }
   }
+
+  Future<bool> createUserDashboard(String userId) async {
+    try {
+      final response = await http.post(
+        Uri.parse('http://192.168.1.35:3000/users/dashboard'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'user_id': userId,
+        }),
+      );
+      if (response.statusCode == 201) {
+        // Handle successful response
+        print(response.body);
+        return true;
+      } else {
+        // Handle error response
+        print('Request failed with status: ${response.statusCode}.');
+        return false;
+      }
+    } catch (e) {
+      print('Error: $e');
+      return false;
+    }
+  }
 }

@@ -105,6 +105,10 @@ class SignUp extends StatelessWidget {
                       name.text, email.text, digest.toString());
 
                   if (completed) {
+                    var res = await backendRequests.checkPassword(email.text);
+                    await backendRequests
+                        .createUserDashboard(res!['user_id'].toString());
+
                     // ignore: use_build_context_synchronously
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
