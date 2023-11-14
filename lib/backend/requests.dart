@@ -1,10 +1,14 @@
 import 'dart:convert';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:roulette_project/backend/user_data.dart';
 
 class BackendRequests {
+  final String baseUrl = 'http://192.168.1.35:3000';
+  final UserData userData = Get.put(UserData());
+
   Future<void> getUser(String email) async {
-    final response = await http
-        .get(Uri.parse('http://192.168.1.35:3000/users/email/$email'));
+    final response = await http.get(Uri.parse('$baseUrl/users/email/$email'));
     if (response.statusCode == 200) {
       // Handle successful response
       print(response.body);
@@ -17,7 +21,7 @@ class BackendRequests {
   Future<bool> insertUsers(String name, String email, String password) async {
     try {
       final response = await http.post(
-        Uri.parse('http://192.168.1.35:3000/users'),
+        Uri.parse('$baseUrl/users'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -45,8 +49,7 @@ class BackendRequests {
 
   Future<Map<String, dynamic>?> checkPassword(String email) async {
     try {
-      final response = await http
-          .get(Uri.parse('http://192.168.1.35:3000/users/email/$email'));
+      final response = await http.get(Uri.parse('$baseUrl/users/email/$email'));
       if (response.statusCode == 200) {
         // Handle successful response
         final Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -66,7 +69,7 @@ class BackendRequests {
       String userId, String lastActiveDate, String lastActiveTime) async {
     try {
       final response = await http.post(
-        Uri.parse('http://192.168.1.35:3000/users/active'),
+        Uri.parse('$baseUrl/users/active'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -96,7 +99,7 @@ class BackendRequests {
   Future<bool> deleteActiveUser(String userId) async {
     try {
       final response = await http.delete(
-        Uri.parse('http://192.168.1.35:3000/users/active/$userId'),
+        Uri.parse('$baseUrl/users/active/$userId'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -119,7 +122,7 @@ class BackendRequests {
   Future<bool> createUserDashboard(String userId) async {
     try {
       final response = await http.post(
-        Uri.parse('http://192.168.1.35:3000/users/dashboard'),
+        Uri.parse('$baseUrl/users/dashboard'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -139,6 +142,51 @@ class BackendRequests {
     } catch (e) {
       print('Error: $e');
       return false;
+    }
+  }
+
+  Future<void> getUserDashboard(String id) async {
+    try {
+      final response = await http.get(
+        Uri.parse('$baseUrl/users/dashboard/$id'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+      if (response.statusCode == 200) {
+        // Handle successful response
+        final Map<String, dynamic> responseData = jsonDecode(response.body);
+
+        userData.current_balance.value = responseData['current_balance'];
+        userData.number_of_games_played.value =
+            responseData['number_of_games_played']; // number_of_games_played
+        userData.number_of_games_won.value =
+            responseData['number_of_wins']; // number_of_games_won
+        userData.number_of_games_lost.value =
+            responseData['number_of_lossess']; // number_of_games_lost
+        userData.total_amount_won.value = responseData['total_amount_won'];
+        userData.total_amount_lost.value = responseData['total_amount_lost'];
+
+        userData.current_demo_balance.value =
+            responseData['current_demo_balance'];
+        userData.number_of_demo_games_played.value = responseData[
+            'number_of_demo_games_played']; // number_of_demo_games_played
+        userData.number_of_demo_games_won.value =
+            responseData['number_of_demo_wins'];
+        userData.number_of_demo_games_lost.value =
+            responseData['number_of_demo_lossess'];
+        userData.total_amount_won_in_demo_games.value =
+            responseData['total_demo_amount_won'];
+        userData.total_amount_lost_in_demo_games.value = responseData[
+            'total_demo_amount_lost']; // total_amount_lost_in_demo_games
+
+        print(responseData);
+      } else {
+        // Handle error response
+        print('Request failed with status: ${response.statusCode}.');
+      }
+    } catch (e) {
+      print('Error: $e');
     }
   }
 }

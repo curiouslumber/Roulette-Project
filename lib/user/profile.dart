@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:roulette_project/backend/user_data.dart';
+import 'package:roulette_project/user/dashboard.dart';
 import 'package:roulette_project/user/wallet.dart';
 
 class Profile extends StatelessWidget {
@@ -75,10 +76,10 @@ class Profile extends StatelessWidget {
                       bottom: BorderSide(width: 1, color: Colors.white))),
               alignment: Alignment.center,
               width: 200,
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Expanded(
+                  const Expanded(
                       flex: 1,
                       child: Icon(
                         Icons.dashboard,
@@ -86,9 +87,14 @@ class Profile extends StatelessWidget {
                       )),
                   Expanded(
                       flex: 2,
-                      child: Text(
-                        'Dashboard',
-                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.to(() => Dashboard());
+                        },
+                        child: const Text(
+                          'Dashboard',
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
                       ))
                 ],
               ),

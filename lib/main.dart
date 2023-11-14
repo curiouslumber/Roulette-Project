@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:roulette_project/backend/loginhandler.dart';
-import 'package:roulette_project/backend/requests.dart';
 import 'package:roulette_project/backend/user_data.dart';
 import 'package:roulette_project/home.dart';
 import 'package:roulette_project/providers/game_provider.dart';
@@ -54,21 +53,8 @@ class MyApp extends StatelessWidget {
                       );
                     } else {
                       bool isLoggedIn = snapshot.data ?? false;
-                      var login = BackendRequests()
-                          .checkPassword(userData.user_email.value);
                       if (isLoggedIn == true) {
-                        // ignore: unnecessary_null_comparison
-                        if (login != null) {
-                          return const Home();
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content:
-                                  Text('Error occured. Please log in again.'),
-                            ),
-                          );
-                          return Login();
-                        }
+                        return const Home();
                       } else {
                         return Login();
                       }
