@@ -135,7 +135,7 @@ class Profile extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Wallet()),
+                    MaterialPageRoute(builder: (context) => Wallet()),
                   );
                 },
                 child: const Row(

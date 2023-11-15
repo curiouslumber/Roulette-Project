@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:roulette_project/game_deck.dart';
+import 'package:roulette_project/menu.dart';
 import 'components/game_header.dart';
 
 class Home extends StatefulWidget {
@@ -74,7 +74,7 @@ class HomeState extends State<Home> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const GameDeck()),
+                                  builder: (context) => const RouletteMenu()),
                             );
                           },
                         ),
