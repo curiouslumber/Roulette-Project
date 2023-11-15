@@ -22,16 +22,14 @@ class LoginHandler {
       String? username = await SharedPreferencesManager.getUsername();
       String? email = await SharedPreferencesManager.getEmail();
       String? password = await SharedPreferencesManager.getPassword();
-      print('User $username is logged in.');
-      print('User $email is logged in.');
+
       userData.user_name.value = username!;
       userData.user_email.value = email!;
       userData.user_password.value = password!;
 
       var res = await BackendRequests().checkPassword(email);
-      print(res!['user_id']);
 
-      userData.user_id.value = res['user_id'].toString();
+      userData.user_id.value = res!['user_id'].toString();
       DateTime now = DateTime.now();
       var date = now.toString().split(' ')[0];
       var time = now.toString().split(' ')[1];

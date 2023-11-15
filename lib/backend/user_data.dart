@@ -1,3 +1,6 @@
+// ignore_for_file: non_constant_identifier_names
+
+import 'dart:io';
 import 'package:get/get.dart';
 
 class UserData extends GetxController {
@@ -19,4 +22,16 @@ class UserData extends GetxController {
   var number_of_demo_games_lost = 0.obs;
   var total_amount_won_in_demo_games = 0.obs;
   var total_amount_lost_in_demo_games = 0.obs;
+
+  Future<bool> checkUserConnection() async {
+    try {
+      final result = await InternetAddress.lookup('google.com');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        return true;
+      }
+    } on SocketException catch (_) {
+      return false;
+    }
+    return false;
+  }
 }

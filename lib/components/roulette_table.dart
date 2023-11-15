@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:roulette_project/enums/r_cell_type.dart';
+import 'package:sizer/sizer.dart';
 import './r_cell.dart';
 
 class RouletteTable extends StatefulWidget {
-  const RouletteTable({super.key});
+  const RouletteTable(BuildContext context, {super.key});
 
   @override
   // ignore: no_logic_in_create_state
@@ -16,9 +17,10 @@ class RouletteTableState extends State<RouletteTable> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
+      scrollDirection: Axis.vertical,
+      child: SizedBox(
+        width: 150.w,
+        height: 100.h,
         child: Row(
           children: [
             Column(
@@ -26,15 +28,17 @@ class RouletteTableState extends State<RouletteTable> {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(
-                      height: 240,
-                      child: RCell("0", RCellType.black),
+                    SizedBox(
+                      height: 36.h,
+                      child: const RCell("0", RCellType.black),
                     ),
                     Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(
-                          height: 80,
-                          child: Row(
+                        SizedBox(
+                          height: 12.h,
+                          child: const Row(
                             children: [
                               RCell("3", RCellType.red),
                               RCell("6", RCellType.black),
@@ -51,9 +55,9 @@ class RouletteTableState extends State<RouletteTable> {
                             ],
                           ),
                         ),
-                        const SizedBox(
-                          height: 80,
-                          child: Row(
+                        SizedBox(
+                          height: 12.h,
+                          child: const Row(
                             children: [
                               RCell("2", RCellType.black),
                               RCell("5", RCellType.red),
@@ -70,9 +74,9 @@ class RouletteTableState extends State<RouletteTable> {
                             ],
                           ),
                         ),
-                        const SizedBox(
-                          height: 80,
-                          child: Row(
+                        SizedBox(
+                          height: 12.h,
+                          child: const Row(
                             children: [
                               RCell("1", RCellType.red),
                               RCell("4", RCellType.black),
@@ -90,19 +94,14 @@ class RouletteTableState extends State<RouletteTable> {
                           ),
                         ),
                         SizedBox(
-                          height: 183,
+                          height: 20.h,
                           child: Row(
                             children: [
                               SizedBox(
-                                  width: 168,
+                                  width: 40.w,
                                   child: Column(
                                     children: [
                                       Container(
-                                          padding: const EdgeInsets.only(
-                                              left: 25,
-                                              right: 25,
-                                              top: 12,
-                                              bottom: 12),
                                           decoration: BoxDecoration(
                                               border: Border.all(
                                                   color: Colors.white,
@@ -124,15 +123,10 @@ class RouletteTableState extends State<RouletteTable> {
                                     ],
                                   )),
                               SizedBox(
-                                  width: 168,
+                                  width: 40.w,
                                   child: Column(
                                     children: [
                                       Container(
-                                          padding: const EdgeInsets.only(
-                                              left: 25,
-                                              right: 25,
-                                              top: 10,
-                                              bottom: 10),
                                           decoration: BoxDecoration(
                                               border: Border.all(
                                                   color: Colors.white,
@@ -154,15 +148,10 @@ class RouletteTableState extends State<RouletteTable> {
                                     ],
                                   )),
                               SizedBox(
-                                  width: 168,
+                                  width: 41.w,
                                   child: Column(
                                     children: [
                                       Container(
-                                          padding: const EdgeInsets.only(
-                                              left: 25,
-                                              right: 25,
-                                              top: 12,
-                                              bottom: 12),
                                           decoration: BoxDecoration(
                                               border: Border.all(
                                                   color: Colors.white,
@@ -188,19 +177,19 @@ class RouletteTableState extends State<RouletteTable> {
                         )
                       ],
                     ),
-                    const Column(
+                    Column(
                       children: [
                         SizedBox(
-                          height: 80,
-                          child: RCell("2 to 1", RCellType.flatRotate),
+                          height: 12.h,
+                          child: const RCell("2 to 1", RCellType.flatRotate),
                         ),
                         SizedBox(
-                          height: 80,
-                          child: RCell("2 to 1", RCellType.flatRotate),
+                          height: 12.h,
+                          child: const RCell("2 to 1", RCellType.flatRotate),
                         ),
                         SizedBox(
-                          height: 80,
-                          child: RCell("2 to 1", RCellType.flatRotate),
+                          height: 12.h,
+                          child: const RCell("2 to 1", RCellType.flatRotate),
                         )
                       ],
                     )

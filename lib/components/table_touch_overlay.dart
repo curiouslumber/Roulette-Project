@@ -3,7 +3,7 @@ import 'package:roulette_project/components/o_cell.dart';
 import 'package:roulette_project/enums/o_cell_type.dart';
 
 class TableTouchOverlay extends StatelessWidget {
-  const TableTouchOverlay({super.key});
+  const TableTouchOverlay(BuildContext context, {super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -179,8 +179,6 @@ class BackendRequests {
             responseData['total_demo_amount_won'];
         userData.total_amount_lost_in_demo_games.value = responseData[
             'total_demo_amount_lost']; // total_amount_lost_in_demo_games
-
-        print(responseData);
       } else {
         // Handle error response
         print('Request failed with status: ${response.statusCode}.');

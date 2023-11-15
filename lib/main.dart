@@ -39,30 +39,45 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
           debugShowCheckedModeBanner: false,
           home: FutureBuilder(
-              future: LoginHandler().checkUserLoginStatus(),
-              builder: (context, AsyncSnapshot<bool> snapshot) {
-                switch (snapshot.connectionState) {
-                  case ConnectionState.none:
-                    return const Center(child: CircularProgressIndicator());
-                  case ConnectionState.waiting:
-                    return const Center(child: CircularProgressIndicator());
-                  case ConnectionState.done:
-                    if (snapshot.hasError) {
-                      return Center(
-                        child: Text('Error ${snapshot.error}'),
-                      );
-                    } else {
-                      bool isLoggedIn = snapshot.data ?? false;
-                      if (isLoggedIn == true) {
-                        return const Home();
-                      } else {
-                        return Login();
-                      }
+            future: userData.checkUserConnection(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.none) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (snapshot.hasError) {
+                return Center(
+                  child: Text('Error ${snapshot.error}'),
+                );
+              }
+
+              return FutureBuilder(
+                  future: LoginHandler().checkUserLoginStatus(),
+                  builder: (context, AsyncSnapshot<bool> snapshot) {
+                    switch (snapshot.connectionState) {
+                      case ConnectionState.none:
+                        return const Center(child: CircularProgressIndicator());
+                      case ConnectionState.waiting:
+                        return const Center(child: CircularProgressIndicator());
+                      case ConnectionState.done:
+                        if (snapshot.hasError) {
+                          return Center(
+                            child: Text('Error ${snapshot.error}'),
+                          );
+                        } else {
+                          bool isLoggedIn = snapshot.data ?? false;
+                          if (isLoggedIn == true) {
+                            return const Home();
+                          } else {
+                            return Login();
+                          }
+                        }
+                      case ConnectionState.active:
+                        return const Center(child: CircularProgressIndicator());
                     }
-                  case ConnectionState.active:
-                    return const Center(child: CircularProgressIndicator());
-                }
-              })),
+                  });
+            },
+          )),
     );
   }
 }
