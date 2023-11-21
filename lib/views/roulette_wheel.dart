@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:roulette_project/providers/table_select_provider.dart';
 import 'package:roulette_project/components/common_button.dart';
-import 'package:sizer/sizer.dart';
 
 // ignore: must_be_immutable
 class RouletteWheel extends StatefulWidget {
@@ -237,24 +236,21 @@ class RouletteWheelState extends State<RouletteWheel> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      const Spacer(),
-      Stack(children: [
-        Positioned(
-            child: Align(
-                alignment: Alignment.center,
-                child: Transform.rotate(
-                    angle: 3.14 / 180 * degree,
-                    child: Image.asset('assets/images/wheel.png')))),
-        const Positioned(
-            child: Align(
-                alignment: Alignment.topCenter,
-                child: Icon(Icons.place,
-                    size: 40, color: Color.fromRGBO(241, 154, 100, 1))))
-      ]),
-      SizedBox(height: 4.h),
-      rotateButton(context),
-      const Spacer()
+    return Stack(children: [
+      Positioned(
+          child: Align(
+              alignment: Alignment.center,
+              child: Transform.rotate(
+                  angle: 3.14 / 180 * degree,
+                  child: Image.asset(
+                    'assets/images/wheel.png',
+                    scale: 5,
+                  )))),
+      const Positioned(
+          child: Align(
+              alignment: Alignment.topCenter,
+              child: Icon(Icons.place,
+                  size: 30, color: Color.fromRGBO(241, 154, 100, 1))))
     ]);
   }
 }
