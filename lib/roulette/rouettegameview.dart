@@ -1,12 +1,10 @@
 import 'dart:async';
 import 'dart:math';
+import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:roulette_project/components/message_box.dart';
-import 'package:roulette_project/enums/game_status.dart';
-import 'package:roulette_project/providers/game_provider.dart';
 import 'package:roulette_project/providers/table_select_provider.dart';
 import 'package:roulette_project/roulette/rouletteboard.dart';
 import 'package:roulette_project/roulette/rouletteboardcontroller.dart';
@@ -91,9 +89,9 @@ class RoulettePageState extends State<RoulettePage> {
         });
         time = time - 100;
       } else {
-        // widget.onWheelValue(value);
         print(value);
         timer.cancel();
+        rouletteBoardController.spinning.value = false;
       }
     });
   }
@@ -254,150 +252,197 @@ class RoulettePageState extends State<RoulettePage> {
 
       return Scaffold(
         backgroundColor: Colors.green[900],
-        body: Stack(
-          alignment: Alignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  RouletteBoard(),
-                  Container(
-                    width: 200.w,
-                    height: 17.h,
-                    alignment: Alignment.centerLeft,
-                    color: Colors.green[800],
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          flex: 4,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Obx(
-                                () => Text(
-                                  'Bets : ${rouletteBoardController.bets}',
-                                  style: const TextStyle(color: Colors.white),
-                                ),
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  MaterialButton(
-                                    onPressed: () {
-                                      rouletteBoardController.cornerBets
-                                          .fillRange(
-                                              0,
-                                              rouletteBoardController
-                                                  .cornerBets.length,
-                                              false);
-                                      rouletteBoardController.betsOnBoardCount
-                                          .fillRange(
-                                              0,
-                                              rouletteBoardController
-                                                  .betsOnBoardCount.length,
-                                              0);
-                                      rouletteBoardController.bets.clear();
-                                      rouletteBoardController.betsOnBoard
-                                          .fillRange(
-                                              0,
-                                              rouletteBoardController
-                                                  .betsOnBoard.length,
-                                              false);
-                                    },
-                                    color: Colors.white,
-                                    textColor: Colors.green[900],
-                                    child: const Text('Clear'),
+        body: Obx(
+          () => Stack(
+            alignment: Alignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    RouletteBoard(),
+                    Container(
+                      width: 200.w,
+                      height: 17.h,
+                      alignment: Alignment.centerLeft,
+                      color: Colors.green[800],
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            flex: 4,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Obx(
+                                  () => Text(
+                                    'Bets : ${rouletteBoardController.bets}',
+                                    style: const TextStyle(color: Colors.white),
                                   ),
-                                  degree == 0
-                                      ? ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor: Colors.white,
-                                            foregroundColor: Colors.green[900],
-                                          ),
-                                          onPressed: () {
-                                            rotateWheel();
-                                          },
-                                          child: const Text('Start spin'))
-                                      : ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor: Colors.white,
-                                            foregroundColor: Colors.green[900],
-                                          ),
-                                          onPressed: () {
-                                            resetWheel();
-                                          },
-                                          child: const Text('Reset wheel')),
-                                ],
-                              ),
-                            ],
+                                ),
+                                Obx(
+                                  () => Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      MaterialButton(
+                                        onPressed: () {
+                                          rouletteBoardController.cornerBets
+                                              .fillRange(
+                                                  0,
+                                                  rouletteBoardController
+                                                      .cornerBets.length,
+                                                  false);
+                                          rouletteBoardController
+                                              .betsOnBoardCount
+                                              .fillRange(
+                                                  0,
+                                                  rouletteBoardController
+                                                      .betsOnBoardCount.length,
+                                                  0);
+                                          rouletteBoardController.bets.clear();
+                                          rouletteBoardController.betsOnBoard
+                                              .fillRange(
+                                                  0,
+                                                  rouletteBoardController
+                                                      .betsOnBoard.length,
+                                                  false);
+                                        },
+                                        color: Colors.white,
+                                        textColor: Colors.green[900],
+                                        child: const Text('Clear'),
+                                      ),
+                                      rouletteBoardController
+                                                  .wheelSpinning.value ==
+                                              false
+                                          ? degree == 0
+                                              ? ElevatedButton(
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                        Colors.white,
+                                                    foregroundColor:
+                                                        Colors.green[900],
+                                                  ),
+                                                  onPressed: () {
+                                                    rouletteBoardController
+                                                        .spinning.value = true;
+                                                    rouletteBoardController
+                                                        .wheelSpinning
+                                                        .value = true;
+                                                    rotateWheel();
+                                                  },
+                                                  child:
+                                                      const Text('Start spin'))
+                                              : ElevatedButton(
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                        Colors.white,
+                                                    foregroundColor:
+                                                        Colors.green[900],
+                                                  ),
+                                                  onPressed: () {
+                                                    resetWheel();
+                                                  },
+                                                  child:
+                                                      const Text('Reset wheel'))
+                                          : Container(),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            alignment: Alignment.centerRight,
-                            child: Stack(children: [
-                              Positioned(
+                          Expanded(
+                            flex: 1,
+                            child: Container(
+                              alignment: Alignment.centerRight,
+                              child: Stack(children: [
+                                Positioned(
                                   child: Align(
-                                      alignment: Alignment.center,
-                                      child: Transform.rotate(
-                                          angle: 3.14 / 180 * degree,
-                                          child: Image.asset(
-                                            'assets/images/wheel.png',
-                                            scale: 5,
-                                          )))),
-                              const Positioned(
-                                  child: Align(
-                                      alignment: Alignment.topCenter,
-                                      child: Icon(Icons.place,
-                                          size: 30,
-                                          color: Color.fromRGBO(
-                                              241, 154, 100, 1))))
-                            ]),
-                          ),
-                        )
-                      ],
+                                    alignment: Alignment.center,
+                                    child: Transform.rotate(
+                                      angle: 3.14 / 180 * degree,
+                                      child: Image.asset(
+                                        'assets/images/wheel.png',
+                                        scale: 5,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const Positioned(
+                                    child: Align(
+                                        alignment: Alignment.topCenter,
+                                        child: Icon(Icons.place,
+                                            size: 30,
+                                            color: Color.fromRGBO(
+                                                241, 154, 100, 1))))
+                              ]),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            Consumer<GameProvider>(
-              builder: (ccontext, gameProvider, child) {
-                bool betWon =
-                    Provider.of<TableSelectProvider>(context, listen: false)
-                        .getBetByValue("${gameProvider.wheelValue}");
-                if (betWon) {
-                  //Provider.of<GameScoreProvider>(context, listen: false).setScore(1);
-                }
-                return gameProvider.gameStatus == GameStatus.wheelSet
-                    ? MessageBox(
-                        message:
-                            "Bet ${betWon ? "won" : "failed"} on ${gameProvider.wheelValue}",
-                        onOk: () {
-                          Provider.of<TableSelectProvider>(context,
-                                  listen: false)
-                              .reset();
-                          Provider.of<GameProvider>(context, listen: false)
-                              .reset();
-                        },
-                        color: betWon ? Colors.green : Colors.red,
-                      )
-                    : const SizedBox(
-                        width: 10,
-                        height: 10,
-                      );
-              },
-            )
-          ],
+              rouletteBoardController.wheelSpinning.value == true
+                  ? BlurryContainer(
+                      blur: 2,
+                      height: 100.h,
+                      width: 100.h,
+                      elevation: 0,
+                      color: Colors.transparent,
+                      child: Stack(
+                        alignment: Alignment.topRight,
+                        children: [
+                          Container(
+                            alignment: Alignment.center,
+                            child: SizedBox(
+                              width: 40.h,
+                              height: 40.h,
+                              child: Stack(children: [
+                                Positioned(
+                                    child: Align(
+                                        alignment: Alignment.center,
+                                        child: Transform.rotate(
+                                            angle: 3.14 / 180 * degree,
+                                            child: Image.asset(
+                                              'assets/images/wheel.png',
+                                              scale: 1,
+                                            )))),
+                                const Positioned(
+                                    child: Align(
+                                        alignment: Alignment.topCenter,
+                                        child: Icon(Icons.place,
+                                            size: 30, color: Colors.yellow)))
+                              ]),
+                            ),
+                          ),
+                          rouletteBoardController.spinning.value == false
+                              ? IconButton(
+                                  onPressed: () {
+                                    rouletteBoardController
+                                        .wheelSpinning.value = false;
+                                  },
+                                  icon: const Icon(
+                                    Icons.close,
+                                    color: Colors.white,
+                                  ))
+                              : Container(),
+                        ],
+                      ),
+                    )
+                  : Container(),
+            ],
+          ),
         ),
       );
     });
