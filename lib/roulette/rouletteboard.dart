@@ -24,7 +24,7 @@ class RouletteBoard extends StatelessWidget {
     final betRadius = 0.9.w * 0.9.h * 3.1415 * 0.3;
 
     return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Column(

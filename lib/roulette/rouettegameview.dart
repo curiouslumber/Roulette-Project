@@ -264,7 +264,7 @@ class RoulettePageState extends State<RoulettePage> {
                     RouletteBoard(),
                     Container(
                       width: 200.w,
-                      height: 17.h,
+                      height: 13.h,
                       alignment: Alignment.centerLeft,
                       color: Colors.green[800],
                       padding: const EdgeInsets.all(8.0),

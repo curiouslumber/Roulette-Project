@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:roulette_project/backend/loginhandler.dart';
 import 'package:roulette_project/backend/user_data.dart';
 import 'package:roulette_project/providers/game_provider.dart';
 import 'package:roulette_project/providers/game_score_provider.dart';
 import 'package:roulette_project/providers/table_select_provider.dart';
 import 'package:roulette_project/user/login.dart';
-import 'package:roulette_project/views/home.dart';
 
 void main() {
   runApp(MultiProvider(
@@ -51,31 +49,7 @@ class MyApp extends StatelessWidget {
                 );
               }
 
-              return FutureBuilder(
-                  future: LoginHandler().checkUserLoginStatus(),
-                  builder: (context, AsyncSnapshot<bool> snapshot) {
-                    switch (snapshot.connectionState) {
-                      case ConnectionState.none:
-                        return const Center(child: CircularProgressIndicator());
-                      case ConnectionState.waiting:
-                        return const Center(child: CircularProgressIndicator());
-                      case ConnectionState.done:
-                        if (snapshot.hasError) {
-                          return Center(
-                            child: Text('Error ${snapshot.error}'),
-                          );
-                        } else {
-                          bool isLoggedIn = snapshot.data ?? false;
-                          if (isLoggedIn == true) {
-                            return const Home();
-                          } else {
-                            return Login();
-                          }
-                        }
-                      case ConnectionState.active:
-                        return const Center(child: CircularProgressIndicator());
-                    }
-                  });
+              return Login();
             },
           )),
     );

@@ -35,7 +35,7 @@ class RouletteMenu extends StatelessWidget {
             MaterialButton(
               color: Colors.white,
               onPressed: () {
-                Get.to(() => RoulettePage());
+                Get.to(() => const RoulettePage());
               },
               child:
                   Text('Play Game', style: TextStyle(color: Colors.green[900])),
