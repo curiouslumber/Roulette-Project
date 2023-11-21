@@ -6,6 +6,7 @@ import 'package:roulette_project/providers/game_provider.dart';
 import 'package:roulette_project/providers/game_score_provider.dart';
 import 'package:roulette_project/providers/table_select_provider.dart';
 import 'package:roulette_project/user/login.dart';
+import 'package:roulette_project/views/home.dart';
 
 void main() {
   runApp(MultiProvider(
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
                 );
               }
 
-              return Login();
+              return const Home();
             },
           )),
     );
