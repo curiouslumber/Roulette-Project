@@ -20,8 +20,6 @@ class HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-
     return Scaffold(
       body: Column(children: [
         GameHeader(),
@@ -49,60 +47,63 @@ class HomeState extends State<Home> {
                       child: Text('Error ${snapshot.error}'),
                     );
                   }
-                  return Column(
-                    children: [
-                      const Row(
-                        children: [
-                          Text(
-                            'Casino Games',
-                            style: TextStyle(color: Colors.white, fontSize: 25),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 30),
-                      Row(
-                        children: [
-                          const SizedBox(width: 20),
-                          Center(
-                            child: InkWell(
-                              mouseCursor: SystemMouseCursors.click,
-                              child: Container(
-                                padding: const EdgeInsets.all(16),
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: const Color.fromARGB(
-                                            255, 62, 184, 70),
-                                        width: 1)),
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                      height: 120,
-                                      width: 120,
-                                      child: Image.asset(
-                                          'assets/images/wheel.png'),
-                                    ),
-                                    const SizedBox(height: 20),
-                                    const Text(
-                                      'Roulette Game',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 20),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const RouletteMenu()),
-                                );
-                              },
+                  return SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        const Row(
+                          children: [
+                            Text(
+                              'Casino Games',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 25),
                             ),
-                          )
-                        ],
-                      )
-                    ],
+                          ],
+                        ),
+                        const SizedBox(height: 30),
+                        Row(
+                          children: [
+                            const SizedBox(width: 20),
+                            Center(
+                              child: InkWell(
+                                mouseCursor: SystemMouseCursors.click,
+                                child: Container(
+                                  padding: const EdgeInsets.all(16),
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: const Color.fromARGB(
+                                              255, 62, 184, 70),
+                                          width: 1)),
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        height: 120,
+                                        width: 120,
+                                        child: Image.asset(
+                                            'assets/images/wheel.png'),
+                                      ),
+                                      const SizedBox(height: 20),
+                                      const Text(
+                                        'Roulette Game',
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 20),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const RouletteMenu()),
+                                  );
+                                },
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
                   );
                 },
               ),

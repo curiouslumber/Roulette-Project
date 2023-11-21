@@ -11,7 +11,7 @@ class RouletteMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Sizer(builder: (context, orientation, deviceType) {
+    return OrientationBuilder(builder: (context, orientation) {
       if (orientation == Orientation.landscape) {
         SystemChrome.setPreferredOrientations(
             [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
@@ -35,7 +35,16 @@ class RouletteMenu extends StatelessWidget {
             MaterialButton(
               color: Colors.white,
               onPressed: () {
-                Get.to(() => const RoulettePage());
+                Get.to(() => Sizer(builder: (context, orientation, deviceType) {
+                      if (orientation == Orientation.portrait) {
+                        SystemChrome.setPreferredOrientations([
+                          DeviceOrientation.landscapeLeft,
+                          DeviceOrientation.landscapeRight
+                        ]);
+                      }
+                      // ignore: prefer_const_constructors
+                      return RoulettePage();
+                    }));
               },
               child:
                   Text('Play Game', style: TextStyle(color: Colors.green[900])),
