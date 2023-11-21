@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:roulette_project/components/game_header.dart';
+import 'package:roulette_project/roulette_board/rouettegameview.dart';
 import 'package:roulette_project/user/wallet.dart';
-import 'package:roulette_project/views/game_deck.dart';
 
 class RouletteMenu extends StatelessWidget {
   const RouletteMenu({super.key});
@@ -38,7 +38,7 @@ class RouletteMenu extends StatelessWidget {
               MaterialButton(
                 color: Colors.white,
                 onPressed: () {
-                  Get.to(() => const GameDeck());
+                  Get.to(() => RoulettePage());
                 },
                 child: Text('Play Game',
                     style: TextStyle(color: Colors.green[900])),
