@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:roulette_project/roulette_board/rouletteboardcontroller.dart';
+import 'package:roulette_project/roulette/rouletteboardcontroller.dart';
 import 'package:sizer/sizer.dart';
 
 // ignore: must_be_immutable

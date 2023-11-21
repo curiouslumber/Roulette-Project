@@ -8,8 +8,8 @@ import 'package:roulette_project/components/message_box.dart';
 import 'package:roulette_project/enums/game_status.dart';
 import 'package:roulette_project/providers/game_provider.dart';
 import 'package:roulette_project/providers/table_select_provider.dart';
-import 'package:roulette_project/roulette_board/rouletteboard.dart';
-import 'package:roulette_project/roulette_board/rouletteboardcontroller.dart';
+import 'package:roulette_project/roulette/rouletteboard.dart';
+import 'package:roulette_project/roulette/rouletteboardcontroller.dart';
 import 'package:sizer/sizer.dart';
 
 class RoulettePage extends StatefulWidget {
