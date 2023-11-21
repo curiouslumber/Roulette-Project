@@ -6,8 +6,8 @@ import 'package:roulette_project/components/message_box.dart';
 import 'package:roulette_project/enums/game_status.dart';
 import 'package:roulette_project/providers/game_provider.dart';
 import 'package:roulette_project/providers/table_select_provider.dart';
-import 'package:roulette_project/roulette_wheel.dart';
 import 'package:flutter/services.dart';
+import 'package:roulette_project/views/roulette_wheel.dart';
 import 'package:sizer/sizer.dart';
 
 class GameDeck extends StatelessWidget {

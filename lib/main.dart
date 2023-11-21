@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:roulette_project/backend/loginhandler.dart';
 import 'package:roulette_project/backend/user_data.dart';
-import 'package:roulette_project/home.dart';
 import 'package:roulette_project/providers/game_provider.dart';
 import 'package:roulette_project/providers/game_score_provider.dart';
 import 'package:roulette_project/providers/table_select_provider.dart';
 import 'package:roulette_project/user/login.dart';
+import 'package:roulette_project/views/home.dart';
 
 void main() {
   runApp(MultiProvider(

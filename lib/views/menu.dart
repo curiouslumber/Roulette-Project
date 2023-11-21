@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:roulette_project/components/game_header.dart';
-import 'package:roulette_project/game_deck.dart';
 import 'package:roulette_project/user/wallet.dart';
+import 'package:roulette_project/views/game_deck.dart';
 
 class RouletteMenu extends StatelessWidget {
   const RouletteMenu({super.key});

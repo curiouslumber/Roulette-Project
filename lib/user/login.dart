@@ -6,7 +6,7 @@ import 'package:roulette_project/backend/loginhandler.dart';
 import 'package:roulette_project/backend/requests.dart';
 import 'package:roulette_project/backend/user_data.dart';
 import 'package:roulette_project/user/signup.dart';
-import '../home.dart';
+import 'package:roulette_project/views/home.dart';
 
 class Login extends StatelessWidget {
   Login({super.key});
