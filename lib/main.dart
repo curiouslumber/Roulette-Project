@@ -1,30 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 import 'package:roulette_project/backend/user_data.dart';
-import 'package:roulette_project/providers/game_provider.dart';
-import 'package:roulette_project/providers/game_score_provider.dart';
-import 'package:roulette_project/providers/table_select_provider.dart';
 import 'package:roulette_project/views/home.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(
-        create: (ccontext) => TableSelectProvider(),
-      ),
-      ChangeNotifierProvider(
-        create: (ccontext) => GameProvider(),
-      ),
-      ChangeNotifierProvider(
-        create: (ccontext) => GameScoreProvider(),
-      ),
-    ],
-    builder: (context, child) {
-      return MyApp();
-    },
-  ));
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

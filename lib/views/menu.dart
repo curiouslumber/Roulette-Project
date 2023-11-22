@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:roulette_project/components/game_header.dart';
-import 'package:roulette_project/roulette/rouettegameview.dart';
+import 'package:roulette_project/views/roulette/rouettegameview.dart';
 import 'package:roulette_project/user/wallet.dart';
 import 'package:sizer/sizer.dart';
 
