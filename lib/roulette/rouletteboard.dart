@@ -17,7 +17,7 @@ class RouletteBoard extends StatelessWidget {
     final zero_height = 10.h;
     final bottom_row_width = 48.w;
     final box_size = 12.w;
-    const betColor = Colors.lime;
+    const betColor = Colors.orange;
     const betOffColor = Colors.transparent;
     const upperExtraAreaColor = Colors.transparent;
     final circularRadius = 1.w * 1.h;
@@ -48,23 +48,162 @@ class RouletteBoard extends StatelessWidget {
                   ),
                 ),
                 Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Stack(
+                      alignment: Alignment.topRight,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            rbc.bets.add('00');
+                            rbc.addZeroBet(2);
+                          },
+                          child: Container(
+                            height: zero_height,
+                            width: box_size,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white),
+                            ),
+                            child: const RotatedBox(
+                              quarterTurns: 1,
+                              child: Text(
+                                '00',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: betRadius / 2,
+                              height: (zero_height - box_size / 2),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Obx(
+                                    () => Container(
+                                      width: betRadius / 2,
+                                      height: betRadius / 2,
+                                      decoration: BoxDecoration(
+                                          color: rbc.cornerBets[1]
+                                              ? betColor
+                                              : betOffColor,
+                                          borderRadius: BorderRadius.only(
+                                            bottomLeft:
+                                                Radius.circular(circularRadius),
+                                          )),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: betRadius / 2,
+                                    height: betRadius,
+                                    decoration: BoxDecoration(
+                                        color: betOffColor,
+                                        borderRadius: BorderRadius.only(
+                                          topLeft:
+                                              Radius.circular(circularRadius),
+                                          bottomLeft:
+                                              Radius.circular(circularRadius),
+                                        )),
+                                  ),
+                                  Container(
+                                    width: betRadius / 2,
+                                    height: betRadius / 2,
+                                    decoration: BoxDecoration(
+                                      color: betOffColor,
+                                      borderRadius: BorderRadius.only(
+                                        topLeft:
+                                            Radius.circular(circularRadius),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: betRadius / 2,
+                              height: (box_size / 2),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: betRadius / 2,
+                                    height: betRadius / 2,
+                                    decoration: BoxDecoration(
+                                        color: betOffColor,
+                                        borderRadius: BorderRadius.only(
+                                          bottomLeft:
+                                              Radius.circular(circularRadius),
+                                        )),
+                                  ),
+                                  Container(
+                                    width: betRadius / 2,
+                                    height: betRadius / 2,
+                                    decoration: BoxDecoration(
+                                      color: betOffColor,
+                                      borderRadius: BorderRadius.only(
+                                        topLeft:
+                                            Radius.circular(circularRadius),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Obx(
+                      () => GestureDetector(
+                        onTap: () {
+                          rbc.bets.add('00');
+                          rbc.addZeroBet(2);
+                        },
+                        child: Container(
+                            height: betRadius,
+                            width: betRadius,
+                            decoration: BoxDecoration(
+                              color: rbc.zeroBets[1] ? betColor : betOffColor,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(circularRadius),
+                              ),
+                            )),
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                Stack(
                   alignment: Alignment.topRight,
                   children: [
                     GestureDetector(
                       onTap: () {
-                        rbc.bets.add('00');
+                        rbc.bets.add('0');
+                        rbc.addZeroBet(1);
                       },
                       child: Container(
                         height: zero_height,
                         width: box_size,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white),
-                        ),
+                            border: Border.all(color: Colors.white)),
                         child: const RotatedBox(
                           quarterTurns: 1,
                           child: Text(
-                            '00',
+                            '0',
                             style: TextStyle(color: Colors.white),
                           ),
                         ),
@@ -74,51 +213,6 @@ class RouletteBoard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          width: betRadius / 2,
-                          height: (zero_height - box_size / 2),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Obx(
-                                () => Container(
-                                  width: betRadius / 2,
-                                  height: betRadius / 2,
-                                  decoration: BoxDecoration(
-                                      color: rbc.cornerBets[0]
-                                          ? betColor
-                                          : betOffColor,
-                                      borderRadius: BorderRadius.only(
-                                        bottomLeft:
-                                            Radius.circular(circularRadius),
-                                      )),
-                                ),
-                              ),
-                              Container(
-                                width: betRadius / 2,
-                                height: betRadius,
-                                decoration: BoxDecoration(
-                                    color: betOffColor,
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(circularRadius),
-                                      bottomLeft:
-                                          Radius.circular(circularRadius),
-                                    )),
-                              ),
-                              Container(
-                                width: betRadius / 2,
-                                height: betRadius / 2,
-                                decoration: BoxDecoration(
-                                  color: betOffColor,
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(circularRadius),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
                         SizedBox(
                           width: betRadius / 2,
                           height: (box_size / 2),
@@ -149,108 +243,69 @@ class RouletteBoard extends StatelessWidget {
                             ],
                           ),
                         ),
+                        SizedBox(
+                          width: betRadius / 2,
+                          height: (zero_height - box_size / 2),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: betRadius / 2,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                    color: betOffColor,
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft:
+                                          Radius.circular(circularRadius),
+                                    )),
+                              ),
+                              Container(
+                                width: betRadius / 2,
+                                height: betRadius,
+                                decoration: BoxDecoration(
+                                    color: betOffColor,
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(circularRadius),
+                                      bottomLeft:
+                                          Radius.circular(circularRadius),
+                                    )),
+                              ),
+                              Container(
+                                width: betRadius / 2,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(circularRadius),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ],
                 ),
-              ],
-            ),
-            Stack(
-              alignment: Alignment.topRight,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    rbc.bets.add('0');
-                  },
-                  child: Container(
-                    height: zero_height,
-                    width: box_size,
-                    alignment: Alignment.center,
-                    decoration:
-                        BoxDecoration(border: Border.all(color: Colors.white)),
-                    child: const RotatedBox(
-                      quarterTurns: 1,
-                      child: Text(
-                        '0',
-                        style: TextStyle(color: Colors.white),
+                Obx(
+                  () => GestureDetector(
+                    onTap: () {
+                      rbc.bets.add('0');
+                      rbc.addZeroBet(1);
+                    },
+                    child: Container(
+                      height: betRadius,
+                      width: betRadius,
+                      decoration: BoxDecoration(
+                        color: rbc.zeroBets[0] ? betColor : betOffColor,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(circularRadius),
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: betRadius / 2,
-                      height: (box_size / 2),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(circularRadius),
-                                )),
-                          ),
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(circularRadius),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: betRadius / 2,
-                      height: (zero_height - box_size / 2),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(circularRadius),
-                                )),
-                          ),
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius,
-                            decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(circularRadius),
-                                  bottomLeft: Radius.circular(circularRadius),
-                                )),
-                          ),
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(circularRadius),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                )
               ],
             ),
             Container(
