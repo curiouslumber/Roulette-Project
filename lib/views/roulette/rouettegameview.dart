@@ -274,11 +274,18 @@ class RoulettePageState extends State<RoulettePage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
-                                          // ${rouletteBoardController.totalBetAmount.value}
-                                          'Bets : ${rouletteBoardController.bets}',
-                                          style: const TextStyle(
-                                              color: Colors.white),
+                                        Container(
+                                          width: 100.w,
+                                          alignment: Alignment.centerLeft,
+                                          child: SingleChildScrollView(
+                                            scrollDirection: Axis.horizontal,
+                                            child: Text(
+                                              'Bets : ${rouletteBoardController.bets}',
+                                              maxLines: 1,
+                                              style: const TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                          ),
                                         ),
                                         Text(
                                           'Balance : ${rouletteBoardController.userBalance.value - rouletteBoardController.totalBetAmount.value}',
