@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:roulette_project/backend/sharedpreferences.dart';
 import 'package:roulette_project/backend/user_data.dart';
 import 'package:roulette_project/views/home.dart';
 
@@ -15,10 +16,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        home: Home(),
+        home: FutureBuilder<int?>(
+          future: SharedPreferencesManager.getDemoBalance(),
+          builder: (context, snapshot) {
+            if (snapshot.data == null) {
+              return FutureBuilder(
+                  future: SharedPreferencesManager.setDemoBalance(1500),
+                  builder: (context, snapshot) => const Home());
+            }
+            return const Home();
+          },
+        ),
       ),
     );
   }

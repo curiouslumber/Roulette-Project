@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:roulette_project/backend/sharedpreferences.dart';
 import 'package:roulette_project/backend/user_data.dart';
 import 'package:roulette_project/components/game_header.dart';
 import 'package:roulette_project/views/roulette/rouettegameview.dart';
@@ -64,13 +63,6 @@ class RouletteMenu extends StatelessWidget {
               onPressed: () async {
                 userData.gameType.value = 'demo';
 
-                if (userData.gameType.value == "demo") {
-                  if (await SharedPreferencesManager.getDemoBalance() == null) {
-                    await SharedPreferencesManager.setDemoBalance(1500);
-                  }
-                  userData.current_demo_balance.value =
-                      (await SharedPreferencesManager.getDemoBalance())!;
-                }
                 Get.to(() => Sizer(builder: (context, orientation, deviceType) {
                       if (orientation == Orientation.portrait) {
                         SystemChrome.setPreferredOrientations([

@@ -36,7 +36,6 @@ class RoulettePageState extends State<RoulettePage> {
     resetWheel();
     rouletteBoardController.userBalance.value =
         userData.current_demo_balance.value;
-    print(rouletteBoardController.userBalance.value);
   }
 
   void resetWheel() {
