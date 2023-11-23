@@ -275,7 +275,8 @@ class RoulettePageState extends State<RoulettePage> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Bet Amount : ${rouletteBoardController.totalBetAmount.value}',
+                                          // ${rouletteBoardController.totalBetAmount.value}
+                                          'Bets : ${rouletteBoardController.bets}',
                                           style: const TextStyle(
                                               color: Colors.white),
                                         ),

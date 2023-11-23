@@ -36,14 +36,20 @@ class RouletteBoard extends StatelessWidget {
                   height: betRadius / 2,
                   alignment: Alignment.bottomRight,
                   child: Obx(
-                    () => Container(
-                      width: betRadius / 2,
-                      height: betRadius / 2,
-                      decoration: BoxDecoration(
-                          color: rbc.cornerBets[0] ? betColor : betOffColor,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(circularRadius),
-                          )),
+                    () => GestureDetector(
+                      onTap: () {
+                        rbc.bets.add("[00,0,3,2,1]");
+                        rbc.cornerBets[0] = true;
+                      },
+                      child: Container(
+                        width: betRadius / 2,
+                        height: betRadius / 2,
+                        decoration: BoxDecoration(
+                            color: rbc.cornerBets[0] ? betColor : betOffColor,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(circularRadius),
+                            )),
+                      ),
                     ),
                   ),
                 ),
@@ -87,17 +93,23 @@ class RouletteBoard extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Obx(
-                                    () => Container(
-                                      width: betRadius / 2,
-                                      height: betRadius / 2,
-                                      decoration: BoxDecoration(
-                                          color: rbc.cornerBets[1]
-                                              ? betColor
-                                              : betOffColor,
-                                          borderRadius: BorderRadius.only(
-                                            bottomLeft:
-                                                Radius.circular(circularRadius),
-                                          )),
+                                    () => GestureDetector(
+                                      onTap: () {
+                                        rbc.bets.add("[00,0,3,2,1]");
+                                        rbc.cornerBets[0] = true;
+                                      },
+                                      child: Container(
+                                        width: betRadius / 2,
+                                        height: betRadius / 2,
+                                        decoration: BoxDecoration(
+                                            color: rbc.cornerBets[0]
+                                                ? betColor
+                                                : betOffColor,
+                                            borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(
+                                                  circularRadius),
+                                            )),
+                                      ),
                                     ),
                                   ),
                                   Container(
@@ -112,14 +124,24 @@ class RouletteBoard extends StatelessWidget {
                                               Radius.circular(circularRadius),
                                         )),
                                   ),
-                                  Container(
-                                    width: betRadius / 2,
-                                    height: betRadius / 2,
-                                    decoration: BoxDecoration(
-                                      color: betOffColor,
-                                      borderRadius: BorderRadius.only(
-                                        topLeft:
-                                            Radius.circular(circularRadius),
+                                  Obx(
+                                    () => GestureDetector(
+                                      onTap: () {
+                                        rbc.bets.add("[00,3,2]");
+                                        rbc.cornerBets[1] = true;
+                                      },
+                                      child: Container(
+                                        width: betRadius / 2,
+                                        height: betRadius / 2,
+                                        decoration: BoxDecoration(
+                                          color: rbc.cornerBets[1]
+                                              ? betColor
+                                              : betOffColor,
+                                          borderRadius: BorderRadius.only(
+                                            topLeft:
+                                                Radius.circular(circularRadius),
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -129,32 +151,60 @@ class RouletteBoard extends StatelessWidget {
                             SizedBox(
                               width: betRadius / 2,
                               height: (box_size / 2),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                              child: Stack(
+                                alignment: Alignment.centerRight,
                                 children: [
+                                  Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Obx(
+                                        () => GestureDetector(
+                                          onTap: () {
+                                            rbc.bets.add("[00,3,2]");
+                                            rbc.cornerBets[1] = true;
+                                          },
+                                          child: Container(
+                                            width: betRadius / 2,
+                                            height: betRadius / 2,
+                                            decoration: BoxDecoration(
+                                                color: rbc.cornerBets[1]
+                                                    ? betColor
+                                                    : betOffColor,
+                                                borderRadius: BorderRadius.only(
+                                                  bottomLeft: Radius.circular(
+                                                      circularRadius),
+                                                )),
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: betRadius / 2,
+                                        height: betRadius / 2,
+                                        decoration: BoxDecoration(
+                                          color: betOffColor,
+                                          borderRadius: BorderRadius.only(
+                                            topLeft:
+                                                Radius.circular(circularRadius),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                   Container(
-                                    width: betRadius / 2,
-                                    height: betRadius / 2,
-                                    decoration: BoxDecoration(
+                                      height: betRadius,
+                                      width: betRadius / 2,
+                                      decoration: BoxDecoration(
                                         color: betOffColor,
                                         borderRadius: BorderRadius.only(
+                                          topLeft:
+                                              Radius.circular(circularRadius),
                                           bottomLeft:
                                               Radius.circular(circularRadius),
-                                        )),
-                                  ),
-                                  Container(
-                                    width: betRadius / 2,
-                                    height: betRadius / 2,
-                                    decoration: BoxDecoration(
-                                      color: betOffColor,
-                                      borderRadius: BorderRadius.only(
-                                        topLeft:
-                                            Radius.circular(circularRadius),
-                                      ),
-                                    ),
-                                  ),
+                                        ),
+                                      ))
                                 ],
                               ),
                             ),
@@ -216,27 +266,55 @@ class RouletteBoard extends StatelessWidget {
                         SizedBox(
                           width: betRadius / 2,
                           height: (box_size / 2),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          child: Stack(
+                            alignment: Alignment.centerRight,
                             children: [
-                              Container(
-                                width: betRadius / 2,
-                                height: betRadius / 2,
-                                decoration: BoxDecoration(
-                                    color: betOffColor,
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft:
-                                          Radius.circular(circularRadius),
-                                    )),
+                              Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: betRadius / 2,
+                                    height: betRadius / 2,
+                                    decoration: BoxDecoration(
+                                        color: betOffColor,
+                                        borderRadius: BorderRadius.only(
+                                          bottomLeft:
+                                              Radius.circular(circularRadius),
+                                        )),
+                                  ),
+                                  Obx(
+                                    () => GestureDetector(
+                                      onTap: () {
+                                        rbc.bets.add("[0,2,1]");
+                                        rbc.cornerBets[2] = true;
+                                      },
+                                      child: Container(
+                                        width: betRadius / 2,
+                                        height: betRadius / 2,
+                                        decoration: BoxDecoration(
+                                          color: rbc.cornerBets[2]
+                                              ? betColor
+                                              : betOffColor,
+                                          borderRadius: BorderRadius.only(
+                                            topLeft:
+                                                Radius.circular(circularRadius),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                               Container(
+                                height: betRadius,
                                 width: betRadius / 2,
-                                height: betRadius / 2,
                                 decoration: BoxDecoration(
                                   color: betOffColor,
                                   borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(circularRadius),
+                                    bottomLeft: Radius.circular(circularRadius),
                                   ),
                                 ),
                               ),
@@ -250,15 +328,25 @@ class RouletteBoard extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Container(
-                                width: betRadius / 2,
-                                height: betRadius / 2,
-                                decoration: BoxDecoration(
-                                    color: betOffColor,
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft:
-                                          Radius.circular(circularRadius),
-                                    )),
+                              Obx(
+                                () => GestureDetector(
+                                  onTap: () {
+                                    rbc.bets.add("[0,2,1]");
+                                    rbc.cornerBets[2] = true;
+                                  },
+                                  child: Container(
+                                    width: betRadius / 2,
+                                    height: betRadius / 2,
+                                    decoration: BoxDecoration(
+                                        color: rbc.cornerBets[2]
+                                            ? betColor
+                                            : betOffColor,
+                                        borderRadius: BorderRadius.only(
+                                          bottomLeft:
+                                              Radius.circular(circularRadius),
+                                        )),
+                                  ),
+                                ),
                               ),
                               Container(
                                 width: betRadius / 2,
@@ -271,13 +359,24 @@ class RouletteBoard extends StatelessWidget {
                                           Radius.circular(circularRadius),
                                     )),
                               ),
-                              Container(
-                                width: betRadius / 2,
-                                height: betRadius / 2,
-                                decoration: BoxDecoration(
-                                  color: betOffColor,
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(circularRadius),
+                              Obx(
+                                () => GestureDetector(
+                                  onTap: () {
+                                    rbc.bets.add("[0,00,1,2,3]");
+                                    rbc.cornerBets[3] = true;
+                                  },
+                                  child: Container(
+                                    width: betRadius / 2,
+                                    height: betRadius / 2,
+                                    decoration: BoxDecoration(
+                                      color: rbc.cornerBets[3]
+                                          ? betColor
+                                          : betOffColor,
+                                      borderRadius: BorderRadius.only(
+                                        topLeft:
+                                            Radius.circular(circularRadius),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -308,18 +407,26 @@ class RouletteBoard extends StatelessWidget {
                 )
               ],
             ),
-            Container(
-              width: box_size,
-              height: betRadius / 2,
-              alignment: Alignment.bottomRight,
-              child: Container(
-                width: betRadius / 2,
-                height: betRadius / 2,
-                decoration: BoxDecoration(
-                    color: betOffColor,
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(circularRadius),
-                    )),
+            Obx(
+              () => GestureDetector(
+                onTap: () {
+                  rbc.bets.add("[0,00,1,2,3]");
+                  rbc.cornerBets[3] = true;
+                },
+                child: Container(
+                  width: box_size,
+                  height: betRadius / 2,
+                  alignment: Alignment.bottomRight,
+                  child: Container(
+                    width: betRadius / 2,
+                    height: betRadius / 2,
+                    decoration: BoxDecoration(
+                        color: rbc.cornerBets[3] ? betColor : betOffColor,
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(circularRadius),
+                        )),
+                  ),
+                ),
               ),
             ),
           ],
@@ -342,14 +449,22 @@ class RouletteBoard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Obx(
-                            () => Container(
-                              width: betRadius / 2,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color:
-                                    rbc.cornerBets[0] ? betColor : betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(circularRadius)),
+                            () => GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[00,0,3,2,1]");
+                                rbc.cornerBets[0] = true;
+                              },
+                              child: Container(
+                                width: betRadius / 2,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: rbc.cornerBets[0]
+                                      ? betColor
+                                      : betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      topRight:
+                                          Radius.circular(circularRadius)),
+                                ),
                               ),
                             ),
                           ),
@@ -986,20 +1101,25 @@ class RouletteBoard extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                rbc.bets.add('[00,3,2]');
-                              },
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                      color: betOffColor,
-                                      borderRadius: BorderRadius.only(
-                                        topRight:
-                                            Radius.circular(circularRadius),
-                                      )),
-                                  alignment: Alignment.centerRight,
-                                  height: betRadius / 2,
-                                  width: betRadius / 2),
+                            Obx(
+                              () => GestureDetector(
+                                onTap: () {
+                                  rbc.bets.add('[00,3,2]');
+                                  rbc.cornerBets[1] = true;
+                                },
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        color: rbc.cornerBets[1]
+                                            ? betColor
+                                            : betOffColor,
+                                        borderRadius: BorderRadius.only(
+                                          topRight:
+                                              Radius.circular(circularRadius),
+                                        )),
+                                    alignment: Alignment.centerRight,
+                                    height: betRadius / 2,
+                                    width: betRadius / 2),
+                              ),
                             ),
                           ],
                         ),
@@ -3971,101 +4091,144 @@ class RouletteBoard extends StatelessWidget {
                               alignment: Alignment.bottomRight,
                               children: [
                                 Stack(
-                                  alignment: Alignment.topCenter,
+                                  alignment: Alignment.topLeft,
                                   children: [
                                     Stack(
-                                      alignment: Alignment.bottomCenter,
+                                      alignment: Alignment.topCenter,
                                       children: [
                                         Stack(
-                                          alignment: Alignment.centerLeft,
+                                          alignment: Alignment.bottomCenter,
                                           children: [
                                             Stack(
-                                              alignment: Alignment.centerRight,
+                                              alignment: Alignment.centerLeft,
                                               children: [
-                                                Container(
-                                                  decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                  alignment: Alignment.center,
-                                                  width: box_size,
-                                                  height: box_size,
-                                                  child: ClipOval(
-                                                    child: Stack(
+                                                Stack(
+                                                  alignment:
+                                                      Alignment.centerRight,
+                                                  children: [
+                                                    Container(
+                                                      decoration: BoxDecoration(
+                                                        border: Border.all(
+                                                          color: Colors.white,
+                                                        ),
+                                                      ),
                                                       alignment:
                                                           Alignment.center,
-                                                      children: [
-                                                        GestureDetector(
-                                                          onTap: () {
-                                                            rbc.activeBet(2);
+                                                      width: box_size,
+                                                      height: box_size,
+                                                      child: ClipOval(
+                                                        child: Stack(
+                                                          alignment:
+                                                              Alignment.center,
+                                                          children: [
+                                                            GestureDetector(
+                                                              onTap: () {
+                                                                rbc.activeBet(
+                                                                    2);
 
-                                                            rbc.bets.add('2');
-                                                          },
-                                                          child: Container(
-                                                            alignment: Alignment
-                                                                .center,
-                                                            width:
-                                                                box_size / 1.7,
-                                                            height:
-                                                                box_size / 1.5,
-                                                            color: Colors.black,
-                                                            child: const Text(
-                                                              '2',
-                                                              style: TextStyle(
+                                                                rbc.bets
+                                                                    .add('2');
+                                                              },
+                                                              child: Container(
+                                                                alignment:
+                                                                    Alignment
+                                                                        .center,
+                                                                width:
+                                                                    box_size /
+                                                                        1.7,
+                                                                height:
+                                                                    box_size /
+                                                                        1.5,
                                                                 color: Colors
-                                                                    .white,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        GestureDetector(
-                                                          onTap: () {
-                                                            rbc.activeBet(2);
-
-                                                            rbc.bets.add('2');
-                                                          },
-                                                          child: Obx(
-                                                            () => Container(
-                                                              height: betRadius,
-                                                              width: betRadius,
-                                                              alignment:
-                                                                  Alignment
-                                                                      .center,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: rbc.betsOnBoard[
-                                                                        1]
-                                                                    ? betColor
-                                                                    : Colors
-                                                                        .transparent,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .only(
-                                                                  bottomRight: Radius
-                                                                      .circular(
-                                                                          circularRadius),
-                                                                  topRight: Radius
-                                                                      .circular(
-                                                                          circularRadius),
-                                                                  bottomLeft: Radius
-                                                                      .circular(
-                                                                          circularRadius),
-                                                                  topLeft: Radius
-                                                                      .circular(
-                                                                          circularRadius),
+                                                                    .black,
+                                                                child:
+                                                                    const Text(
+                                                                  '2',
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: Colors
+                                                                        .white,
+                                                                  ),
                                                                 ),
                                                               ),
                                                             ),
+                                                            GestureDetector(
+                                                              onTap: () {
+                                                                rbc.activeBet(
+                                                                    2);
+
+                                                                rbc.bets
+                                                                    .add('2');
+                                                              },
+                                                              child: Obx(
+                                                                () => Container(
+                                                                  height:
+                                                                      betRadius,
+                                                                  width:
+                                                                      betRadius,
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .center,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: rbc.betsOnBoard[
+                                                                            1]
+                                                                        ? betColor
+                                                                        : Colors
+                                                                            .transparent,
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .only(
+                                                                      bottomRight:
+                                                                          Radius.circular(
+                                                                              circularRadius),
+                                                                      topRight:
+                                                                          Radius.circular(
+                                                                              circularRadius),
+                                                                      bottomLeft:
+                                                                          Radius.circular(
+                                                                              circularRadius),
+                                                                      topLeft: Radius
+                                                                          .circular(
+                                                                              circularRadius),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    GestureDetector(
+                                                      onTap: () {
+                                                        rbc.bets.add('[2,5]');
+                                                      },
+                                                      child: Container(
+                                                        alignment: Alignment
+                                                            .centerRight,
+                                                        height: betRadius,
+                                                        width: betRadius / 2,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: betOffColor,
+                                                          borderRadius:
+                                                              BorderRadius.only(
+                                                            bottomLeft:
+                                                                Radius.circular(
+                                                                    circularRadius),
+                                                            topLeft:
+                                                                Radius.circular(
+                                                                    circularRadius),
                                                           ),
                                                         ),
-                                                      ],
+                                                      ),
                                                     ),
-                                                  ),
+                                                  ],
                                                 ),
                                                 GestureDetector(
                                                   onTap: () {
-                                                    rbc.bets.add('[5,8]');
+                                                    rbc.bets.add('[00,0,2]');
                                                   },
                                                   child: Container(
                                                     alignment:
@@ -4076,10 +4239,10 @@ class RouletteBoard extends StatelessWidget {
                                                       color: betOffColor,
                                                       borderRadius:
                                                           BorderRadius.only(
-                                                        bottomLeft:
+                                                        bottomRight:
                                                             Radius.circular(
                                                                 circularRadius),
-                                                        topLeft:
+                                                        topRight:
                                                             Radius.circular(
                                                                 circularRadius),
                                                       ),
@@ -4090,21 +4253,20 @@ class RouletteBoard extends StatelessWidget {
                                             ),
                                             GestureDetector(
                                               onTap: () {
-                                                rbc.bets.add('[2,5]');
+                                                rbc.bets.add('[2,1]');
                                               },
                                               child: Container(
                                                 alignment:
                                                     Alignment.centerRight,
-                                                height: betRadius,
-                                                width: betRadius / 2,
+                                                height: betRadius / 2,
+                                                width: betRadius,
                                                 decoration: BoxDecoration(
                                                   color: betOffColor,
                                                   borderRadius:
                                                       BorderRadius.only(
-                                                    bottomRight:
-                                                        Radius.circular(
-                                                            circularRadius),
                                                     topRight: Radius.circular(
+                                                        circularRadius),
+                                                    topLeft: Radius.circular(
                                                         circularRadius),
                                                   ),
                                                 ),
@@ -4114,7 +4276,7 @@ class RouletteBoard extends StatelessWidget {
                                         ),
                                         GestureDetector(
                                           onTap: () {
-                                            rbc.bets.add('[5,4]');
+                                            rbc.bets.add('[3,2]');
                                           },
                                           child: Container(
                                             alignment: Alignment.centerRight,
@@ -4123,9 +4285,9 @@ class RouletteBoard extends StatelessWidget {
                                             decoration: BoxDecoration(
                                               color: betOffColor,
                                               borderRadius: BorderRadius.only(
-                                                topRight: Radius.circular(
+                                                bottomLeft: Radius.circular(
                                                     circularRadius),
-                                                topLeft: Radius.circular(
+                                                bottomRight: Radius.circular(
                                                     circularRadius),
                                               ),
                                             ),
@@ -4133,30 +4295,56 @@ class RouletteBoard extends StatelessWidget {
                                         ),
                                       ],
                                     ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        rbc.bets.add('[6,5]');
-                                      },
-                                      child: Container(
-                                        alignment: Alignment.centerRight,
-                                        height: betRadius / 2,
-                                        width: betRadius,
-                                        decoration: BoxDecoration(
-                                          color: betOffColor,
-                                          borderRadius: BorderRadius.only(
-                                            bottomLeft:
-                                                Radius.circular(circularRadius),
-                                            bottomRight:
-                                                Radius.circular(circularRadius),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
+                                    Container(
+                                      height: box_size,
+                                      width: betRadius / 2,
+                                      child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Container(
+                                              height: box_size / 2,
+                                              width: betRadius / 2,
+                                              alignment: Alignment.centerLeft,
+                                              child: Container(
+                                                  width: betRadius / 2,
+                                                  height: betRadius,
+                                                  decoration: BoxDecoration(
+                                                    color: betOffColor,
+                                                    borderRadius: BorderRadius.only(
+                                                        topRight:
+                                                            Radius.circular(
+                                                                circularRadius),
+                                                        bottomRight:
+                                                            Radius.circular(
+                                                                circularRadius)),
+                                                  )),
+                                            ),
+                                            Container(
+                                              height: box_size / 2,
+                                              width: betRadius / 2,
+                                              alignment: Alignment.centerLeft,
+                                              child: Container(
+                                                width: betRadius / 2,
+                                                height: betRadius,
+                                                decoration: BoxDecoration(
+                                                  color: betOffColor,
+                                                  borderRadius: BorderRadius.only(
+                                                      topRight: Radius.circular(
+                                                          circularRadius),
+                                                      bottomRight:
+                                                          Radius.circular(
+                                                              circularRadius)),
+                                                ),
+                                              ),
+                                            ),
+                                          ]),
+                                    )
                                   ],
                                 ),
                                 GestureDetector(
                                   onTap: () {
-                                    rbc.bets.add('[5,8,4,7]');
+                                    rbc.bets.add('[2,5,1,4]');
                                   },
                                   child: Container(
                                     alignment: Alignment.centerRight,
@@ -4173,18 +4361,23 @@ class RouletteBoard extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                rbc.bets.add('[2,5,1,4]');
-                              },
-                              child: Container(
-                                alignment: Alignment.centerRight,
-                                height: betRadius / 2,
-                                width: betRadius / 2,
-                                decoration: BoxDecoration(
-                                  color: betOffColor,
-                                  borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(circularRadius),
+                            Obx(
+                              () => GestureDetector(
+                                onTap: () {
+                                  rbc.bets.add('[0,2,1]');
+                                  rbc.cornerBets[2] = true;
+                                },
+                                child: Container(
+                                  alignment: Alignment.centerRight,
+                                  height: betRadius / 2,
+                                  width: betRadius / 2,
+                                  decoration: BoxDecoration(
+                                    color: rbc.cornerBets[2]
+                                        ? betColor
+                                        : betOffColor,
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(circularRadius),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -4193,7 +4386,7 @@ class RouletteBoard extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            rbc.bets.add('[6,9,5,8]');
+                            rbc.bets.add('[3,6,2,5]');
                           },
                           child: Container(
                             alignment: Alignment.centerRight,
@@ -4209,18 +4402,21 @@ class RouletteBoard extends StatelessWidget {
                         ),
                       ],
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        rbc.bets.add('[3,6,2,5]');
-                      },
-                      child: Container(
-                        alignment: Alignment.centerRight,
-                        height: betRadius / 2,
-                        width: betRadius / 2,
-                        decoration: BoxDecoration(
-                          color: betOffColor,
-                          borderRadius: BorderRadius.only(
-                            bottomRight: Radius.circular(circularRadius),
+                    Obx(
+                      () => GestureDetector(
+                        onTap: () {
+                          rbc.bets.add('[00,3,2]');
+                          rbc.cornerBets[1] = true;
+                        },
+                        child: Container(
+                          alignment: Alignment.centerRight,
+                          height: betRadius / 2,
+                          width: betRadius / 2,
+                          decoration: BoxDecoration(
+                            color: rbc.cornerBets[1] ? betColor : betOffColor,
+                            borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(circularRadius),
+                            ),
                           ),
                         ),
                       ),
@@ -7299,18 +7495,23 @@ class RouletteBoard extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                rbc.bets.add('[0,00,1,2,3]');
-                              },
-                              child: Container(
-                                alignment: Alignment.centerRight,
-                                height: betRadius / 2,
-                                width: betRadius / 2,
-                                decoration: BoxDecoration(
-                                  color: betOffColor,
-                                  borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(circularRadius),
+                            Obx(
+                              () => GestureDetector(
+                                onTap: () {
+                                  rbc.bets.add('[0,00,1,2,3]');
+                                  rbc.cornerBets[3] = true;
+                                },
+                                child: Container(
+                                  alignment: Alignment.centerRight,
+                                  height: betRadius / 2,
+                                  width: betRadius / 2,
+                                  decoration: BoxDecoration(
+                                    color: rbc.cornerBets[3]
+                                        ? betColor
+                                        : betOffColor,
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(circularRadius),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -7334,18 +7535,21 @@ class RouletteBoard extends StatelessWidget {
                         ),
                       ],
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        rbc.bets.add('[2,0,1]');
-                      },
-                      child: Container(
-                        alignment: Alignment.centerRight,
-                        height: betRadius / 2,
-                        width: betRadius / 2,
-                        decoration: BoxDecoration(
-                          color: betOffColor,
-                          borderRadius: BorderRadius.only(
-                            bottomRight: Radius.circular(circularRadius),
+                    Obx(
+                      () => GestureDetector(
+                        onTap: () {
+                          rbc.bets.add('[2,0,1]');
+                          rbc.cornerBets[2] = true;
+                        },
+                        child: Container(
+                          alignment: Alignment.centerRight,
+                          height: betRadius / 2,
+                          width: betRadius / 2,
+                          decoration: BoxDecoration(
+                            color: rbc.cornerBets[2] ? betColor : betOffColor,
+                            borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(circularRadius),
+                            ),
                           ),
                         ),
                       ),
@@ -10309,14 +10513,24 @@ class RouletteBoard extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              width: betRadius / 2,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomRight:
-                                        Radius.circular(circularRadius)),
+                            Obx(
+                              () => GestureDetector(
+                                onTap: () {
+                                  rbc.bets.add("[0,00,1,2,3]");
+                                  rbc.cornerBets[3] = true;
+                                },
+                                child: Container(
+                                  width: betRadius / 2,
+                                  height: betRadius / 2,
+                                  decoration: BoxDecoration(
+                                    color: rbc.cornerBets[3]
+                                        ? betColor
+                                        : betOffColor,
+                                    borderRadius: BorderRadius.only(
+                                        bottomRight:
+                                            Radius.circular(circularRadius)),
+                                  ),
+                                ),
                               ),
                             ),
                             Container(

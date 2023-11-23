@@ -10,7 +10,11 @@ class RouletteBoardController extends GetxController {
   var zeroBetsCount = List<int>.filled(2, 0).obs;
   var wheelSpinning = false.obs;
   var spinning = false.obs;
-  var cornerBets = List<bool>.filled(39, false).obs;
+  var cornerBets = List<bool>.filled(52, false).obs;
+  var verticalSideBets = List<bool>.filled(33, false).obs;
+  var horizontalSideBets = List<bool>.filled(24, false).obs;
+  var streetBets = List<bool>.filled(24, false).obs;
+  var zeroSideBets = List<bool>.filled(4, false).obs;
   var betValue = 1;
   var totalBetAmount = 0.obs;
   var spinResult = 0.obs;
