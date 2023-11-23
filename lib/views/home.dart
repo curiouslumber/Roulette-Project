@@ -26,15 +26,14 @@ class HomeState extends State<Home> {
             ? Expanded(
                 flex: 1,
                 child: GestureDetector(
-                  onTap: () {
-                    print("Tapped");
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text('Checking internet connection...')));
-                    userData.checkUserConnection();
+                  onTap: () async {
+                    await userData.checkUserConnection();
                     if (userData.userConnection.value == true) {
+                      // ignore: use_build_context_synchronously
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           content: Text('Internet connection established')));
                     } else {
+                      // ignore: use_build_context_synchronously
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           content: Text('No internet connection')));
                     }
@@ -105,8 +104,7 @@ class HomeState extends State<Home> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          const RouletteMenu()),
+                                      builder: (context) => RouletteMenu()),
                                 );
                               },
                             ),

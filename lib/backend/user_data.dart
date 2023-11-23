@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'dart:io';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 
 class UserData extends GetxController {
@@ -9,6 +9,7 @@ class UserData extends GetxController {
   var user_name = "".obs;
   var user_password = "".obs;
   var active_user = false.obs;
+  var gameType = "".obs;
 
   var current_balance = 0.obs;
   var current_demo_balance = 0.obs;
@@ -26,14 +27,11 @@ class UserData extends GetxController {
   var userConnection = false.obs;
 
   Future<void> checkUserConnection() async {
-    try {
-      final result = await InternetAddress.lookup('google.com');
-      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        userConnection.value = true;
-      }
-    } on SocketException catch (_) {
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.none) {
       userConnection.value = false;
+    } else {
+      userConnection.value = true;
     }
-    userConnection.value = false;
   }
 }

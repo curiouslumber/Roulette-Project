@@ -4,6 +4,8 @@ import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:roulette_project/backend/sharedpreferences.dart';
+import 'package:roulette_project/backend/user_data.dart';
 import 'package:roulette_project/views/roulette/rouletteboard.dart';
 import 'package:roulette_project/views/roulette/rouletteboardcontroller.dart';
 import 'package:roulette_project/views/home.dart';
@@ -19,6 +21,7 @@ class RoulettePage extends StatefulWidget {
 class RoulettePageState extends State<RoulettePage> {
   final RouletteBoardController rouletteBoardController =
       Get.put(RouletteBoardController());
+  final UserData userData = Get.find();
 
   late Timer timer;
   late Random random;
@@ -31,6 +34,9 @@ class RoulettePageState extends State<RoulettePage> {
     super.initState();
     random = Random();
     resetWheel();
+    rouletteBoardController.userBalance.value =
+        userData.current_demo_balance.value;
+    print(rouletteBoardController.userBalance.value);
   }
 
   void resetWheel() {
@@ -424,6 +430,11 @@ class RoulettePageState extends State<RoulettePage> {
                                                             rouletteBoardController
                                                                 .wheelSpinning
                                                                 .value = true;
+                                                            SharedPreferencesManager
+                                                                .setDemoBalance(
+                                                                    rouletteBoardController
+                                                                        .userBalance
+                                                                        .value);
                                                             rotateWheel();
                                                           }
                                                         },
@@ -531,6 +542,44 @@ class RoulettePageState extends State<RoulettePage> {
                                           onPressed: () {
                                             rouletteBoardController
                                                 .wheelSpinning.value = false;
+                                            rouletteBoardController
+                                                .totalBetAmount.value = 0;
+                                            rouletteBoardController.zeroBets
+                                                .fillRange(
+                                                    0,
+                                                    rouletteBoardController
+                                                        .zeroBets.length,
+                                                    false);
+                                            rouletteBoardController.cornerBets
+                                                .fillRange(
+                                                    0,
+                                                    rouletteBoardController
+                                                        .cornerBets.length,
+                                                    false);
+                                            rouletteBoardController
+                                                .betsOnBoardCount
+                                                .fillRange(
+                                                    0,
+                                                    rouletteBoardController
+                                                        .betsOnBoardCount
+                                                        .length,
+                                                    0);
+                                            rouletteBoardController.bets
+                                                .clear();
+                                            rouletteBoardController.betsOnBoard
+                                                .fillRange(
+                                                    0,
+                                                    rouletteBoardController
+                                                        .betsOnBoard.length,
+                                                    false);
+                                            rouletteBoardController.betSizes
+                                                .clear();
+                                            rouletteBoardController.betsInInt
+                                                .clear();
+                                            rouletteBoardController
+                                                .userResult.value = "";
+                                            rouletteBoardController
+                                                .userWon.value = false;
                                           },
                                           icon: const Icon(
                                             Icons.close,

@@ -36,7 +36,7 @@ class RouletteBoardController extends GetxController {
   var userResult = "You".obs;
   var userWon = false.obs;
   var totalAmountWon = 0.obs;
-  var userBalance = 500.obs;
+  var userBalance = 0.obs;
 
   void calculateBet() {
     for (int i = 0; i < bets.length; i++) {

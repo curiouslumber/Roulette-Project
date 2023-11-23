@@ -6,15 +6,10 @@ import 'package:roulette_project/backend/user_data.dart';
 class LoginHandler {
   UserData userData = Get.put(UserData());
 
-  // Example usage in your login screen
   void loginUser(String username, String email, String password) {
-    // Assume successful login
-    // Save user login information
     SharedPreferencesManager.saveUserLoginInfo(username, email, password);
-    // Navigate to the home screen or perform other actions
   }
 
-// Example usage in your home screen or main application logic
   Future<bool> checkUserLoginStatus() async {
     bool isLoggedIn = await SharedPreferencesManager.isLoggedIn();
 
