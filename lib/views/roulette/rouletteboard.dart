@@ -112,17 +112,22 @@ class RouletteBoard extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    width: betRadius / 2,
-                                    height: betRadius,
-                                    decoration: BoxDecoration(
-                                        color: betOffColor,
-                                        borderRadius: BorderRadius.only(
-                                          topLeft:
-                                              Radius.circular(circularRadius),
-                                          bottomLeft:
-                                              Radius.circular(circularRadius),
-                                        )),
+                                  GestureDetector(
+                                    onTap: () {
+                                      rbc.bets.add("[00,3]");
+                                    },
+                                    child: Container(
+                                      width: betRadius / 2,
+                                      height: betRadius,
+                                      decoration: BoxDecoration(
+                                          color: betOffColor,
+                                          borderRadius: BorderRadius.only(
+                                            topLeft:
+                                                Radius.circular(circularRadius),
+                                            bottomLeft:
+                                                Radius.circular(circularRadius),
+                                          )),
+                                    ),
                                   ),
                                   Obx(
                                     () => GestureDetector(
@@ -369,16 +374,22 @@ class RouletteBoard extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Container(
-                                width: betRadius / 2,
-                                height: betRadius,
-                                decoration: BoxDecoration(
-                                    color: betOffColor,
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(circularRadius),
-                                      bottomLeft:
-                                          Radius.circular(circularRadius),
-                                    )),
+                              GestureDetector(
+                                onTap: () {
+                                  rbc.bets.add("[0,1]");
+                                },
+                                child: Container(
+                                  width: betRadius / 2,
+                                  height: betRadius,
+                                  decoration: BoxDecoration(
+                                      color: betOffColor,
+                                      borderRadius: BorderRadius.only(
+                                        topLeft:
+                                            Radius.circular(circularRadius),
+                                        bottomLeft:
+                                            Radius.circular(circularRadius),
+                                      )),
+                                ),
                               ),
                               Obx(
                                 () => GestureDetector(

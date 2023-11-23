@@ -119,6 +119,60 @@ class RouletteBoardController extends GetxController {
     totalBetAmount.value += betValue;
   }
 
+  void activeCornerBet(int index) {
+    if (totalBetAmount.value + betValue * 4 > userBalance.value) {
+      print("Not enough money");
+      return;
+    }
+    cornerBets[index - 1] = true;
+    totalBetAmount.value += betValue * 4;
+  }
+
+  void activeVerticalSideBet(int index) {
+    if (totalBetAmount.value + betValue * 3 > userBalance.value) {
+      print("Not enough money");
+      return;
+    }
+    verticalSideBets[index - 1] = true;
+    totalBetAmount.value += betValue * 3;
+  }
+
+  void activeHorizontalSideBet(int index) {
+    if (totalBetAmount.value + betValue * 2 > userBalance.value) {
+      print("Not enough money");
+      return;
+    }
+    horizontalSideBets[index - 1] = true;
+    totalBetAmount.value += betValue * 2;
+  }
+
+  void activeStreetBet(int index) {
+    if (totalBetAmount.value + betValue * 3 > userBalance.value) {
+      print("Not enough money");
+      return;
+    }
+    streetBets[index - 1] = true;
+    totalBetAmount.value += betValue * 3;
+  }
+
+  void activeDoubleStreetBet(int index) {
+    if (totalBetAmount.value + betValue * 6 > userBalance.value) {
+      print("Not enough money");
+      return;
+    }
+    streetBets[index - 1] = true;
+    totalBetAmount.value += betValue * 6;
+  }
+
+  void activeZeroSideBet(int index) {
+    if (totalBetAmount.value + betValue * 4 > userBalance.value) {
+      print("Not enough money");
+      return;
+    }
+    zeroSideBets[index - 1] = true;
+    totalBetAmount.value += betValue * 4;
+  }
+
   void activeFirst12() {
     if (totalBetAmount.value + (betValue * 12) > userBalance.value) {
       print("Not enough money");
