@@ -15,25 +15,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: FutureBuilder(
-            future: userData.checkUserConnection(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.none) {
-                return const Center(child: CircularProgressIndicator());
-              } else if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(child: CircularProgressIndicator());
-              } else if (snapshot.hasError) {
-                return Center(
-                  child: Text('Error ${snapshot.error}'),
-                );
-              }
-
-              return const Home();
-            },
-          )),
+        debugShowCheckedModeBanner: false,
+        home: Home(),
+      ),
     );
   }
 }

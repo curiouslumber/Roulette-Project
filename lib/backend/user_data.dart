@@ -23,15 +23,17 @@ class UserData extends GetxController {
   var total_amount_won_in_demo_games = 0.obs;
   var total_amount_lost_in_demo_games = 0.obs;
 
-  Future<bool> checkUserConnection() async {
+  var userConnection = false.obs;
+
+  Future<void> checkUserConnection() async {
     try {
       final result = await InternetAddress.lookup('google.com');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        return true;
+        userConnection.value = true;
       }
     } on SocketException catch (_) {
-      return false;
+      userConnection.value = false;
     }
-    return false;
+    userConnection.value = false;
   }
 }

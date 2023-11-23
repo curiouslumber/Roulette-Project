@@ -5,6 +5,7 @@ class SharedPreferencesManager {
   static const String _keyUsername = 'username';
   static const String _keyEmail = 'email';
   static const String _keyPassword = 'password';
+  static const int _demoBalance = 1500;
 
   static Future<void> saveUserLoginInfo(
       String username, String email, String password) async {
@@ -33,6 +34,10 @@ class SharedPreferencesManager {
   static Future<String?> getPassword() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString(_keyPassword);
+  }
+
+  static Future<int> getDemoBalance() async {
+    return _demoBalance;
   }
 
   static Future<void> logoutUser() async {
