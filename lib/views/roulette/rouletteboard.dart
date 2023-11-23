@@ -15,8 +15,8 @@ class RouletteBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final zero_height = 10.h;
-    final bottom_row_width = 48.w;
-    final box_size = 12.w;
+    final bottom_row_width = 44.w;
+    final box_size = 11.w;
     const betColor = Colors.orange;
     const betOffColor = Colors.transparent;
     const upperExtraAreaColor = Colors.transparent;
