@@ -3,12 +3,12 @@ import 'dart:math';
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:roulette_project/backend/sharedpreferences.dart';
 import 'package:roulette_project/backend/user_data.dart';
 import 'package:roulette_project/views/roulette/rouletteboard.dart';
 import 'package:roulette_project/views/roulette/rouletteboardcontroller.dart';
-import 'package:sizer/sizer.dart';
 
 class RoulettePage extends StatefulWidget {
   const RoulettePage({super.key});
@@ -247,12 +247,13 @@ class RoulettePageState extends State<RoulettePage> {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(flex: 2, child: RouletteBoard()),
                   Expanded(
                     flex: 1,
                     child: Container(
-                      width: 200.w,
+                      width: 600.w,
                       alignment: Alignment.centerLeft,
                       color: Colors.green[800],
                       padding: const EdgeInsets.all(8.0),
@@ -272,7 +273,7 @@ class RoulettePageState extends State<RoulettePage> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Container(
-                                        width: 100.w,
+                                        width: 300.w,
                                         alignment: Alignment.centerLeft,
                                         child: SingleChildScrollView(
                                           scrollDirection: Axis.horizontal,
