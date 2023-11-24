@@ -1,27 +1,25 @@
 // ignore_for_file: non_constant_identifier_names
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:roulette_project/views/roulette/rouletteboardcontroller.dart';
-import 'package:sizer/sizer.dart';
 
 // ignore: must_be_immutable
 class RouletteBoard extends StatelessWidget {
-  RouletteBoard({
-    super.key,
-  });
-
   RouletteBoardController rbc = Get.find();
+
+  RouletteBoard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final zero_height = 10.h;
-    final bottom_row_width = 44.w;
-    final box_size = 11.w;
+    final zero_height = 49.75.h;
+    final bottom_row_width = 132.h;
+    final box_size = 33.h;
     const betColor = Colors.orange;
     const betOffColor = Colors.transparent;
     const upperExtraAreaColor = Colors.transparent;
-    final circularRadius = 1.w * 1.h;
-    final betRadius = 0.9.w * 0.9.h * 3.1415 * 0.3;
+    final circularRadius = 12.h;
+    final betRadius = 12.h;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,

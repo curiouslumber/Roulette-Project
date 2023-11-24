@@ -5,10 +5,20 @@ import 'package:roulette_project/components/game_header.dart';
 import 'package:roulette_project/views/roulette/rouettegameview.dart';
 import 'package:roulette_project/user/wallet.dart';
 
-class RouletteMenu extends StatelessWidget {
-  RouletteMenu({super.key});
+class RouletteMenu extends StatefulWidget {
+  const RouletteMenu({super.key});
 
+  @override
+  State<RouletteMenu> createState() => _RouletteMenuState();
+}
+
+class _RouletteMenuState extends State<RouletteMenu> {
   final UserData userData = Get.find();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +54,7 @@ class RouletteMenu extends StatelessWidget {
           ),
           MaterialButton(
             color: Colors.white,
-            onPressed: () async {
+            onPressed: () {
               userData.gameType.value = 'demo';
 
               Get.to(() => const RoulettePage());
