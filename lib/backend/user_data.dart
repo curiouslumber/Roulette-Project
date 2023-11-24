@@ -25,7 +25,6 @@ class UserData extends GetxController {
   var total_amount_lost_in_demo_games = 0.obs;
 
   var userConnection = false.obs;
-  var loading = false.obs;
 
   Future<void> checkUserConnection() async {
     final connectivityResult = await (Connectivity().checkConnectivity());
