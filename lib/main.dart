@@ -7,7 +7,7 @@ import 'package:roulette_project/backend/user_data.dart';
 import 'package:roulette_project/views/home.dart';
 import 'package:roulette_project/views/roulette/rouletteboardcontroller.dart';
 
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
     (_) {
@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: GetMaterialApp(
+      initialBinding: BindingsBuilder(() {}),
       builder: (context, child) {
         ScreenUtil.init(context, designSize: const Size(320, 534));
         return child!;
@@ -35,8 +36,13 @@ class MyApp extends StatelessWidget {
       home: FutureBuilder<int?>(
         future: SharedPreferencesManager.getDemoBalance(),
         builder: (context, snapshot) {
-          print(snapshot.data);
-          if (snapshot.data == null) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          } else if (snapshot.data == null) {
             return FutureBuilder(
                 future: SharedPreferencesManager.setDemoBalance(1500),
                 builder: (context, snapshot) {
