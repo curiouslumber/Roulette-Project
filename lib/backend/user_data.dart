@@ -34,6 +34,5 @@ class UserData extends GetxController {
     } else {
       userConnection.value = true;
     }
-    loading.value = false;
   }
 }

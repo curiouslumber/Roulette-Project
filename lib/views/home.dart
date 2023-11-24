@@ -103,11 +103,7 @@ class HomeState extends State<Home> {
                                 ),
                               ),
                               onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => RouletteMenu()),
-                                );
+                                Get.to(() => const RouletteMenu());
                               },
                             ),
                           )

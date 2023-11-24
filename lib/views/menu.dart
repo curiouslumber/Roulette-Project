@@ -19,20 +19,18 @@ class _RouletteMenuState extends State<RouletteMenu> {
 
   @override
   Widget build(BuildContext context) {
-    userData.checkUserConnection();
+    return OrientationBuilder(builder: (context, orientation) {
+      if (orientation == Orientation.landscape) {
+        SystemChrome.setPreferredOrientations(
+            [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+      }
 
-    return Scaffold(
-      backgroundColor: Colors.green[900],
-      body: userData.loading.value == false
-          ? OrientationBuilder(builder: (context, orientation) {
-              if (orientation == Orientation.landscape) {
-                SystemChrome.setPreferredOrientations([
-                  DeviceOrientation.portraitUp,
-                  DeviceOrientation.portraitDown
-                ]);
-              }
-              ScreenUtil.configure(designSize: const Size(320, 534));
-              return Column(children: [
+      userData.checkUserConnection();
+      ScreenUtil.configure(designSize: const Size(320, 534));
+      return Scaffold(
+        backgroundColor: Colors.green[900],
+        body: userData.loading.value == false
+            ? Column(children: [
                 GameHeader(),
                 const Spacer(),
                 const Text(
@@ -85,12 +83,12 @@ class _RouletteMenuState extends State<RouletteMenu> {
                       style: TextStyle(color: Colors.green[900])),
                 ),
                 const Spacer()
-              ]);
-            })
-          : const Center(
-              child: CircularProgressIndicator(
-              color: Colors.white,
-            )),
-    );
+              ])
+            : const Center(
+                child: CircularProgressIndicator(
+                color: Colors.white,
+              )),
+      );
+    });
   }
 }
