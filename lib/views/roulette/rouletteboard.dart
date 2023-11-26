@@ -498,62 +498,34 @@ class RouletteBoard extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Container(
-                            alignment: Alignment.center,
-                            width: betRadius,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(circularRadius),
-                                  topLeft: Radius.circular(circularRadius)),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[1,2,3]");
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              width: betRadius,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(circularRadius),
+                                    topLeft: Radius.circular(circularRadius)),
+                              ),
                             ),
                           ),
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(circularRadius)),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: box_size,
-                      alignment: Alignment.bottomCenter,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(circularRadius)),
-                            ),
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            width: betRadius,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(circularRadius),
-                                  topLeft: Radius.circular(circularRadius)),
-                            ),
-                          ),
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(circularRadius)),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[1,2,3,4,5,6]");
+                            },
+                            child: Container(
+                              width: betRadius / 2,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(circularRadius)),
+                              ),
                             ),
                           ),
                         ],
@@ -565,71 +537,48 @@ class RouletteBoard extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(circularRadius)),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[1,2,3,4,5,6]");
+                            },
+                            child: Container(
+                              width: betRadius / 2,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(circularRadius)),
+                              ),
                             ),
                           ),
-                          Container(
-                            alignment: Alignment.center,
-                            width: betRadius,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(circularRadius),
-                                  topLeft: Radius.circular(circularRadius)),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[4,5,6]");
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              width: betRadius,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(circularRadius),
+                                    topLeft: Radius.circular(circularRadius)),
+                              ),
                             ),
                           ),
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(circularRadius)),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: box_size,
-                      alignment: Alignment.bottomCenter,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(circularRadius)),
-                            ),
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            width: betRadius,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(circularRadius),
-                                  topLeft: Radius.circular(circularRadius)),
-                            ),
-                          ),
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(circularRadius)),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[4,5,6,7,8,9]");
+                            },
+                            child: Container(
+                              width: betRadius / 2,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(circularRadius)),
+                              ),
                             ),
                           ),
                         ],
@@ -641,71 +590,48 @@ class RouletteBoard extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(circularRadius)),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[4,5,6,7,8,9]");
+                            },
+                            child: Container(
+                              width: betRadius / 2,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(circularRadius)),
+                              ),
                             ),
                           ),
-                          Container(
-                            alignment: Alignment.center,
-                            width: betRadius,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(circularRadius),
-                                  topLeft: Radius.circular(circularRadius)),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[7,8,9]");
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              width: betRadius,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(circularRadius),
+                                    topLeft: Radius.circular(circularRadius)),
+                              ),
                             ),
                           ),
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(circularRadius)),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: box_size,
-                      alignment: Alignment.bottomCenter,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(circularRadius)),
-                            ),
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            width: betRadius,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(circularRadius),
-                                  topLeft: Radius.circular(circularRadius)),
-                            ),
-                          ),
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(circularRadius)),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("7,8,9,10,11,12");
+                            },
+                            child: Container(
+                              width: betRadius / 2,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(circularRadius)),
+                              ),
                             ),
                           ),
                         ],
@@ -717,71 +643,48 @@ class RouletteBoard extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(circularRadius)),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[7,8,9,10,11,12]");
+                            },
+                            child: Container(
+                              width: betRadius / 2,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(circularRadius)),
+                              ),
                             ),
                           ),
-                          Container(
-                            alignment: Alignment.center,
-                            width: betRadius,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(circularRadius),
-                                  topLeft: Radius.circular(circularRadius)),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[10,11,12]");
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              width: betRadius,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(circularRadius),
+                                    topLeft: Radius.circular(circularRadius)),
+                              ),
                             ),
                           ),
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(circularRadius)),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: box_size,
-                      alignment: Alignment.bottomCenter,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(circularRadius)),
-                            ),
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            width: betRadius,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(circularRadius),
-                                  topLeft: Radius.circular(circularRadius)),
-                            ),
-                          ),
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(circularRadius)),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[10,11,12,13,14,15]");
+                            },
+                            child: Container(
+                              width: betRadius / 2,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(circularRadius)),
+                              ),
                             ),
                           ),
                         ],
@@ -793,71 +696,48 @@ class RouletteBoard extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(circularRadius)),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[10,11,12,13,14,15]");
+                            },
+                            child: Container(
+                              width: betRadius / 2,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(circularRadius)),
+                              ),
                             ),
                           ),
-                          Container(
-                            alignment: Alignment.center,
-                            width: betRadius,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(circularRadius),
-                                  topLeft: Radius.circular(circularRadius)),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[13,14,15]");
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              width: betRadius,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(circularRadius),
+                                    topLeft: Radius.circular(circularRadius)),
+                              ),
                             ),
                           ),
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(circularRadius)),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: box_size,
-                      alignment: Alignment.bottomCenter,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(circularRadius)),
-                            ),
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            width: betRadius,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(circularRadius),
-                                  topLeft: Radius.circular(circularRadius)),
-                            ),
-                          ),
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(circularRadius)),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[13,14,15,16,17,18]");
+                            },
+                            child: Container(
+                              width: betRadius / 2,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(circularRadius)),
+                              ),
                             ),
                           ),
                         ],
@@ -869,33 +749,48 @@ class RouletteBoard extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(circularRadius)),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[13,14,15,16,17,18]");
+                            },
+                            child: Container(
+                              width: betRadius / 2,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(circularRadius)),
+                              ),
                             ),
                           ),
-                          Container(
-                            alignment: Alignment.center,
-                            width: betRadius,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(circularRadius),
-                                  topLeft: Radius.circular(circularRadius)),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[16,17,18]");
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              width: betRadius,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(circularRadius),
+                                    topLeft: Radius.circular(circularRadius)),
+                              ),
                             ),
                           ),
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(circularRadius)),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[16,17,18,19,20,21]");
+                            },
+                            child: Container(
+                              width: betRadius / 2,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(circularRadius)),
+                              ),
                             ),
                           ),
                         ],
@@ -907,24 +802,299 @@ class RouletteBoard extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            width: betRadius / 2,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(circularRadius)),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[16,17,18,19,20,21]");
+                            },
+                            child: Container(
+                              width: betRadius / 2,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(circularRadius)),
+                              ),
                             ),
                           ),
-                          Container(
-                            alignment: Alignment.center,
-                            width: betRadius,
-                            height: betRadius / 2,
-                            decoration: BoxDecoration(
-                              color: betOffColor,
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(circularRadius),
-                                  topLeft: Radius.circular(circularRadius)),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[19,20,21]");
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              width: betRadius,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(circularRadius),
+                                    topLeft: Radius.circular(circularRadius)),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[19,20,21,22,23,24]");
+                            },
+                            child: Container(
+                              width: betRadius / 2,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(circularRadius)),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: box_size,
+                      alignment: Alignment.bottomCenter,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[19,20,21,22,23,24]");
+                            },
+                            child: Container(
+                              width: betRadius / 2,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(circularRadius)),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[22,23,24]");
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              width: betRadius,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(circularRadius),
+                                    topLeft: Radius.circular(circularRadius)),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[22,23,24,25,26,27]");
+                            },
+                            child: Container(
+                              width: betRadius / 2,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(circularRadius)),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: box_size,
+                      alignment: Alignment.bottomCenter,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[22,23,24,25,26,27]");
+                            },
+                            child: Container(
+                              width: betRadius / 2,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(circularRadius)),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[25,26,27]");
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              width: betRadius,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(circularRadius),
+                                    topLeft: Radius.circular(circularRadius)),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[25,26,27,28,29,30]");
+                            },
+                            child: Container(
+                              width: betRadius / 2,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(circularRadius)),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: box_size,
+                      alignment: Alignment.bottomCenter,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[25,26,27,28,29,30]");
+                            },
+                            child: Container(
+                              width: betRadius / 2,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(circularRadius)),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[28,29,30]");
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              width: betRadius,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(circularRadius),
+                                    topLeft: Radius.circular(circularRadius)),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[28,29,30,31,32,33]");
+                            },
+                            child: Container(
+                              width: betRadius / 2,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(circularRadius)),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: box_size,
+                      alignment: Alignment.bottomCenter,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[28,29,30,31,32,33]");
+                            },
+                            child: Container(
+                              width: betRadius / 2,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(circularRadius)),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[31,32,33]");
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              width: betRadius,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(circularRadius),
+                                    topLeft: Radius.circular(circularRadius)),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[31,32,33,34,35,36]");
+                            },
+                            child: Container(
+                              width: betRadius / 2,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(circularRadius)),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: box_size,
+                      alignment: Alignment.bottomCenter,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[31,32,33,34,35,36]");
+                            },
+                            child: Container(
+                              width: betRadius / 2,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(circularRadius)),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              rbc.bets.add("[34,35,36]");
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              width: betRadius,
+                              height: betRadius / 2,
+                              decoration: BoxDecoration(
+                                color: betOffColor,
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(circularRadius),
+                                    topLeft: Radius.circular(circularRadius)),
+                              ),
                             ),
                           ),
                           Container(
@@ -10541,7 +10711,7 @@ class RouletteBoard extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+                Container(
                   height: betRadius / 2,
                   width: bottom_row_width * 3,
                   child: Row(
@@ -10574,67 +10744,37 @@ class RouletteBoard extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Container(
-                              alignment: Alignment.center,
-                              width: betRadius,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(circularRadius),
-                                    bottomRight:
-                                        Radius.circular(circularRadius)),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[1,2,3]");
+                              },
+                              child: Container(
+                                alignment: Alignment.center,
+                                width: betRadius,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight:
+                                          Radius.circular(circularRadius),
+                                      bottomLeft:
+                                          Radius.circular(circularRadius)),
+                                ),
                               ),
                             ),
-                            Container(
-                              width: betRadius / 2,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft:
-                                        Radius.circular(circularRadius)),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: box_size,
-                        alignment: Alignment.bottomCenter,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              width: betRadius / 2,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomRight:
-                                        Radius.circular(circularRadius)),
-                              ),
-                            ),
-                            Container(
-                              alignment: Alignment.center,
-                              width: betRadius,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(circularRadius),
-                                    bottomRight:
-                                        Radius.circular(circularRadius)),
-                              ),
-                            ),
-                            Container(
-                              width: betRadius / 2,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft:
-                                        Radius.circular(circularRadius)),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[1,2,3,4,5,6]");
+                              },
+                              child: Container(
+                                width: betRadius / 2,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomLeft:
+                                          Radius.circular(circularRadius)),
+                                ),
                               ),
                             ),
                           ],
@@ -10646,77 +10786,52 @@ class RouletteBoard extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              width: betRadius / 2,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomRight:
-                                        Radius.circular(circularRadius)),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[1,2,3,4,5,6]");
+                              },
+                              child: Container(
+                                width: betRadius / 2,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight:
+                                          Radius.circular(circularRadius)),
+                                ),
                               ),
                             ),
-                            Container(
-                              alignment: Alignment.center,
-                              width: betRadius,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(circularRadius),
-                                    bottomRight:
-                                        Radius.circular(circularRadius)),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[4,5,6]");
+                              },
+                              child: Container(
+                                alignment: Alignment.center,
+                                width: betRadius,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight:
+                                          Radius.circular(circularRadius),
+                                      bottomLeft:
+                                          Radius.circular(circularRadius)),
+                                ),
                               ),
                             ),
-                            Container(
-                              width: betRadius / 2,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft:
-                                        Radius.circular(circularRadius)),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: box_size,
-                        alignment: Alignment.bottomCenter,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              width: betRadius / 2,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomRight:
-                                        Radius.circular(circularRadius)),
-                              ),
-                            ),
-                            Container(
-                              alignment: Alignment.center,
-                              width: betRadius,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(circularRadius),
-                                    bottomRight:
-                                        Radius.circular(circularRadius)),
-                              ),
-                            ),
-                            Container(
-                              width: betRadius / 2,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft:
-                                        Radius.circular(circularRadius)),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[4,5,6,7,8,9]");
+                              },
+                              child: Container(
+                                width: betRadius / 2,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomLeft:
+                                          Radius.circular(circularRadius)),
+                                ),
                               ),
                             ),
                           ],
@@ -10728,77 +10843,52 @@ class RouletteBoard extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              width: betRadius / 2,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomRight:
-                                        Radius.circular(circularRadius)),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[4,5,6,7,8,9]");
+                              },
+                              child: Container(
+                                width: betRadius / 2,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight:
+                                          Radius.circular(circularRadius)),
+                                ),
                               ),
                             ),
-                            Container(
-                              alignment: Alignment.center,
-                              width: betRadius,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(circularRadius),
-                                    bottomRight:
-                                        Radius.circular(circularRadius)),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[7,8,9]");
+                              },
+                              child: Container(
+                                alignment: Alignment.center,
+                                width: betRadius,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight:
+                                          Radius.circular(circularRadius),
+                                      bottomLeft:
+                                          Radius.circular(circularRadius)),
+                                ),
                               ),
                             ),
-                            Container(
-                              width: betRadius / 2,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft:
-                                        Radius.circular(circularRadius)),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: box_size,
-                        alignment: Alignment.bottomCenter,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              width: betRadius / 2,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomRight:
-                                        Radius.circular(circularRadius)),
-                              ),
-                            ),
-                            Container(
-                              alignment: Alignment.center,
-                              width: betRadius,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(circularRadius),
-                                    bottomRight:
-                                        Radius.circular(circularRadius)),
-                              ),
-                            ),
-                            Container(
-                              width: betRadius / 2,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft:
-                                        Radius.circular(circularRadius)),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("7,8,9,10,11,12");
+                              },
+                              child: Container(
+                                width: betRadius / 2,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomLeft:
+                                          Radius.circular(circularRadius)),
+                                ),
                               ),
                             ),
                           ],
@@ -10810,77 +10900,52 @@ class RouletteBoard extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              width: betRadius / 2,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomRight:
-                                        Radius.circular(circularRadius)),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[7,8,9,10,11,12]");
+                              },
+                              child: Container(
+                                width: betRadius / 2,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight:
+                                          Radius.circular(circularRadius)),
+                                ),
                               ),
                             ),
-                            Container(
-                              alignment: Alignment.center,
-                              width: betRadius,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(circularRadius),
-                                    bottomRight:
-                                        Radius.circular(circularRadius)),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[10,11,12]");
+                              },
+                              child: Container(
+                                alignment: Alignment.center,
+                                width: betRadius,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight:
+                                          Radius.circular(circularRadius),
+                                      bottomLeft:
+                                          Radius.circular(circularRadius)),
+                                ),
                               ),
                             ),
-                            Container(
-                              width: betRadius / 2,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft:
-                                        Radius.circular(circularRadius)),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: box_size,
-                        alignment: Alignment.bottomCenter,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              width: betRadius / 2,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomRight:
-                                        Radius.circular(circularRadius)),
-                              ),
-                            ),
-                            Container(
-                              alignment: Alignment.center,
-                              width: betRadius,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(circularRadius),
-                                    bottomRight:
-                                        Radius.circular(circularRadius)),
-                              ),
-                            ),
-                            Container(
-                              width: betRadius / 2,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft:
-                                        Radius.circular(circularRadius)),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[10,11,12,13,14,15]");
+                              },
+                              child: Container(
+                                width: betRadius / 2,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomLeft:
+                                          Radius.circular(circularRadius)),
+                                ),
                               ),
                             ),
                           ],
@@ -10892,77 +10957,52 @@ class RouletteBoard extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              width: betRadius / 2,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomRight:
-                                        Radius.circular(circularRadius)),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[10,11,12,13,14,15]");
+                              },
+                              child: Container(
+                                width: betRadius / 2,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight:
+                                          Radius.circular(circularRadius)),
+                                ),
                               ),
                             ),
-                            Container(
-                              alignment: Alignment.center,
-                              width: betRadius,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(circularRadius),
-                                    bottomRight:
-                                        Radius.circular(circularRadius)),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[13,14,15]");
+                              },
+                              child: Container(
+                                alignment: Alignment.center,
+                                width: betRadius,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight:
+                                          Radius.circular(circularRadius),
+                                      bottomLeft:
+                                          Radius.circular(circularRadius)),
+                                ),
                               ),
                             ),
-                            Container(
-                              width: betRadius / 2,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft:
-                                        Radius.circular(circularRadius)),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: box_size,
-                        alignment: Alignment.bottomCenter,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              width: betRadius / 2,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomRight:
-                                        Radius.circular(circularRadius)),
-                              ),
-                            ),
-                            Container(
-                              alignment: Alignment.center,
-                              width: betRadius,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(circularRadius),
-                                    bottomRight:
-                                        Radius.circular(circularRadius)),
-                              ),
-                            ),
-                            Container(
-                              width: betRadius / 2,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft:
-                                        Radius.circular(circularRadius)),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[13,14,15,16,17,18]");
+                              },
+                              child: Container(
+                                width: betRadius / 2,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomLeft:
+                                          Radius.circular(circularRadius)),
+                                ),
                               ),
                             ),
                           ],
@@ -10974,36 +11014,52 @@ class RouletteBoard extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              width: betRadius / 2,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomRight:
-                                        Radius.circular(circularRadius)),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[13,14,15,16,17,18]");
+                              },
+                              child: Container(
+                                width: betRadius / 2,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight:
+                                          Radius.circular(circularRadius)),
+                                ),
                               ),
                             ),
-                            Container(
-                              alignment: Alignment.center,
-                              width: betRadius,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(circularRadius),
-                                    bottomRight:
-                                        Radius.circular(circularRadius)),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[16,17,18]");
+                              },
+                              child: Container(
+                                alignment: Alignment.center,
+                                width: betRadius,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight:
+                                          Radius.circular(circularRadius),
+                                      bottomLeft:
+                                          Radius.circular(circularRadius)),
+                                ),
                               ),
                             ),
-                            Container(
-                              width: betRadius / 2,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft:
-                                        Radius.circular(circularRadius)),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[16,17,18,19,20,21]");
+                              },
+                              child: Container(
+                                width: betRadius / 2,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomLeft:
+                                          Radius.circular(circularRadius)),
+                                ),
                               ),
                             ),
                           ],
@@ -11015,26 +11071,322 @@ class RouletteBoard extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              width: betRadius / 2,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomRight:
-                                        Radius.circular(circularRadius)),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[16,17,18,19,20,21]");
+                              },
+                              child: Container(
+                                width: betRadius / 2,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight:
+                                          Radius.circular(circularRadius)),
+                                ),
                               ),
                             ),
-                            Container(
-                              alignment: Alignment.center,
-                              width: betRadius,
-                              height: betRadius / 2,
-                              decoration: BoxDecoration(
-                                color: betOffColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(circularRadius),
-                                    bottomRight:
-                                        Radius.circular(circularRadius)),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[19,20,21]");
+                              },
+                              child: Container(
+                                alignment: Alignment.center,
+                                width: betRadius,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight:
+                                          Radius.circular(circularRadius),
+                                      bottomLeft:
+                                          Radius.circular(circularRadius)),
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[19,20,21,22,23,24]");
+                              },
+                              child: Container(
+                                width: betRadius / 2,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomLeft:
+                                          Radius.circular(circularRadius)),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: box_size,
+                        alignment: Alignment.bottomCenter,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[19,20,21,22,23,24]");
+                              },
+                              child: Container(
+                                width: betRadius / 2,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight:
+                                          Radius.circular(circularRadius)),
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[22,23,24]");
+                              },
+                              child: Container(
+                                alignment: Alignment.center,
+                                width: betRadius,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight:
+                                          Radius.circular(circularRadius),
+                                      bottomLeft:
+                                          Radius.circular(circularRadius)),
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[22,23,24,25,26,27]");
+                              },
+                              child: Container(
+                                width: betRadius / 2,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomLeft:
+                                          Radius.circular(circularRadius)),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: box_size,
+                        alignment: Alignment.bottomCenter,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[22,23,24,25,26,27]");
+                              },
+                              child: Container(
+                                width: betRadius / 2,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight:
+                                          Radius.circular(circularRadius)),
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[25,26,27]");
+                              },
+                              child: Container(
+                                alignment: Alignment.center,
+                                width: betRadius,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight:
+                                          Radius.circular(circularRadius),
+                                      bottomLeft:
+                                          Radius.circular(circularRadius)),
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[25,26,27,28,29,30]");
+                              },
+                              child: Container(
+                                width: betRadius / 2,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomLeft:
+                                          Radius.circular(circularRadius)),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: box_size,
+                        alignment: Alignment.bottomCenter,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[25,26,27,28,29,30]");
+                              },
+                              child: Container(
+                                width: betRadius / 2,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight:
+                                          Radius.circular(circularRadius)),
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[28,29,30]");
+                              },
+                              child: Container(
+                                alignment: Alignment.center,
+                                width: betRadius,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight:
+                                          Radius.circular(circularRadius),
+                                      bottomLeft:
+                                          Radius.circular(circularRadius)),
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[28,29,30,31,32,33]");
+                              },
+                              child: Container(
+                                width: betRadius / 2,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomLeft:
+                                          Radius.circular(circularRadius)),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: box_size,
+                        alignment: Alignment.bottomCenter,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[28,29,30,31,32,33]");
+                              },
+                              child: Container(
+                                width: betRadius / 2,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight:
+                                          Radius.circular(circularRadius)),
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[31,32,33]");
+                              },
+                              child: Container(
+                                alignment: Alignment.center,
+                                width: betRadius,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight:
+                                          Radius.circular(circularRadius),
+                                      bottomLeft:
+                                          Radius.circular(circularRadius)),
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[31,32,33,34,35,36]");
+                              },
+                              child: Container(
+                                width: betRadius / 2,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomLeft:
+                                          Radius.circular(circularRadius)),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: box_size,
+                        alignment: Alignment.bottomCenter,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[31,32,33,34,35,36]");
+                              },
+                              child: Container(
+                                width: betRadius / 2,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight:
+                                          Radius.circular(circularRadius)),
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                rbc.bets.add("[34,35,36]");
+                              },
+                              child: Container(
+                                alignment: Alignment.center,
+                                width: betRadius,
+                                height: betRadius / 2,
+                                decoration: BoxDecoration(
+                                  color: betOffColor,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight:
+                                          Radius.circular(circularRadius),
+                                      bottomLeft:
+                                          Radius.circular(circularRadius)),
+                                ),
                               ),
                             ),
                             Container(

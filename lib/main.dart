@@ -7,8 +7,9 @@ import 'package:roulette_project/backend/user_data.dart';
 import 'package:roulette_project/views/home.dart';
 import 'package:roulette_project/views/roulette/rouletteboardcontroller.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await ScreenUtil.ensureScreenSize();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
     (_) {
       runApp(MyApp());

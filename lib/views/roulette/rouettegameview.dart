@@ -284,7 +284,7 @@ class RoulettePageState extends State<RoulettePage> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Container(
-                                          width: 150.w,
+                                          width: 280.w,
                                           alignment: Alignment.centerLeft,
                                           child: SingleChildScrollView(
                                             scrollDirection: Axis.horizontal,
