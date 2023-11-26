@@ -40,15 +40,9 @@ class RouletteMenuState extends State<RouletteMenu> {
           ),
           const Spacer(),
           MaterialButton(
+            disabledColor: Colors.grey,
             color: Colors.white,
-            onPressed: () {
-              if (userData.userConnection.value == false) {
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content: Text('No internet connection. Play Demo.')));
-                return;
-              }
-              Get.to(() => const RoulettePage());
-            },
+            onPressed: null,
             child:
                 Text('Play Game', style: TextStyle(color: Colors.green[900])),
           ),

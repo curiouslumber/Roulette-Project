@@ -32,7 +32,8 @@ class RoulettePageState extends State<RoulettePage> {
   @override
   void initState() {
     super.initState();
-
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
     random = Random();
     resetWheel();
   }
