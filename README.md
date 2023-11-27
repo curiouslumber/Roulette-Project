@@ -10,3 +10,4 @@
 Features:
 - Responsive Design to have a pleasant experience on devices of different screen sizes.
 - Online as well as Offline Game modes available.
+- The SHA256 algorithm used secures passwords.
