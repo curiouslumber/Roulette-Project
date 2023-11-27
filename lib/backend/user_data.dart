@@ -10,7 +10,6 @@ class UserData extends GetxController {
   var user_password = "".obs;
   var active_user = false.obs;
   var gameType = "".obs;
-  var offlineMode = true.obs;
   var playingAsGuest = false.obs;
 
   var current_balance = 0.obs;

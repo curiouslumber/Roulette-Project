@@ -40,10 +40,14 @@ class RouletteMenuState extends State<RouletteMenu> {
           ),
           const Spacer(),
           MaterialButton(
-            color: userData.offlineMode.value ? Colors.grey : Colors.white,
-            onPressed: () => (userData.userConnection.value)
-                ? Get.to(() => const RoulettePage())
-                : null,
+            color: (userData.userConnection.value == false ||
+                    userData.playingAsGuest.value == true)
+                ? Colors.grey
+                : Colors.white,
+            onPressed: () => (userData.userConnection.value == false ||
+                    userData.playingAsGuest.value == true)
+                ? null
+                : Get.to(() => const RoulettePage()),
             child:
                 Text('Play Game', style: TextStyle(color: Colors.green[900])),
           ),
