@@ -39,7 +39,6 @@ class MyApp extends StatelessWidget {
             home: FutureBuilder(
                 future: SharedPreferencesManager.getDemoBalance(),
                 builder: (context, snapshot) {
-                  print(snapshot.data);
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Scaffold(
                       backgroundColor: Colors.green[900],
