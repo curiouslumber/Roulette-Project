@@ -37,8 +37,9 @@ class MyApp extends StatelessWidget {
             },
             debugShowCheckedModeBanner: false,
             home: FutureBuilder(
-                future: SharedPreferencesManager.isInitialized(),
+                future: SharedPreferencesManager.getDemoBalance(),
                 builder: (context, snapshot) {
+                  print(snapshot.data);
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Scaffold(
                       backgroundColor: Colors.green[900],
@@ -48,35 +49,110 @@ class MyApp extends StatelessWidget {
                         ),
                       ),
                     );
-                  } else if (snapshot.data == false) {
+                  } else if (snapshot.data == null) {
                     return FutureBuilder(
-                        future: SharedPreferencesManager.initialValues(),
+                        future: SharedPreferencesManager.setDemoBalance(1500),
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.done) {
-                            return Login();
-                          } else if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return Scaffold(
-                              backgroundColor: Colors.green[900],
-                              body: const Center(
-                                child: CircularProgressIndicator(
-                                  color: Colors.white,
-                                ),
-                              ),
-                            );
+                            userData.current_demo_balance.value = 1500;
+                            return FutureBuilder(
+                                future:
+                                    SharedPreferencesManager.isInitialized(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return Scaffold(
+                                      backgroundColor: Colors.green[900],
+                                      body: const Center(
+                                        child: CircularProgressIndicator(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    );
+                                  } else if (snapshot.data == false) {
+                                    return FutureBuilder(
+                                        future: SharedPreferencesManager
+                                            .initialValues(),
+                                        builder: (context, snapshot) {
+                                          if (snapshot.connectionState ==
+                                              ConnectionState.done) {
+                                            return Login();
+                                          } else if (snapshot.connectionState ==
+                                              ConnectionState.waiting) {
+                                            return Scaffold(
+                                              backgroundColor:
+                                                  Colors.green[900],
+                                              body: const Center(
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            );
+                                          } else {
+                                            return Scaffold(
+                                              backgroundColor:
+                                                  Colors.green[900],
+                                              body: const Center(
+                                                child: Text('Error'),
+                                              ),
+                                            );
+                                          }
+                                        });
+                                  } else if (snapshot.data == true) {
+                                    return FutureBuilder(
+                                        future: SharedPreferencesManager
+                                            .isPlayingAsGuest(),
+                                        builder: (context, snapshot) {
+                                          if (snapshot.connectionState ==
+                                              ConnectionState.waiting) {
+                                            return Scaffold(
+                                              backgroundColor:
+                                                  Colors.green[900],
+                                              body: const Center(
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            );
+                                          } else if (snapshot.data == true) {
+                                            userData.playingAsGuest.value =
+                                                true;
+                                            return const Home();
+                                          } else if (snapshot.data == false) {
+                                            userData.playingAsGuest.value =
+                                                false;
+                                            return Login();
+                                          } else {
+                                            return const Scaffold(
+                                              body: Center(
+                                                child: Text('Error'),
+                                              ),
+                                            );
+                                          }
+                                        });
+                                  } else {
+                                    return Scaffold(
+                                        backgroundColor: Colors.green[900],
+                                        body: const Center(
+                                          child: Text('Error'),
+                                        ));
+                                  }
+                                });
                           } else {
                             return Scaffold(
-                              backgroundColor: Colors.green[900],
-                              body: const Center(
-                                child: Text('Error'),
-                              ),
-                            );
+                                backgroundColor: Colors.green[900],
+                                body: const Center(
+                                  child: Text('Error'),
+                                ));
                           }
                         });
-                  } else if (snapshot.data == true) {
+                  } else if (snapshot.data != null) {
+                    userData.current_demo_balance.value = snapshot.data!;
                     return FutureBuilder(
-                        future: SharedPreferencesManager.isPlayingAsGuest(),
+                        future: SharedPreferencesManager.isInitialized(),
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
@@ -88,26 +164,76 @@ class MyApp extends StatelessWidget {
                                 ),
                               ),
                             );
-                          } else if (snapshot.data == true) {
-                            userData.playingAsGuest.value = true;
-                            return const Home();
                           } else if (snapshot.data == false) {
-                            userData.playingAsGuest.value = false;
-                            return Login();
+                            return FutureBuilder(
+                                future:
+                                    SharedPreferencesManager.initialValues(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.done) {
+                                    return Login();
+                                  } else if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return Scaffold(
+                                      backgroundColor: Colors.green[900],
+                                      body: const Center(
+                                        child: CircularProgressIndicator(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    );
+                                  } else {
+                                    return Scaffold(
+                                      backgroundColor: Colors.green[900],
+                                      body: const Center(
+                                        child: Text('Error'),
+                                      ),
+                                    );
+                                  }
+                                });
+                          } else if (snapshot.data == true) {
+                            return FutureBuilder(
+                                future:
+                                    SharedPreferencesManager.isPlayingAsGuest(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return Scaffold(
+                                      backgroundColor: Colors.green[900],
+                                      body: const Center(
+                                        child: CircularProgressIndicator(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    );
+                                  } else if (snapshot.data == true) {
+                                    userData.playingAsGuest.value = true;
+                                    return const Home();
+                                  } else if (snapshot.data == false) {
+                                    userData.playingAsGuest.value = false;
+                                    return Login();
+                                  } else {
+                                    return const Scaffold(
+                                      body: Center(
+                                        child: Text('Error'),
+                                      ),
+                                    );
+                                  }
+                                });
                           } else {
-                            return const Scaffold(
-                              body: Center(
-                                child: Text('Error'),
-                              ),
-                            );
+                            return Scaffold(
+                                backgroundColor: Colors.green[900],
+                                body: const Center(
+                                  child: Text('Error'),
+                                ));
                           }
                         });
                   } else {
-                    return const Scaffold(
-                      body: Center(
-                        child: Text('Error'),
-                      ),
-                    );
+                    return Scaffold(
+                        backgroundColor: Colors.green[900],
+                        body: const Center(
+                          child: Text('Error'),
+                        ));
                   }
                 })));
   }

@@ -32,6 +32,10 @@ class RoulettePageState extends State<RoulettePage> {
   @override
   void initState() {
     super.initState();
+    if (userData.gameType.value == 'demo') {
+      rouletteBoardController.userBalance.value =
+          userData.current_demo_balance.value;
+    }
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
     random = Random();
@@ -437,12 +441,23 @@ class RoulettePageState extends State<RoulettePage> {
                                                             rouletteBoardController
                                                                 .wheelSpinning
                                                                 .value = true;
-                                                            SharedPreferencesManager
-                                                                .setDemoBalance(
-                                                                    rouletteBoardController
-                                                                        .userBalance
-                                                                        .value);
-                                                            rotateWheel();
+
+                                                            if (userData
+                                                                    .gameType
+                                                                    .value ==
+                                                                'demo') {
+                                                              SharedPreferencesManager
+                                                                  .setDemoBalance(
+                                                                      rouletteBoardController
+                                                                          .userBalance
+                                                                          .value);
+                                                              userData.current_demo_balance
+                                                                      .value =
+                                                                  rouletteBoardController
+                                                                      .userBalance
+                                                                      .value;
+                                                              rotateWheel();
+                                                            }
                                                           }
                                                         },
                                                         child: const Text(
