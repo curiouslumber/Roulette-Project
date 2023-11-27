@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:roulette_project/backend/requests.dart';
+import 'package:roulette_project/backend/sharedpreferences.dart';
 import 'package:roulette_project/backend/user_data.dart';
+import 'package:roulette_project/main.dart';
 import 'package:roulette_project/views/user/login.dart';
 import '../views/user/profile.dart';
 
@@ -61,7 +63,11 @@ class GameHeader extends StatelessWidget {
                 userData.user_email.value = "";
                 userData.user_name.value = "";
                 userData.user_id.value = "";
-
+                userData.user_password.value = "";
+                userData.active_user.value = false;
+                userData.playingAsGuest.value = false;
+                await SharedPreferencesManager.notPlayingAsGuestUser();
+                await SharedPreferencesManager.logoutUser();
                 if (deleteActiveUsers) {
                   // ignore: use_build_context_synchronously
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -69,7 +75,7 @@ class GameHeader extends StatelessWidget {
                       content: Text("Successfully logged out"),
                     ),
                   );
-                  Get.offAll(() => Login());
+                  Get.offAll(() => MyApp());
                   print("Successfully deleted active user");
                 } else {
                   // ignore: use_build_context_synchronously

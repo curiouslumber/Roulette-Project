@@ -3,11 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:roulette_project/backend/requests.dart';
+import 'package:roulette_project/backend/user_data.dart';
+import 'package:roulette_project/main.dart';
 import 'package:roulette_project/views/user/login.dart';
 import 'package:crypto/crypto.dart';
 
-class SignUp extends StatelessWidget {
+class SignUp extends StatefulWidget {
   const SignUp({super.key});
+
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
+  UserData userData = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +124,7 @@ class SignUp extends StatelessWidget {
                         content: Text("Sign Up Successful! Please Log In"),
                       ),
                     );
-                    Get.to(() => Login());
+                    Get.offAll(() => MyApp());
                   } else {
                     // ignore: use_build_context_synchronously
                     ScaffoldMessenger.of(context).showSnackBar(

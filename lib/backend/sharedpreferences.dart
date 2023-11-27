@@ -38,6 +38,11 @@ class SharedPreferencesManager {
     prefs.setBool(playingAsGuest, true);
   }
 
+  static Future<void> notPlayingAsGuestUser() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool(playingAsGuest, false);
+  }
+
   static Future<bool> isPlayingAsGuest() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool(playingAsGuest) ?? false;
@@ -78,5 +83,6 @@ class SharedPreferencesManager {
     prefs.setBool(keyLoggedIn, false);
     prefs.remove(_keyUsername);
     prefs.remove(_keyEmail);
+    prefs.remove(_keyPassword);
   }
 }

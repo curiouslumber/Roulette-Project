@@ -3,6 +3,7 @@ import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:roulette_project/backend/loginhandler.dart';
 import 'package:roulette_project/backend/requests.dart';
 import 'package:roulette_project/backend/sharedpreferences.dart';
 import 'package:roulette_project/backend/user_data.dart';
@@ -119,14 +120,74 @@ class Login extends StatelessWidget {
                       var bytes = utf8.encode(password.text);
                       var digest = sha256.convert(bytes);
                       var val = digest.toString();
-                      print(val);
-                      print(data['password']);
+                      // print(val);
+                      // print(data['password']);
                       if (val.compareTo(data['password']) == 0) {
                         //password matched
-                        print(data['user_id']);
+                        // print(data['user_id']);
                         var checkActive = await BackendRequests()
                             .checkUserActive(data['user_id'].toString());
                         print(checkActive);
+                        if (checkActive) {
+                          //User is active on another device
+                          // ignore: use_build_context_synchronously
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                  "Only one login is allowed. Please logout from other device and try again."),
+                            ),
+                          );
+                        } else {
+                          //User is not active on another device
+                          DateTime now = DateTime.now();
+                          var date = now.toString().split(' ')[0];
+                          var time = now.toString().split(' ')[1];
+                          time = time[0] +
+                              time[1] +
+                              time[2] +
+                              time[3] +
+                              time[4] +
+                              time[5] +
+                              time[6] +
+                              time[7];
+
+                          var makeUserActive = await BackendRequests()
+                              .makeUserActive(
+                                  data['user_id'].toString(), date, time);
+
+                          if (makeUserActive) {
+                            print("object");
+                            userData.user_id.value = data['user_id'].toString();
+                            userData.user_name.value = data['name'];
+                            userData.user_email.value = data['email'];
+                            userData.playingAsGuest.value = false;
+                            SharedPreferencesManager.notPlayingAsGuestUser();
+                            LoginHandler().loginUser(
+                                data['name'], data['email'], data['password']);
+                            // ignore: use_build_context_synchronously
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Signed In Successfully"),
+                              ),
+                            );
+                            var loginCheck =
+                                await LoginHandler().checkUserLoginStatus();
+                            if (loginCheck) {
+                              Get.offAll(() => const Home());
+                              print('User is logged in.');
+                            } else {
+                              print('User is not logged in.');
+                            }
+                          } else {
+                            // ignore: use_build_context_synchronously
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                    "Something went wrong. Please try again"),
+                              ),
+                            );
+                          }
+                        }
                       } else {
                         // ignore: use_build_context_synchronously
                         ScaffoldMessenger.of(context)
