@@ -25,6 +25,7 @@ dependencies:
   blurrycontainer: ^1.0.2
   connectivity_plus: ^5.0.2
   flutter_screenutil: ^5.9.0
+  all_validations_br: ^3.0.0
 
 dev_dependencies:
   flutter_test:

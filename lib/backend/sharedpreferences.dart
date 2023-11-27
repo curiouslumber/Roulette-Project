@@ -6,6 +6,8 @@ class SharedPreferencesManager {
   static const String _keyEmail = 'email';
   static const String _keyPassword = 'password';
   static const String _demoBalance = 'demoBalance';
+  static const String playingAsGuest = 'playingAsGuest';
+  static const String initialized = 'initialized';
 
   static Future<void> saveUserLoginInfo(
       String username, String email, String password) async {
@@ -14,6 +16,31 @@ class SharedPreferencesManager {
     prefs.setString(_keyUsername, username);
     prefs.setString(_keyEmail, email);
     prefs.setString(_keyPassword, password);
+  }
+
+  static Future<void> initialValues() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool(keyLoggedIn, false);
+    prefs.setString(_keyUsername, '');
+    prefs.setString(_keyEmail, '');
+    prefs.setString(_keyPassword, '');
+    prefs.setBool(playingAsGuest, false);
+    prefs.setBool(initialized, true);
+  }
+
+  static Future<bool> isInitialized() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(initialized) ?? false;
+  }
+
+  static Future<void> playingAsGuestUser() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool(playingAsGuest, true);
+  }
+
+  static Future<bool> isPlayingAsGuest() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(playingAsGuest) ?? false;
   }
 
   static Future<bool> isLoggedIn() async {

@@ -1,22 +1,20 @@
 import 'dart:convert';
-import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:roulette_project/backend/loginhandler.dart';
 import 'package:roulette_project/backend/requests.dart';
-import 'package:roulette_project/backend/user_data.dart';
-import 'package:roulette_project/user/signup.dart';
-import 'package:roulette_project/views/home.dart';
+import 'package:roulette_project/views/user/login.dart';
+import 'package:crypto/crypto.dart';
 
-class Login extends StatelessWidget {
-  Login({super.key});
-
-  final UserData userData = Get.put(UserData());
+class SignUp extends StatelessWidget {
+  const SignUp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController name = TextEditingController();
     TextEditingController email = TextEditingController();
     TextEditingController password = TextEditingController();
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
     return Scaffold(
       backgroundColor: Colors.green[900],
@@ -30,8 +28,24 @@ class Login extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.all(15.0),
               child: Text(
-                'User login',
+                'Create your account',
                 style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: SizedBox(
+                width: 450,
+                child: TextFormField(
+                  style: const TextStyle(color: Colors.white),
+                  controller: name,
+                  decoration: const InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white)),
+                    hintStyle: TextStyle(color: Colors.white),
+                    hintText: 'Enter Name',
+                  ),
+                ),
               ),
             ),
             Padding(
@@ -45,7 +59,7 @@ class Login extends StatelessWidget {
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white)),
                     hintStyle: TextStyle(color: Colors.white),
-                    hintText: 'User email',
+                    hintText: 'Enter Email',
                   ),
                 ),
               ),
@@ -57,11 +71,12 @@ class Login extends StatelessWidget {
                 child: TextFormField(
                   style: const TextStyle(color: Colors.white),
                   controller: password,
+                  obscureText: true,
                   decoration: const InputDecoration(
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white)),
                     hintStyle: TextStyle(color: Colors.white),
-                    hintText: 'Password',
+                    hintText: 'Enter Password',
                   ),
                 ),
               ),
@@ -83,70 +98,35 @@ class Login extends StatelessWidget {
                         const EdgeInsets.all(20) //content padding inside button
                     ),
                 onPressed: () async {
-                  DateTime now = DateTime.now();
-                  var date = now.toString().split(' ')[0];
-                  var time = now.toString().split(' ')[1];
-                  time = time[0] +
-                      time[1] +
-                      time[2] +
-                      time[3] +
-                      time[4] +
-                      time[5] +
-                      time[6] +
-                      time[7];
-
+                  var bytes = utf8.encode(password.text);
+                  var digest = sha256.convert(bytes);
                   BackendRequests backendRequests = BackendRequests();
-                  var res = await backendRequests.checkPassword(email.text);
+                  var completed = await backendRequests.insertUsers(
+                      name.text, email.text, digest.toString());
 
-                  if (res != null) {
-                    var bytes = utf8.encode(password.text);
-                    var digest = sha256.convert(bytes);
-                    var val = digest.toString();
-                    if (val.compareTo(res['password']) == 0) {
-                      var userActive = await backendRequests.makeUserActive(
-                          res['user_id'].toString(), date, time);
-                      if (userActive) {
-                        userData.user_id.value = res['user_id'].toString();
-                        userData.user_name.value = res['name'];
-                        userData.user_email.value = res['email'];
+                  if (completed) {
+                    var res = await backendRequests.checkPassword(email.text);
+                    await backendRequests
+                        .createUserDashboard(res!['user_id'].toString());
 
-                        LoginHandler().loginUser(
-                            res['name'], res['email'], res['password']);
-                        // ignore: use_build_context_synchronously
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text("Signed In Successfully"),
-                          ),
-                        );
-                        LoginHandler().checkUserLoginStatus();
-                        Get.offAll(() => const Home());
-                      } else {
-                        // ignore: use_build_context_synchronously
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text("User active on another device"),
-                          ),
-                        );
-                      }
-                    } else {
-                      // ignore: use_build_context_synchronously
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("Wrong password. Please try again"),
-                        ),
-                      );
-                    }
+                    // ignore: use_build_context_synchronously
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text("Sign Up Successful! Please Log In"),
+                      ),
+                    );
+                    Get.to(() => Login());
                   } else {
                     // ignore: use_build_context_synchronously
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
-                        content: Text("Login failed. Please try again"),
+                        content: Text("Sign Up not successful"),
                       ),
                     );
                   }
                 },
                 child: const Text(
-                  'Login',
+                  'Sign Up',
                   style: TextStyle(color: Colors.black),
                 ),
               ),
@@ -157,20 +137,20 @@ class Login extends StatelessWidget {
               child:
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 const Text(
-                  'Don\'t have an account ?',
+                  'Already a user ?',
                   style: TextStyle(
                       fontSize: 14, color: Color.fromARGB(255, 255, 255, 255)),
                 ),
                 const SizedBox(width: 10),
                 InkWell(
                   child: const Text(
-                    'Sign Up',
+                    'Sign In',
                     style: TextStyle(
                         fontSize: 14,
                         color: Color.fromARGB(255, 255, 255, 255)),
                   ),
                   onTap: () {
-                    Get.to(() => const SignUp());
+                    Get.to(() => Login());
                   },
                 )
               ]),

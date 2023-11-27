@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:roulette_project/backend/user_data.dart';
 import 'package:roulette_project/components/game_header.dart';
 import 'package:roulette_project/views/roulette/rouettegameview.dart';
-import 'package:roulette_project/user/wallet.dart';
+import 'package:roulette_project/views/user/wallet.dart';
 
 class RouletteMenu extends StatefulWidget {
   const RouletteMenu({super.key});
@@ -40,9 +40,10 @@ class RouletteMenuState extends State<RouletteMenu> {
           ),
           const Spacer(),
           MaterialButton(
-            disabledColor: Colors.grey,
-            color: Colors.white,
-            onPressed: null,
+            color: userData.offlineMode.value ? Colors.grey : Colors.white,
+            onPressed: () => (userData.userConnection.value)
+                ? Get.to(() => const RoulettePage())
+                : null,
             child:
                 Text('Play Game', style: TextStyle(color: Colors.green[900])),
           ),

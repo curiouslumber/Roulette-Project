@@ -65,6 +65,27 @@ class BackendRequests {
     }
   }
 
+  Future<bool> checkUserActive(String userId) async {
+    try {
+      final response = await http.get(
+        Uri.parse('$baseUrl/users/active/$userId'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        // Handle error response
+        print('Request failed with status: ${response.statusCode}.');
+        return false;
+      }
+    } catch (e) {
+      print('Error: $e');
+      return false;
+    }
+  }
+
   Future<bool> makeUserActive(
       String userId, String lastActiveDate, String lastActiveTime) async {
     try {

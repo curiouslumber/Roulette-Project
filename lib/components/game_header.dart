@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:roulette_project/backend/requests.dart';
 import 'package:roulette_project/backend/user_data.dart';
-import 'package:roulette_project/user/login.dart';
-import '../user/profile.dart';
+import 'package:roulette_project/views/user/login.dart';
+import '../views/user/profile.dart';
 
-enum MenuItem { profile, logout }
+enum MenuItem { profile, logout, login, none }
 
 class GameHeader extends StatelessWidget {
   GameHeader({super.key});
@@ -38,9 +38,11 @@ class GameHeader extends StatelessWidget {
             () => Container(
               margin: const EdgeInsets.only(right: 65),
               child: Text(
-                userData.user_name.value == ""
-                    ? 'User'
-                    : userData.user_name.value,
+                userData.playingAsGuest.value
+                    ? 'Guest'
+                    : (userData.user_name.value == ""
+                        ? 'User'
+                        : userData.user_name.value),
                 style: const TextStyle(color: Colors.white),
               ),
             ),
@@ -77,6 +79,12 @@ class GameHeader extends StatelessWidget {
                     ),
                   );
                 }
+              } else if (value == MenuItem.login) {
+                Get.to(() => Login());
+              } else if (value == MenuItem.none) {
+                print("None");
+              } else {
+                print("Error");
               }
             },
             itemBuilder: (BuildContext context) => <PopupMenuEntry<MenuItem>>[
@@ -84,10 +92,15 @@ class GameHeader extends StatelessWidget {
                 value: MenuItem.profile,
                 child: Text('Profile'),
               ),
-              const PopupMenuItem<MenuItem>(
-                value: MenuItem.logout,
-                child: Text('Logout'),
-              ),
+              userData.playingAsGuest.value
+                  ? const PopupMenuItem<MenuItem>(
+                      value: MenuItem.login,
+                      child: Text('Login'),
+                    )
+                  : const PopupMenuItem<MenuItem>(
+                      value: MenuItem.logout,
+                      child: Text('Logout'),
+                    ),
             ],
           ),
         ],

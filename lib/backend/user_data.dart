@@ -10,6 +10,8 @@ class UserData extends GetxController {
   var user_password = "".obs;
   var active_user = false.obs;
   var gameType = "".obs;
+  var offlineMode = true.obs;
+  var playingAsGuest = false.obs;
 
   var current_balance = 0.obs;
   var current_demo_balance = 0.obs;
@@ -26,12 +28,14 @@ class UserData extends GetxController {
 
   var userConnection = false.obs;
 
-  Future<void> checkUserConnection() async {
+  Future<bool> checkUserConnection() async {
     final connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.none) {
       userConnection.value = false;
+      return false;
     } else {
       userConnection.value = true;
+      return true;
     }
   }
 }
