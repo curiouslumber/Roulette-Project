@@ -20,14 +20,19 @@ void main() async {
                 return child!;
               },
               debugShowCheckedModeBanner: false,
-              home: MyApp())));
+              home: const MyApp())));
     },
   );
 }
 
-class MyApp extends StatelessWidget {
-  MyApp({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   final UserData userData = Get.put(UserData());
   final RouletteBoardController rouletteBoardController =
       Get.put(RouletteBoardController());
@@ -47,7 +52,6 @@ class MyApp extends StatelessWidget {
               ),
             );
           } else if (snapshot.data == null) {
-            print("here1");
             return FutureBuilder(
                 future: SharedPreferencesManager.setDemoBalance(1500),
                 builder: (context, snapshot) {

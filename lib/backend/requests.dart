@@ -65,7 +65,7 @@ class BackendRequests {
     }
   }
 
-  Future<bool> checkUserActive(String userId) async {
+  Future<Map<String, dynamic>?> checkUserActive(String userId) async {
     try {
       final response = await http.get(
         Uri.parse('$baseUrl/users/active/$userId'),
@@ -74,15 +74,17 @@ class BackendRequests {
         },
       );
       if (response.statusCode == 200) {
-        return true;
+        // Handle successful response
+        final Map<String, dynamic> responseData = jsonDecode(response.body);
+        return responseData;
       } else {
         // Handle error response
         print('Request failed with status: ${response.statusCode}.');
-        return false;
+        return null;
       }
     } catch (e) {
       print('Error: $e');
-      return false;
+      return null;
     }
   }
 

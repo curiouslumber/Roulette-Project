@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:roulette_project/backend/loginhandler.dart';
@@ -134,14 +133,12 @@ class _LoginState extends State<Login> {
                         // print(data['user_id']);
                         var checkActive = await BackendRequests()
                             .checkUserActive(data['user_id'].toString());
-                        print(checkActive);
-                        if (checkActive) {
+                        if (checkActive!['isActive'] != 0) {
                           //User is active on another device
                           // ignore: use_build_context_synchronously
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                              content: Text(
-                                  "Only one login is allowed. Please logout from other device and try again."),
+                              content: Text("User playing on another device"),
                             ),
                           );
                         } else {
