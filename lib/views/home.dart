@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:roulette_project/backend/loginhandler.dart';
+import 'package:roulette_project/backend/requests.dart';
 import 'package:roulette_project/backend/sharedpreferences.dart';
 import 'package:roulette_project/backend/user_data.dart';
 import 'package:roulette_project/components/game_header.dart';
@@ -25,7 +26,6 @@ class HomeState extends State<Home> {
     return FutureBuilder(
       future: userData.checkUserConnection(),
       builder: (context, snapshot) {
-        print(snapshot.data);
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.data == true) {
@@ -35,11 +35,51 @@ class HomeState extends State<Home> {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (snapshot.data == true) {
-                  print(snapshot.data);
-                  userData.playingAsGuest.value = false;
-                  return HomePage(userData: userData);
+                  return FutureBuilder(
+                    future: SharedPreferencesManager.getUserId(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(child: CircularProgressIndicator());
+                      } else if (snapshot.connectionState ==
+                          ConnectionState.done) {
+                        userData.user_id.value = snapshot.data.toString();
+
+                        DateTime now = DateTime.now();
+                        var date = now.toString().split(' ')[0];
+                        var time = now.toString().split(' ')[1];
+                        time = time[0] +
+                            time[1] +
+                            time[2] +
+                            time[3] +
+                            time[4] +
+                            time[5] +
+                            time[6] +
+                            time[7];
+
+                        return FutureBuilder(
+                          future: BackendRequests().updateActiveUser(
+                              snapshot.data.toString(), date, time),
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const Center(
+                                  child: CircularProgressIndicator());
+                            } else if (snapshot.connectionState ==
+                                ConnectionState.done) {
+                              userData.active_user.value = true;
+                              return HomePage(userData: userData);
+                            } else {
+                              return const Center(child: Text('Error'));
+                            }
+                          },
+                        );
+                      } else {
+                        return const Center(child: Text('Error'));
+                      }
+                    },
+                  );
                 } else if (snapshot.data == false) {
-                  return Login();
+                  return const Login();
                 } else {
                   return const Center(
                     child: Text('Error'),

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:roulette_project/backend/loginhandler.dart';
@@ -10,16 +11,20 @@ import 'package:roulette_project/backend/user_data.dart';
 import 'package:roulette_project/views/user/signup.dart';
 import 'package:roulette_project/views/home.dart';
 
-class Login extends StatelessWidget {
-  Login({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
 
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
   final UserData userData = Get.put(UserData());
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController email = TextEditingController();
-    TextEditingController password = TextEditingController();
-
     return Scaffold(
       backgroundColor: Colors.green[900],
       body: Container(
@@ -41,6 +46,8 @@ class Login extends StatelessWidget {
               child: SizedBox(
                 width: 450,
                 child: TextFormField(
+                  enableSuggestions: true,
+                  keyboardType: TextInputType.emailAddress,
                   style: const TextStyle(color: Colors.white),
                   controller: email,
                   decoration: const InputDecoration(
@@ -162,7 +169,7 @@ class Login extends StatelessWidget {
                             userData.user_email.value = data['email'];
                             userData.playingAsGuest.value = false;
                             SharedPreferencesManager.notPlayingAsGuestUser();
-                            LoginHandler().loginUser(
+                            LoginHandler().loginUser(data['user_id'].toString(),
                                 data['name'], data['email'], data['password']);
                             // ignore: use_build_context_synchronously
                             ScaffoldMessenger.of(context).showSnackBar(

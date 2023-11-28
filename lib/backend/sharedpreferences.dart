@@ -2,6 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesManager {
   static const String keyLoggedIn = 'isLoggedIn';
+  static const String _keyUserId = 'userId';
   static const String _keyUsername = 'username';
   static const String _keyEmail = 'email';
   static const String _keyPassword = 'password';
@@ -10,9 +11,10 @@ class SharedPreferencesManager {
   static const String initialized = 'initialized';
 
   static Future<void> saveUserLoginInfo(
-      String username, String email, String password) async {
+      String userId, String username, String email, String password) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool(keyLoggedIn, true);
+    prefs.setString(_keyUserId, userId);
     prefs.setString(_keyUsername, username);
     prefs.setString(_keyEmail, email);
     prefs.setString(_keyPassword, password);
@@ -53,6 +55,11 @@ class SharedPreferencesManager {
     return prefs.getBool(keyLoggedIn) ?? false;
   }
 
+  static Future<String?> getUserId() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_keyUserId);
+  }
+
   static Future<String?> getUsername() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString(_keyUsername);
@@ -84,5 +91,6 @@ class SharedPreferencesManager {
     prefs.remove(_keyUsername);
     prefs.remove(_keyEmail);
     prefs.remove(_keyPassword);
+    prefs.remove(_keyUserId);
   }
 }

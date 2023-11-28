@@ -116,6 +116,35 @@ class BackendRequests {
     }
   }
 
+  // Update Active User
+  Future<bool> updateActiveUser(
+      String userId, String lastActiveDate, String lastActiveTime) async {
+    try {
+      final response = await http.put(
+        Uri.parse('$baseUrl/users/active/$userId'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'last_active_date': lastActiveDate,
+          'last_active_time': lastActiveTime,
+        }),
+      );
+      if (response.statusCode == 204) {
+        // Handle successful response
+        print(response.body);
+        return true;
+      } else {
+        // Handle error response
+        print('Request failed with status: ${response.statusCode}.');
+        return false;
+      }
+    } catch (e) {
+      print('Error: $e');
+      return false;
+    }
+  }
+
   // Delete Active User before logout
   Future<bool> deleteActiveUser(String userId) async {
     try {
