@@ -63,9 +63,11 @@ class Profile extends StatelessWidget {
             const SizedBox(height: 10),
             Obx(
               () => Text(
-                userData.user_name.value == ""
-                    ? 'UserName'
-                    : userData.user_name.value,
+                userData.playingAsGuest.value == true
+                    ? 'Guest'
+                    : (userData.user_name.value == ""
+                        ? 'UserName'
+                        : userData.user_name.value),
                 style: const TextStyle(color: Colors.white, fontSize: 18),
               ),
             ),

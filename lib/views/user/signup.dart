@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:roulette_project/backend/requests.dart';
 import 'package:roulette_project/backend/user_data.dart';
-import 'package:roulette_project/main.dart';
 import 'package:roulette_project/views/user/login.dart';
 import 'package:crypto/crypto.dart';
 
@@ -124,7 +123,7 @@ class _SignUpState extends State<SignUp> {
                         content: Text("Sign Up Successful! Please Log In"),
                       ),
                     );
-                    Get.offAll(() => MyApp());
+                    Get.offAll(() => const Login());
                   } else {
                     // ignore: use_build_context_synchronously
                     ScaffoldMessenger.of(context).showSnackBar(

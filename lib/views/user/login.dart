@@ -133,7 +133,57 @@ class _LoginState extends State<Login> {
                         // print(data['user_id']);
                         var checkActive = await BackendRequests()
                             .checkUserActive(data['user_id'].toString());
-                        if (checkActive!['isActive'] != 0) {
+                        if (checkActive == null) {
+                          //User is not active on another device
+                          DateTime now = DateTime.now();
+                          var date = now.toString().split(' ')[0];
+                          var time = now.toString().split(' ')[1];
+                          time = time[0] +
+                              time[1] +
+                              time[2] +
+                              time[3] +
+                              time[4] +
+                              time[5] +
+                              time[6] +
+                              time[7];
+
+                          var makeUserActive = await BackendRequests()
+                              .makeUserActive(
+                                  data['user_id'].toString(), date, time);
+
+                          if (makeUserActive) {
+                            print("object");
+                            userData.user_id.value = data['user_id'].toString();
+                            userData.user_name.value = data['name'];
+                            userData.user_email.value = data['email'];
+                            userData.playingAsGuest.value = false;
+                            SharedPreferencesManager.notPlayingAsGuestUser();
+                            LoginHandler().loginUser(data['user_id'].toString(),
+                                data['name'], data['email'], data['password']);
+                            // ignore: use_build_context_synchronously
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Signed In Successfully"),
+                              ),
+                            );
+                            var loginCheck =
+                                await LoginHandler().checkUserLoginStatus();
+                            if (loginCheck) {
+                              Get.offAll(() => const Home());
+                              print('User is logged in.');
+                            } else {
+                              print('User is not logged in.');
+                            }
+                          } else {
+                            // ignore: use_build_context_synchronously
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                    "Something went wrong. Please try again"),
+                              ),
+                            );
+                          }
+                        } else if (checkActive['isActive'] != 0) {
                           //User is active on another device
                           // ignore: use_build_context_synchronously
                           ScaffoldMessenger.of(context).showSnackBar(
