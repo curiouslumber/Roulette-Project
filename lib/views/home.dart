@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:roulette_project/backend/loginhandler.dart';
 import 'package:roulette_project/backend/requests.dart';
@@ -22,56 +21,101 @@ class HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, designSize: const Size(320, 534));
     return FutureBuilder(
       future: userData.checkUserConnection(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
+          return Scaffold(
+            backgroundColor: Colors.green[900],
+            body: const Center(child: CircularProgressIndicator()),
+          );
         } else if (snapshot.data == true) {
           return FutureBuilder(
-              future: LoginHandler().checkUserLoginStatus(),
+              future: SharedPreferencesManager.isLoggedIn(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator());
+                  return Scaffold(
+                    backgroundColor: Colors.green[900],
+                    body: const Center(child: CircularProgressIndicator()),
+                  );
                 } else if (snapshot.data == true) {
                   return FutureBuilder(
-                    future: SharedPreferencesManager.getUserId(),
+                    future: SharedPreferencesManager.getEmail(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Center(child: CircularProgressIndicator());
+                        return Scaffold(
+                          backgroundColor: Colors.green[900],
+                          body:
+                              const Center(child: CircularProgressIndicator()),
+                        );
                       } else if (snapshot.connectionState ==
                           ConnectionState.done) {
-                        userData.user_id.value = snapshot.data.toString();
-
-                        DateTime now = DateTime.now();
-                        var date = now.toString().split(' ')[0];
-                        var time = now.toString().split(' ')[1];
-                        time = time[0] +
-                            time[1] +
-                            time[2] +
-                            time[3] +
-                            time[4] +
-                            time[5] +
-                            time[6] +
-                            time[7];
-
                         return FutureBuilder(
-                          future: BackendRequests().updateActiveUser(
-                              snapshot.data.toString(), date, time),
-                          builder: (context, snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return const Center(
-                                  child: CircularProgressIndicator());
-                            } else if (snapshot.connectionState ==
-                                ConnectionState.done) {
-                              userData.active_user.value = true;
-                              return HomePage(userData: userData);
-                            } else {
-                              return const Center(child: Text('Error'));
-                            }
-                          },
+                            future: BackendRequests()
+                                .checkPassword(snapshot.data.toString()),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return Scaffold(
+                                  backgroundColor: Colors.green[900],
+                                  body: const Center(
+                                      child: CircularProgressIndicator()),
+                                );
+                              } else if (snapshot.connectionState ==
+                                  ConnectionState.done) {
+                                var k = snapshot.data;
+                                userData.user_id.value =
+                                    k!['user_id'].toString();
+                                userData.user_name.value = k['name'];
+                                userData.user_email.value = k['email'];
+
+                                DateTime now = DateTime.now();
+                                var date = now.toString().split(' ')[0];
+                                var time = now.toString().split(' ')[1];
+                                time = time[0] +
+                                    time[1] +
+                                    time[2] +
+                                    time[3] +
+                                    time[4] +
+                                    time[5] +
+                                    time[6] +
+                                    time[7];
+
+                                return FutureBuilder(
+                                  future: BackendRequests().updateActiveUser(
+                                      k['user_id'].toString(), date, time),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.connectionState ==
+                                        ConnectionState.waiting) {
+                                      return const Center(
+                                          child: CircularProgressIndicator());
+                                    } else if (snapshot.connectionState ==
+                                        ConnectionState.done) {
+                                      userData.active_user.value = true;
+                                      userData.playingAsGuest.value = false;
+                                      return HomePage(userData: userData);
+                                    } else {
+                                      return const Center(child: Text('Error'));
+                                    }
+                                  },
+                                );
+                              } else if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return Scaffold(
+                                  backgroundColor: Colors.green[900],
+                                  body: const Center(
+                                      child: CircularProgressIndicator()),
+                                );
+                              } else {
+                                return const Center(child: Text('Error'));
+                              }
+                            });
+                      } else if (snapshot.connectionState ==
+                          ConnectionState.waiting) {
+                        return Scaffold(
+                          backgroundColor: Colors.green[900],
+                          body:
+                              const Center(child: CircularProgressIndicator()),
                         );
                       } else {
                         return const Center(child: Text('Error'));
@@ -79,7 +123,99 @@ class HomeState extends State<Home> {
                     },
                   );
                 } else if (snapshot.data == false) {
-                  return const Login();
+                  return FutureBuilder(
+                    future: SharedPreferencesManager.isPlayingAsGuest(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Scaffold(
+                          backgroundColor: Colors.green[900],
+                          body:
+                              const Center(child: CircularProgressIndicator()),
+                        );
+                      } else if (snapshot.data == true) {
+                        userData.playingAsGuest.value = true;
+                        return HomePage(userData: userData);
+                      } else if (snapshot.data == false) {
+                        return FutureBuilder(
+                            future: LoginHandler().checkUserLoginStatus(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return Scaffold(
+                                  backgroundColor: Colors.green[900],
+                                  body: const Center(
+                                      child: CircularProgressIndicator()),
+                                );
+                              } else if (snapshot.data == true) {
+                                return FutureBuilder(
+                                  future: SharedPreferencesManager.getUserId(),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.connectionState ==
+                                        ConnectionState.waiting) {
+                                      return Scaffold(
+                                        backgroundColor: Colors.green[900],
+                                        body: const Center(
+                                            child: CircularProgressIndicator()),
+                                      );
+                                    } else if (snapshot.connectionState ==
+                                        ConnectionState.done) {
+                                      userData.user_id.value =
+                                          snapshot.data.toString();
+
+                                      DateTime now = DateTime.now();
+                                      var date = now.toString().split(' ')[0];
+                                      var time = now.toString().split(' ')[1];
+                                      time = time[0] +
+                                          time[1] +
+                                          time[2] +
+                                          time[3] +
+                                          time[4] +
+                                          time[5] +
+                                          time[6] +
+                                          time[7];
+
+                                      return FutureBuilder(
+                                        future: BackendRequests()
+                                            .updateActiveUser(
+                                                snapshot.data.toString(),
+                                                date,
+                                                time),
+                                        builder: (context, snapshot) {
+                                          if (snapshot.connectionState ==
+                                              ConnectionState.waiting) {
+                                            return const Center(
+                                                child:
+                                                    CircularProgressIndicator());
+                                          } else if (snapshot.connectionState ==
+                                              ConnectionState.done) {
+                                            userData.active_user.value = true;
+                                            userData.playingAsGuest.value =
+                                                false;
+                                            return HomePage(userData: userData);
+                                          } else {
+                                            return const Center(
+                                                child: Text('Error'));
+                                          }
+                                        },
+                                      );
+                                    } else {
+                                      return const Center(child: Text('Error'));
+                                    }
+                                  },
+                                );
+                              } else if (snapshot.data == false) {
+                                return const Login();
+                              } else {
+                                return const Center(
+                                  child: Text('Error'),
+                                );
+                              }
+                            });
+                      } else {
+                        return const Center(child: Text('Error'));
+                      }
+                    },
+                  );
                 } else {
                   return const Center(
                     child: Text('Error'),
@@ -105,8 +241,11 @@ class HomeState extends State<Home> {
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
-                          return const Center(
-                              child: CircularProgressIndicator());
+                          return Scaffold(
+                            backgroundColor: Colors.green[900],
+                            body: const Center(
+                                child: CircularProgressIndicator()),
+                          );
                         } else if (snapshot.connectionState ==
                             ConnectionState.done) {
                           userData.playingAsGuest.value = true;

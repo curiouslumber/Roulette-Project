@@ -20,7 +20,7 @@ class SharedPreferencesManager {
     prefs.setString(_keyPassword, password);
   }
 
-  static Future<void> initialValues() async {
+  static Future<void> initializeValues() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool(keyLoggedIn, false);
     prefs.setString(_keyUsername, '');
