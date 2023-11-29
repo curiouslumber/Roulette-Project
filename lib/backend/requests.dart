@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:roulette_project/backend/private.dart';
 import 'package:roulette_project/backend/user_data.dart';
 
 class BackendRequests {
-  final String baseUrl = 'http://192.168.1.35:3000';
+  final String baseUrl = Private().baseUrl;
   final UserData userData = Get.put(UserData());
 
   Future<void> getUser(String email) async {
