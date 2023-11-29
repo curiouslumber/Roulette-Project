@@ -47,7 +47,10 @@ class RouletteMenuState extends State<RouletteMenu> {
             onPressed: () => (userData.userConnection.value == false ||
                     userData.playingAsGuest.value == true)
                 ? null
-                : Get.to(() => const RoulettePage()),
+                : {
+                    userData.gameType.value = 'real',
+                    Get.to(() => const RoulettePage())
+                  },
             child:
                 Text('Play Game', style: TextStyle(color: Colors.green[900])),
           ),

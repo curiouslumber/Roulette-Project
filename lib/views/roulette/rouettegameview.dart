@@ -35,6 +35,9 @@ class RoulettePageState extends State<RoulettePage> {
     if (userData.gameType.value == 'demo') {
       rouletteBoardController.userBalance.value =
           userData.current_demo_balance.value;
+    } else if (userData.gameType.value == 'real') {
+      rouletteBoardController.userBalance.value =
+          userData.current_balance.value;
     }
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
@@ -421,12 +424,60 @@ class RoulettePageState extends State<RoulettePage> {
                                                                       .value -
                                                                   rouletteBoardController
                                                                       .totalBetAmount
-                                                                      .value <
+                                                                      .value <=
                                                               0) {
+                                                            ScaffoldMessenger
+                                                                    .of(context)
+                                                                .showSnackBar(
+                                                                    const SnackBar(
+                                                              content: Text(
+                                                                  'Not enough money'),
+                                                            ));
                                                             print(
                                                                 "Not enough money");
                                                             return;
                                                           } else {
+                                                            if (userData
+                                                                    .gameType
+                                                                    .value ==
+                                                                'demo') {
+                                                              if (userData.current_demo_balance
+                                                                          .value -
+                                                                      rouletteBoardController
+                                                                          .totalBetAmount
+                                                                          .value <=
+                                                                  0) {
+                                                                ScaffoldMessenger.of(
+                                                                        context)
+                                                                    .showSnackBar(
+                                                                        const SnackBar(
+                                                                  content: Text(
+                                                                      'Not enough money'),
+                                                                ));
+                                                                return;
+                                                              }
+                                                            } else if (userData
+                                                                    .gameType
+                                                                    .value ==
+                                                                'real') {
+                                                              if (userData.current_balance
+                                                                          .value -
+                                                                      rouletteBoardController
+                                                                          .totalBetAmount
+                                                                          .value <=
+                                                                  0) {
+                                                                ScaffoldMessenger.of(
+                                                                        context)
+                                                                    .showSnackBar(
+                                                                        const SnackBar(
+                                                                  content: Text(
+                                                                      'Not enough money'),
+                                                                ));
+                                                                print(
+                                                                    "Not enough money");
+                                                                return;
+                                                              }
+                                                            }
                                                             rouletteBoardController
                                                                 .userBalance
                                                                 .value = rouletteBoardController
