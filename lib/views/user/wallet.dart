@@ -218,6 +218,7 @@ class Wallet extends StatelessWidget {
                                     Expanded(
                                         flex: 1,
                                         child: FittedBox(
+                                          fit: BoxFit.scaleDown,
                                           child: Text(
                                             'Rs.${userData.current_balance.value}',
                                             maxLines: 1,
