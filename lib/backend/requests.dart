@@ -210,6 +210,7 @@ class BackendRequests {
         // Handle successful response
         final Map<String, dynamic> responseData = jsonDecode(response.body);
 
+        userData.deposit_amount.value = responseData['deposit_amount'];
         userData.current_balance.value = responseData['current_balance'];
         userData.number_of_games_played.value =
             responseData['number_of_games_played']; // number_of_games_played
@@ -219,25 +220,42 @@ class BackendRequests {
             responseData['number_of_lossess']; // number_of_games_lost
         userData.total_amount_won.value = responseData['total_amount_won'];
         userData.total_amount_lost.value = responseData['total_amount_lost'];
-
-        userData.current_demo_balance.value =
-            responseData['current_demo_balance'];
-        userData.number_of_demo_games_played.value = responseData[
-            'number_of_demo_games_played']; // number_of_demo_games_played
-        userData.number_of_demo_games_won.value =
-            responseData['number_of_demo_wins'];
-        userData.number_of_demo_games_lost.value =
-            responseData['number_of_demo_lossess'];
-        userData.total_amount_won_in_demo_games.value =
-            responseData['total_demo_amount_won'];
-        userData.total_amount_lost_in_demo_games.value = responseData[
-            'total_demo_amount_lost']; // total_amount_lost_in_demo_games
       } else {
         // Handle error response
         print('Request failed with status: ${response.statusCode}.');
       }
     } catch (e) {
       print('Error: $e');
+    }
+  }
+
+  // Add balance to User Dashboard
+  Future<bool> addBalanceToUserDashboard(
+      String userId, String depositAmount, String newUserBalance) async {
+    try {
+      final response = await http.put(
+        Uri.parse('$baseUrl/users/dashboard/deposit/$userId'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'deposit_amount': depositAmount,
+          'current_balance': newUserBalance,
+        }),
+      );
+      if (response.statusCode == 204) {
+        // Handle successful response
+        print(response.body);
+        userData.deposit_amount.value = int.parse(depositAmount);
+        return true;
+      } else {
+        // Handle error response
+        print('Request failed with status: ${response.statusCode}.');
+        return false;
+      }
+    } catch (e) {
+      print('Error: $e');
+      return false;
     }
   }
 }

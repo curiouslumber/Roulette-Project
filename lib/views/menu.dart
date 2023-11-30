@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:roulette_project/backend/requests.dart';
 import 'package:roulette_project/backend/user_data.dart';
 import 'package:roulette_project/components/game_header.dart';
 import 'package:roulette_project/views/roulette/rouettegameview.dart';
@@ -17,6 +18,14 @@ class RouletteMenu extends StatefulWidget {
 
 class RouletteMenuState extends State<RouletteMenu> {
   final UserData userData = Get.find();
+
+  @override
+  void initState() {
+    super.initState();
+    if (userData.userConnection.value == true) {
+      BackendRequests().getUserDashboard(userData.user_id.value);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,13 +53,23 @@ class RouletteMenuState extends State<RouletteMenu> {
                     userData.playingAsGuest.value == true)
                 ? Colors.grey
                 : Colors.white,
-            onPressed: () => (userData.userConnection.value == false ||
-                    userData.playingAsGuest.value == true)
-                ? null
-                : {
-                    userData.gameType.value = 'real',
-                    Get.to(() => const RoulettePage())
-                  },
+            onPressed: () {
+              if (userData.userConnection.value == false ||
+                  userData.playingAsGuest.value == true) {
+                return;
+              } else {
+                if (userData.current_balance.value <= 0) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Insufficient Balance. Deposit Money.'),
+                    ),
+                  );
+                } else {
+                  userData.gameType.value = 'real';
+                  Get.to(() => const RoulettePage());
+                }
+              }
+            },
             child:
                 Text('Play Game', style: TextStyle(color: Colors.green[900])),
           ),

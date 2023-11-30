@@ -93,7 +93,31 @@ class HomeState extends State<Home> {
                                         ConnectionState.done) {
                                       userData.active_user.value = true;
                                       userData.playingAsGuest.value = false;
-                                      return HomePage(userData: userData);
+
+                                      return FutureBuilder(
+                                        future: BackendRequests()
+                                            .getUserDashboard(userData
+                                                .user_id.value
+                                                .toString()),
+                                        builder: (context, snapshot) {
+                                          if (snapshot.connectionState ==
+                                              ConnectionState.waiting) {
+                                            return Scaffold(
+                                              backgroundColor:
+                                                  Colors.green[900],
+                                              body: const Center(
+                                                  child:
+                                                      CircularProgressIndicator()),
+                                            );
+                                          } else if (snapshot.connectionState ==
+                                              ConnectionState.done) {
+                                            return HomePage(userData: userData);
+                                          } else {
+                                            return const Center(
+                                                child: Text('Error'));
+                                          }
+                                        },
+                                      );
                                     } else {
                                       return const Center(child: Text('Error'));
                                     }

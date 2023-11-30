@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:roulette_project/backend/requests.dart';
 import 'package:roulette_project/backend/user_data.dart';
 import 'package:roulette_project/views/user/dashboard.dart';
 import 'package:roulette_project/views/user/settings.dart';
@@ -91,7 +92,9 @@ class Profile extends StatelessWidget {
                   Expanded(
                       flex: 2,
                       child: GestureDetector(
-                        onTap: () {
+                        onTap: () async {
+                          await BackendRequests()
+                              .getUserDashboard(userData.user_id.value);
                           Get.to(() => Dashboard());
                         },
                         child: const Text(
@@ -140,11 +143,10 @@ class Profile extends StatelessWidget {
               alignment: Alignment.center,
               width: 200,
               child: InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Wallet()),
-                  );
+                onTap: () async {
+                  await BackendRequests()
+                      .getUserDashboard(userData.user_id.value);
+                  Get.to(() => Wallet());
                 },
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

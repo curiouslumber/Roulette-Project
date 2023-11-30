@@ -12,6 +12,7 @@ class UserData extends GetxController {
   var gameType = "".obs;
   var playingAsGuest = false.obs;
 
+  var deposit_amount = 0.obs;
   var current_balance = 0.obs;
   var current_demo_balance = 0.obs;
   var number_of_games_played = 0.obs;
