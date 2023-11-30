@@ -104,198 +104,298 @@ class Wallet extends StatelessWidget {
                 border: Border.all(color: Colors.white, width: 1)),
             child: Center(
               child: Obx(
-                () => SingleChildScrollView(
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: SizedBox(
-                            width: 400,
-                            child: InkWell(
-                              mouseCursor: MaterialStateMouseCursor.clickable,
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                              child: const Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Expanded(
-                                    flex: 1,
-                                    child: Icon(
-                                      Icons.arrow_back_ios,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 2,
-                                    child: Text(
-                                      'Wallet',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 23,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        Container(
-                          padding: const EdgeInsets.all(15),
-                          decoration: const BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(
-                                      width: 1, color: Colors.white))),
-                          alignment: Alignment.center,
-                          width: 400,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                () => userData.playingAsGuest.value == false
+                    ? SingleChildScrollView(
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Expanded(
-                                  flex: 1,
-                                  child: Icon(
-                                    Icons.wallet,
-                                    color: Colors.white,
-                                  )),
-                              Expanded(
-                                  flex: 2,
-                                  child: TextButton(
-                                    onPressed: () {
-                                      showMyDialog();
+                              Padding(
+                                padding: const EdgeInsets.all(15.0),
+                                child: SizedBox(
+                                  width: 400,
+                                  child: InkWell(
+                                    mouseCursor:
+                                        MaterialStateMouseCursor.clickable,
+                                    onTap: () {
+                                      Navigator.pop(context);
                                     },
-                                    child: const Text(
-                                      'Deposit Wallet',
-                                      style: TextStyle(
+                                    child: const Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Expanded(
+                                          flex: 1,
+                                          child: Icon(
+                                            Icons.arrow_back_ios,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 2,
+                                          child: Text(
+                                            'Wallet',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 23,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Container(
+                                padding: const EdgeInsets.all(15),
+                                decoration: const BoxDecoration(
+                                    border: Border(
+                                        bottom: BorderSide(
+                                            width: 1, color: Colors.white))),
+                                alignment: Alignment.center,
+                                width: 400,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    const Expanded(
+                                        flex: 1,
+                                        child: Icon(
+                                          Icons.wallet,
                                           color: Colors.white,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.normal),
-                                    ),
-                                  )),
-                              Expanded(
-                                  flex: 1,
-                                  child: Text(
-                                    'Rs.${userData.deposit_amount.value}',
-                                    style: const TextStyle(
-                                        color: Colors.white, fontSize: 20),
-                                  ))
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(15),
-                          decoration: const BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(
-                                      width: 1, color: Colors.white))),
-                          alignment: Alignment.center,
-                          width: 400,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        )),
+                                    Expanded(
+                                        flex: 2,
+                                        child: TextButton(
+                                          onPressed: () {
+                                            showMyDialog();
+                                          },
+                                          child: const Text(
+                                            'Deposit Wallet',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.normal),
+                                          ),
+                                        )),
+                                    Expanded(
+                                        flex: 1,
+                                        child: Text(
+                                          'Rs.${userData.deposit_amount.value}',
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20),
+                                        ))
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: const EdgeInsets.all(15),
+                                decoration: const BoxDecoration(
+                                    border: Border(
+                                        bottom: BorderSide(
+                                            width: 1, color: Colors.white))),
+                                alignment: Alignment.center,
+                                width: 400,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    const Expanded(
+                                        flex: 1,
+                                        child: Icon(
+                                          Icons.wallet,
+                                          color: Colors.white,
+                                        )),
+                                    const Expanded(
+                                        flex: 2,
+                                        child: Text(
+                                          'Game Wallet',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20),
+                                        )),
+                                    Expanded(
+                                        flex: 1,
+                                        child: FittedBox(
+                                          child: Text(
+                                            'Rs.${userData.current_balance.value}',
+                                            maxLines: 1,
+                                            style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20),
+                                          ),
+                                        ))
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: const EdgeInsets.all(15),
+                                decoration: const BoxDecoration(
+                                    border: Border(
+                                        bottom: BorderSide(
+                                            width: 1, color: Colors.white))),
+                                alignment: Alignment.center,
+                                width: 400,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    const Expanded(
+                                        flex: 1,
+                                        child: Icon(
+                                          Icons.wallet,
+                                          color: Colors.white,
+                                        )),
+                                    const Expanded(
+                                        flex: 2,
+                                        child: Text(
+                                          'Demo Wallet',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20),
+                                        )),
+                                    Expanded(
+                                        flex: 1,
+                                        child: FittedBox(
+                                          fit: BoxFit.scaleDown,
+                                          child: Text(
+                                            'Rs.${userData.current_demo_balance.value}',
+                                            maxLines: 1,
+                                            style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20),
+                                          ),
+                                        ))
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: const EdgeInsets.all(15),
+                                decoration: const BoxDecoration(
+                                    border: Border(
+                                        bottom: BorderSide(
+                                            width: 1, color: Colors.white))),
+                                alignment: Alignment.center,
+                                width: 400,
+                                child: const Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Expanded(
+                                        flex: 1,
+                                        child: Icon(
+                                          Icons.wallet,
+                                          color: Colors.white,
+                                        )),
+                                    Expanded(
+                                        flex: 2,
+                                        child: Text(
+                                          'Winning Wallet',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20),
+                                        )),
+                                    Expanded(
+                                        flex: 1,
+                                        child: Text(
+                                          'Rs.0',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20),
+                                        ))
+                                  ],
+                                ),
+                              ),
+                            ]),
+                      )
+                    : SingleChildScrollView(
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              const Expanded(
-                                  flex: 1,
-                                  child: Icon(
-                                    Icons.wallet,
-                                    color: Colors.white,
-                                  )),
-                              const Expanded(
-                                  flex: 2,
-                                  child: Text(
-                                    'Game Wallet',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 20),
-                                  )),
-                              Expanded(
-                                  flex: 1,
-                                  child: FittedBox(
-                                    child: Text(
-                                      'Rs.${userData.current_balance.value}',
-                                      maxLines: 1,
-                                      style: const TextStyle(
-                                          color: Colors.white, fontSize: 20),
+                              Padding(
+                                padding: const EdgeInsets.all(15.0),
+                                child: SizedBox(
+                                  width: 400,
+                                  child: InkWell(
+                                    mouseCursor:
+                                        MaterialStateMouseCursor.clickable,
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Expanded(
+                                          flex: 1,
+                                          child: Icon(
+                                            Icons.arrow_back_ios,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 2,
+                                          child: Text(
+                                            'Wallet',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 23,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ))
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(15),
-                          decoration: const BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(
-                                      width: 1, color: Colors.white))),
-                          alignment: Alignment.center,
-                          width: 400,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              const Expanded(
-                                  flex: 1,
-                                  child: Icon(
-                                    Icons.wallet,
-                                    color: Colors.white,
-                                  )),
-                              const Expanded(
-                                  flex: 2,
-                                  child: Text(
-                                    'Demo Wallet',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 20),
-                                  )),
-                              Expanded(
-                                  flex: 1,
-                                  child: FittedBox(
-                                    fit: BoxFit.scaleDown,
-                                    child: Text(
-                                      'Rs.${userData.current_demo_balance.value}',
-                                      maxLines: 1,
-                                      style: const TextStyle(
-                                          color: Colors.white, fontSize: 20),
-                                    ),
-                                  ))
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(15),
-                          decoration: const BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(
-                                      width: 1, color: Colors.white))),
-                          alignment: Alignment.center,
-                          width: 400,
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Expanded(
-                                  flex: 1,
-                                  child: Icon(
-                                    Icons.wallet,
-                                    color: Colors.white,
-                                  )),
-                              Expanded(
-                                  flex: 2,
-                                  child: Text(
-                                    'Winning Wallet',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 20),
-                                  )),
-                              Expanded(
-                                  flex: 1,
-                                  child: Text(
-                                    'Rs.0',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 20),
-                                  ))
-                            ],
-                          ),
-                        ),
-                      ]),
-                ),
+                                  ),
+                                ),
+                              ),
+                              const Divider(
+                                color: Colors.white,
+                              ),
+                              Container(
+                                padding: const EdgeInsets.all(15),
+                                decoration: const BoxDecoration(
+                                    border: Border(
+                                        bottom: BorderSide(
+                                            width: 1, color: Colors.white))),
+                                alignment: Alignment.center,
+                                width: 400,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    const Expanded(
+                                        flex: 1,
+                                        child: Icon(
+                                          Icons.wallet,
+                                          color: Colors.white,
+                                        )),
+                                    const Expanded(
+                                        flex: 2,
+                                        child: Text(
+                                          'Demo Wallet',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20),
+                                        )),
+                                    Expanded(
+                                        flex: 1,
+                                        child: FittedBox(
+                                          fit: BoxFit.scaleDown,
+                                          child: Text(
+                                            'Rs.${userData.current_demo_balance.value}',
+                                            maxLines: 1,
+                                            style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20),
+                                          ),
+                                        ))
+                                  ],
+                                ),
+                              )
+                            ]),
+                      ),
               ),
             ),
           ),

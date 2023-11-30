@@ -40,51 +40,59 @@ class Dashboard extends StatelessWidget {
                                     color: Colors.white, fontSize: 23)),
                           ),
                         ),
-                        const Divider(
-                          color: Colors.white,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              'Current Balance : ${userData.current_balance.value}',
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 18)),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              'Number of games played : ${userData.number_of_games_played.value}',
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 18)),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              'Number of games won : ${userData.number_of_games_won.value}',
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 18)),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              'Number of games lost: ${userData.number_of_games_lost.value}',
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 18)),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              'Total amount won: ${userData.total_amount_won.value}',
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 18)),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              'Total amount lost: ${userData.total_amount_lost.value}',
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 18)),
-                        ),
+                        userData.playingAsGuest.value == false
+                            ? Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Divider(
+                                    color: Colors.white,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                        'Current Balance : ${userData.current_balance.value}',
+                                        style: const TextStyle(
+                                            color: Colors.white, fontSize: 18)),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                        'Number of games played : ${userData.number_of_games_played.value}',
+                                        style: const TextStyle(
+                                            color: Colors.white, fontSize: 18)),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                        'Number of games won : ${userData.number_of_games_won.value}',
+                                        style: const TextStyle(
+                                            color: Colors.white, fontSize: 18)),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                        'Number of games lost: ${userData.number_of_games_lost.value}',
+                                        style: const TextStyle(
+                                            color: Colors.white, fontSize: 18)),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                        'Total amount won: ${userData.total_amount_won.value}',
+                                        style: const TextStyle(
+                                            color: Colors.white, fontSize: 18)),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                        'Total amount lost: ${userData.total_amount_lost.value}',
+                                        style: const TextStyle(
+                                            color: Colors.white, fontSize: 18)),
+                                  ),
+                                ],
+                              )
+                            : Container(),
                         const Divider(
                           color: Colors.white,
                         ),

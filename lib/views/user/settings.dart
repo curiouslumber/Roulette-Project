@@ -157,18 +157,20 @@ class SettingsPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                ),
-                onPressed: () async {
-                  await showMyDialog();
-                },
-                child: Text(
-                  "Deposit Money",
-                  style: TextStyle(color: Colors.green[900]),
-                ),
-              ),
+              userData.playingAsGuest.value == false
+                  ? ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                      ),
+                      onPressed: () async {
+                        await showMyDialog();
+                      },
+                      child: Text(
+                        "Deposit Money",
+                        style: TextStyle(color: Colors.green[900]),
+                      ),
+                    )
+                  : Container(),
             ]),
           ),
         ));
