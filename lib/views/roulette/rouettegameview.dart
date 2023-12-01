@@ -29,9 +29,52 @@ class RoulettePageState extends State<RoulettePage> {
   late int time;
   int value = 0;
 
+  Future<void> showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Exit Game'),
+          content: const SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text("Do you want to exit the game?"),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.green[900],
+              ),
+              child: Text('Yes', style: TextStyle(color: Colors.green[900])),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.green[900],
+              ),
+              child: Text('No', style: TextStyle(color: Colors.green[900])),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   void initState() {
     super.initState();
+    rouletteBoardController.wheelSpinning.value = false;
+    rouletteBoardController.spinning.value = false;
+    rouletteBoardController.moveNum.value = 0;
     if (userData.gameType.value == 'demo') {
       rouletteBoardController.userBalance.value =
           userData.current_demo_balance.value;
@@ -101,7 +144,7 @@ class RoulettePageState extends State<RoulettePage> {
   ];
   void rotateWheel() {
     time = 3000;
-    timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
+    timer = Timer.periodic(const Duration(milliseconds: 100), (timer) async {
       if (time > 0) {
         setState(() {
           degree = random.nextInt(360).toDouble();
@@ -115,6 +158,13 @@ class RoulettePageState extends State<RoulettePage> {
             .checkBet(rouletteBoardController.spinResult.value);
         timer.cancel();
         rouletteBoardController.spinning.value = false;
+        if (rouletteBoardController.userWon.value == true) {
+          print(
+              "User id : ${userData.user_id.value} , Move number : ${rouletteBoardController.moveNum.value} , Game status : ${rouletteBoardController.gameStatus.value} , Last bet amount : ${rouletteBoardController.totalBetAmount.value} , Last bet won lost : won");
+        } else {
+          print(
+              "User id : ${userData.user_id.value} , Move number : ${rouletteBoardController.moveNum.value} , Game status : ${rouletteBoardController.gameStatus.value} , Last bet amount : ${rouletteBoardController.totalBetAmount.value} , Last bet won lost : lost");
+        }
       }
     });
   }
@@ -247,466 +297,510 @@ class RoulettePageState extends State<RoulettePage> {
 
   @override
   Widget build(BuildContext context) {
-    return OrientationBuilder(builder: (context, orientation) {
-      SystemChrome.setPreferredOrientations(
-          [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
+    return WillPopScope(
+      onWillPop: () async {
+        showMyDialog();
+        return false;
+      },
+      child: OrientationBuilder(builder: (context, orientation) {
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.landscapeLeft,
+          DeviceOrientation.landscapeRight
+        ]);
 
-      ScreenUtil.configure(designSize: const Size(534, 320));
-      return Scaffold(
-        backgroundColor: Colors.green[900],
-        body: Obx(
-          () => Stack(
-            alignment: Alignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                        alignment: Alignment.center,
-                        height: 180.h,
-                        child: RouletteBoard()),
-                    SizedBox(
-                      height: 100.h,
-                      child: Container(
-                        width: 520.w,
-                        alignment: Alignment.centerLeft,
-                        color: Colors.green[800],
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              flex: 4,
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Obx(
-                                    () => Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                          width: 280.w,
-                                          alignment: Alignment.centerLeft,
-                                          child: SingleChildScrollView(
-                                            scrollDirection: Axis.horizontal,
+        ScreenUtil.configure(designSize: const Size(534, 320));
+        return Scaffold(
+          backgroundColor: Colors.green[900],
+          body: Obx(
+            () => Stack(
+              alignment: Alignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                          alignment: Alignment.center,
+                          height: 180.h,
+                          child: RouletteBoard()),
+                      SizedBox(
+                        height: 100.h,
+                        child: Container(
+                          width: 520.w,
+                          alignment: Alignment.centerLeft,
+                          color: Colors.green[800],
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                flex: 4,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Obx(
+                                      () => Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                            width: 280.w,
+                                            alignment: Alignment.centerLeft,
+                                            child: SingleChildScrollView(
+                                              scrollDirection: Axis.horizontal,
+                                              child: Text(
+                                                'Bets : ${rouletteBoardController.bets}',
+                                                maxLines: 1,
+                                                style: const TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            alignment: Alignment.centerLeft,
                                             child: Text(
-                                              'Bets : ${rouletteBoardController.bets}',
-                                              maxLines: 1,
+                                              'Balance : ${rouletteBoardController.userBalance.value - rouletteBoardController.totalBetAmount.value}',
                                               style: const TextStyle(
                                                   color: Colors.white),
                                             ),
                                           ),
-                                        ),
-                                        Container(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            'Balance : ${rouletteBoardController.userBalance.value - rouletteBoardController.totalBetAmount.value}',
-                                            style: const TextStyle(
-                                                color: Colors.white),
-                                          ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  Obx(
-                                    () => Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            MaterialButton(
-                                              onPressed: () {
-                                                rouletteBoardController
-                                                    .totalBetAmount.value = 0;
-                                                rouletteBoardController.zeroBets
-                                                    .fillRange(
-                                                        0,
-                                                        rouletteBoardController
-                                                            .zeroBets.length,
-                                                        false);
-                                                rouletteBoardController
-                                                    .cornerBets
-                                                    .fillRange(
-                                                        0,
-                                                        rouletteBoardController
-                                                            .cornerBets.length,
-                                                        false);
-                                                rouletteBoardController
-                                                    .betsOnBoardCount
-                                                    .fillRange(
-                                                        0,
-                                                        rouletteBoardController
-                                                            .betsOnBoardCount
-                                                            .length,
-                                                        0);
-                                                rouletteBoardController.bets
-                                                    .clear();
-                                                rouletteBoardController
-                                                    .betsOnBoard
-                                                    .fillRange(
-                                                        0,
-                                                        rouletteBoardController
-                                                            .betsOnBoard.length,
-                                                        false);
-                                                rouletteBoardController.betSizes
-                                                    .clear();
-                                                rouletteBoardController
-                                                    .betsInInt
-                                                    .clear();
-                                                rouletteBoardController
-                                                    .userResult.value = "";
-                                                rouletteBoardController
-                                                    .userWon.value = false;
-                                              },
-                                              color: Colors.white,
-                                              textColor: Colors.green[900],
-                                              child: const Text('Clear'),
-                                            ),
-                                            Container(
-                                              margin: const EdgeInsets.only(
-                                                  left: 8.0),
-                                              alignment: Alignment.center,
-                                              child: Text(
-                                                  'Last win : ${rouletteBoardController.totalAmountWon.value}',
-                                                  style: const TextStyle(
-                                                      color: Colors.white)),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            rouletteBoardController
-                                                        .wheelSpinning.value ==
-                                                    false
-                                                ? Obx(
-                                                    () => Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              right: 8.0),
-                                                      child: Text(
-                                                        'Last spin : ${rouletteBoardController.spinResult.value}',
-                                                        style: const TextStyle(
-                                                          color: Colors.white,
+                                    Obx(
+                                      () => Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              MaterialButton(
+                                                onPressed: () {
+                                                  rouletteBoardController
+                                                      .totalBetAmount.value = 0;
+                                                  rouletteBoardController
+                                                      .zeroBets
+                                                      .fillRange(
+                                                          0,
+                                                          rouletteBoardController
+                                                              .zeroBets.length,
+                                                          false);
+                                                  rouletteBoardController
+                                                      .cornerBets
+                                                      .fillRange(
+                                                          0,
+                                                          rouletteBoardController
+                                                              .cornerBets
+                                                              .length,
+                                                          false);
+                                                  rouletteBoardController
+                                                      .betsOnBoardCount
+                                                      .fillRange(
+                                                          0,
+                                                          rouletteBoardController
+                                                              .betsOnBoardCount
+                                                              .length,
+                                                          0);
+                                                  rouletteBoardController.bets
+                                                      .clear();
+                                                  rouletteBoardController
+                                                      .betsOnBoard
+                                                      .fillRange(
+                                                          0,
+                                                          rouletteBoardController
+                                                              .betsOnBoard
+                                                              .length,
+                                                          false);
+                                                  rouletteBoardController
+                                                      .betSizes
+                                                      .clear();
+                                                  rouletteBoardController
+                                                      .betsInInt
+                                                      .clear();
+                                                  rouletteBoardController
+                                                      .userResult.value = "";
+                                                  rouletteBoardController
+                                                      .userWon.value = false;
+                                                },
+                                                color: Colors.white,
+                                                textColor: Colors.green[900],
+                                                child: const Text('Clear'),
+                                              ),
+                                              Container(
+                                                margin: const EdgeInsets.only(
+                                                    left: 8.0),
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                    'Last win : ${rouletteBoardController.totalAmountWon.value}',
+                                                    style: const TextStyle(
+                                                        color: Colors.white)),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              rouletteBoardController
+                                                          .wheelSpinning
+                                                          .value ==
+                                                      false
+                                                  ? Obx(
+                                                      () => Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(
+                                                                right: 8.0),
+                                                        child: Text(
+                                                          'Last spin : ${rouletteBoardController.spinResult.value}',
+                                                          style:
+                                                              const TextStyle(
+                                                            color: Colors.white,
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  )
-                                                : Container(),
-                                            rouletteBoardController
-                                                        .wheelSpinning.value ==
-                                                    false
-                                                ? degree == 0
-                                                    ? ElevatedButton(
-                                                        style: ElevatedButton
-                                                            .styleFrom(
-                                                          backgroundColor:
-                                                              Colors.white,
-                                                          foregroundColor:
-                                                              Colors.green[900],
-                                                        ),
-                                                        onPressed: () {
-                                                          if (rouletteBoardController
+                                                    )
+                                                  : Container(),
+                                              rouletteBoardController
+                                                          .wheelSpinning
+                                                          .value ==
+                                                      false
+                                                  ? degree == 0
+                                                      ? ElevatedButton(
+                                                          style: ElevatedButton
+                                                              .styleFrom(
+                                                            backgroundColor:
+                                                                Colors.white,
+                                                            foregroundColor:
+                                                                Colors
+                                                                    .green[900],
+                                                          ),
+                                                          onPressed: () {
+                                                            if (rouletteBoardController
+                                                                    .totalBetAmount
+                                                                    .value ==
+                                                                0) {
+                                                              ScaffoldMessenger
+                                                                      .of(
+                                                                          context)
+                                                                  .showSnackBar(
+                                                                      const SnackBar(
+                                                                content: Text(
+                                                                    'Place a bet'),
+                                                              ));
+                                                              return;
+                                                            }
+
+                                                            if (rouletteBoardController
+                                                                        .userBalance
+                                                                        .value -
+                                                                    rouletteBoardController
+                                                                        .totalBetAmount
+                                                                        .value <=
+                                                                0) {
+                                                              ScaffoldMessenger
+                                                                      .of(
+                                                                          context)
+                                                                  .showSnackBar(
+                                                                      const SnackBar(
+                                                                content: Text(
+                                                                    'Not enough money'),
+                                                              ));
+                                                              print(
+                                                                  "Not enough money");
+                                                              return;
+                                                            } else {
+                                                              if (userData
+                                                                      .gameType
+                                                                      .value ==
+                                                                  'demo') {
+                                                                if (userData.current_demo_balance
+                                                                            .value -
+                                                                        rouletteBoardController
+                                                                            .totalBetAmount
+                                                                            .value <=
+                                                                    0) {
+                                                                  ScaffoldMessenger.of(
+                                                                          context)
+                                                                      .showSnackBar(
+                                                                          const SnackBar(
+                                                                    content: Text(
+                                                                        'Not enough money'),
+                                                                  ));
+                                                                  return;
+                                                                }
+                                                              } else if (userData
+                                                                      .gameType
+                                                                      .value ==
+                                                                  'real') {
+                                                                if (userData.current_balance
+                                                                            .value -
+                                                                        rouletteBoardController
+                                                                            .totalBetAmount
+                                                                            .value <=
+                                                                    0) {
+                                                                  ScaffoldMessenger.of(
+                                                                          context)
+                                                                      .showSnackBar(
+                                                                          const SnackBar(
+                                                                    content: Text(
+                                                                        'Not enough money'),
+                                                                  ));
+                                                                  print(
+                                                                      "Not enough money");
+                                                                  return;
+                                                                }
+                                                              }
+                                                              rouletteBoardController
+                                                                  .userBalance
+                                                                  .value = rouletteBoardController
                                                                       .userBalance
                                                                       .value -
                                                                   rouletteBoardController
                                                                       .totalBetAmount
-                                                                      .value <=
-                                                              0) {
-                                                            ScaffoldMessenger
-                                                                    .of(context)
-                                                                .showSnackBar(
-                                                                    const SnackBar(
-                                                              content: Text(
-                                                                  'Not enough money'),
-                                                            ));
-                                                            print(
-                                                                "Not enough money");
-                                                            return;
-                                                          } else {
-                                                            if (userData
-                                                                    .gameType
-                                                                    .value ==
-                                                                'demo') {
-                                                              if (userData.current_demo_balance
-                                                                          .value -
-                                                                      rouletteBoardController
-                                                                          .totalBetAmount
-                                                                          .value <=
-                                                                  0) {
-                                                                ScaffoldMessenger.of(
-                                                                        context)
-                                                                    .showSnackBar(
-                                                                        const SnackBar(
-                                                                  content: Text(
-                                                                      'Not enough money'),
-                                                                ));
-                                                                return;
-                                                              }
-                                                            } else if (userData
-                                                                    .gameType
-                                                                    .value ==
-                                                                'real') {
-                                                              if (userData.current_balance
-                                                                          .value -
-                                                                      rouletteBoardController
-                                                                          .totalBetAmount
-                                                                          .value <=
-                                                                  0) {
-                                                                ScaffoldMessenger.of(
-                                                                        context)
-                                                                    .showSnackBar(
-                                                                        const SnackBar(
-                                                                  content: Text(
-                                                                      'Not enough money'),
-                                                                ));
-                                                                print(
-                                                                    "Not enough money");
-                                                                return;
-                                                              }
-                                                            }
-                                                            rouletteBoardController
-                                                                .userBalance
-                                                                .value = rouletteBoardController
-                                                                    .userBalance
-                                                                    .value -
-                                                                rouletteBoardController
-                                                                    .totalBetAmount
-                                                                    .value;
-                                                            rouletteBoardController
-                                                                .spinning
-                                                                .value = true;
-                                                            rouletteBoardController
-                                                                .wheelSpinning
-                                                                .value = true;
-
-                                                            if (userData
-                                                                    .gameType
-                                                                    .value ==
-                                                                'demo') {
-                                                              SharedPreferencesManager
-                                                                  .setDemoBalance(
-                                                                      rouletteBoardController
-                                                                          .userBalance
-                                                                          .value);
-                                                              userData.current_demo_balance
-                                                                      .value =
-                                                                  rouletteBoardController
-                                                                      .userBalance
                                                                       .value;
+                                                              rouletteBoardController
+                                                                  .spinning
+                                                                  .value = true;
+                                                              rouletteBoardController
+                                                                  .wheelSpinning
+                                                                  .value = true;
+                                                              rouletteBoardController
+                                                                  .moveNum
+                                                                  .value += 1;
+
+                                                              if (userData
+                                                                      .gameType
+                                                                      .value ==
+                                                                  'demo') {
+                                                                SharedPreferencesManager.setDemoBalance(
+                                                                    rouletteBoardController
+                                                                        .userBalance
+                                                                        .value);
+                                                                userData.current_demo_balance
+                                                                        .value =
+                                                                    rouletteBoardController
+                                                                        .userBalance
+                                                                        .value;
+                                                              }
+                                                              rouletteBoardController
+                                                                      .gameStatus
+                                                                      .value =
+                                                                  "ongoing";
                                                               rotateWheel();
                                                             }
-                                                          }
-                                                        },
-                                                        child: const Text(
-                                                            'Start spin'))
-                                                    : ElevatedButton(
-                                                        style: ElevatedButton
-                                                            .styleFrom(
-                                                          backgroundColor:
-                                                              Colors.white,
-                                                          foregroundColor:
-                                                              Colors.green[900],
-                                                        ),
-                                                        onPressed: () {
-                                                          resetWheel();
-                                                        },
-                                                        child: const Text(
-                                                            'Reset wheel'))
-                                                : Container(),
-                                          ],
-                                        )
-                                      ],
+                                                          },
+                                                          child: const Text(
+                                                              'Start spin'))
+                                                      : ElevatedButton(
+                                                          style: ElevatedButton
+                                                              .styleFrom(
+                                                            backgroundColor:
+                                                                Colors.white,
+                                                            foregroundColor:
+                                                                Colors
+                                                                    .green[900],
+                                                          ),
+                                                          onPressed: () {
+                                                            resetWheel();
+                                                          },
+                                                          child: const Text(
+                                                              'Reset wheel'))
+                                                  : Container(),
+                                            ],
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                alignment: Alignment.centerRight,
-                                child: Stack(children: [
-                                  Positioned(
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Transform.rotate(
-                                        angle: 3.14 / 180 * degree,
-                                        child: Image.asset(
-                                          'assets/images/wheel.png',
-                                          scale: 5,
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  alignment: Alignment.centerRight,
+                                  child: Stack(children: [
+                                    Positioned(
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Transform.rotate(
+                                          angle: 3.14 / 180 * degree,
+                                          child: Image.asset(
+                                            'assets/images/wheel.png',
+                                            scale: 5,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  const Positioned(
-                                      child: Align(
-                                          alignment: Alignment.topCenter,
-                                          child: Icon(Icons.place,
-                                              size: 30,
-                                              color: Color.fromRGBO(
-                                                  241, 154, 100, 1))))
-                                ]),
-                              ),
-                            )
-                          ],
+                                    const Positioned(
+                                        child: Align(
+                                            alignment: Alignment.topCenter,
+                                            child: Icon(Icons.place,
+                                                size: 30,
+                                                color: Color.fromRGBO(
+                                                    241, 154, 100, 1))))
+                                  ]),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              rouletteBoardController.wheelSpinning.value == true
-                  ? Stack(
-                      alignment: Alignment.bottomCenter,
-                      children: [
-                        Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            BlurryContainer(
-                              blur: 2,
-                              height: 1.sh,
-                              width: 1.sw,
-                              elevation: 0,
-                              color: Colors.transparent,
-                              child: Stack(
-                                alignment: Alignment.topRight,
-                                children: [
-                                  Container(
-                                    alignment: Alignment.center,
-                                    child: SizedBox(
-                                      width: 0.6.sw,
-                                      height: 0.6.sh,
-                                      child: Stack(children: [
-                                        Positioned(
-                                            child: Align(
-                                                alignment: Alignment.center,
-                                                child: Transform.rotate(
-                                                    angle: 3.14 / 180 * degree,
-                                                    child: Image.asset(
-                                                      'assets/images/wheel.png',
-                                                      scale: 1,
-                                                    )))),
-                                        const Positioned(
-                                            child: Align(
-                                                alignment: Alignment.topCenter,
-                                                child: Icon(Icons.place,
-                                                    size: 30,
-                                                    color: Colors.yellow)))
-                                      ]),
+                rouletteBoardController.wheelSpinning.value == true
+                    ? Stack(
+                        alignment: Alignment.bottomCenter,
+                        children: [
+                          Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              BlurryContainer(
+                                blur: 2,
+                                height: 1.sh,
+                                width: 1.sw,
+                                elevation: 0,
+                                color: Colors.transparent,
+                                child: Stack(
+                                  alignment: Alignment.topRight,
+                                  children: [
+                                    Container(
+                                      alignment: Alignment.center,
+                                      child: SizedBox(
+                                        width: 0.6.sw,
+                                        height: 0.6.sh,
+                                        child: Stack(children: [
+                                          Positioned(
+                                              child: Align(
+                                                  alignment: Alignment.center,
+                                                  child: Transform.rotate(
+                                                      angle:
+                                                          3.14 / 180 * degree,
+                                                      child: Image.asset(
+                                                        'assets/images/wheel.png',
+                                                        scale: 1,
+                                                      )))),
+                                          const Positioned(
+                                              child: Align(
+                                                  alignment:
+                                                      Alignment.topCenter,
+                                                  child: Icon(Icons.place,
+                                                      size: 30,
+                                                      color: Colors.yellow)))
+                                        ]),
+                                      ),
                                     ),
-                                  ),
-                                  rouletteBoardController.spinning.value ==
-                                          false
-                                      ? IconButton(
-                                          onPressed: () {
-                                            rouletteBoardController
-                                                .wheelSpinning.value = false;
-                                            rouletteBoardController
-                                                .totalBetAmount.value = 0;
-                                            rouletteBoardController.zeroBets
-                                                .fillRange(
-                                                    0,
-                                                    rouletteBoardController
-                                                        .zeroBets.length,
-                                                    false);
-                                            rouletteBoardController.cornerBets
-                                                .fillRange(
-                                                    0,
-                                                    rouletteBoardController
-                                                        .cornerBets.length,
-                                                    false);
-                                            rouletteBoardController
-                                                .betsOnBoardCount
-                                                .fillRange(
-                                                    0,
-                                                    rouletteBoardController
-                                                        .betsOnBoardCount
-                                                        .length,
-                                                    0);
-                                            rouletteBoardController.bets
-                                                .clear();
-                                            rouletteBoardController.betsOnBoard
-                                                .fillRange(
-                                                    0,
-                                                    rouletteBoardController
-                                                        .betsOnBoard.length,
-                                                    false);
-                                            rouletteBoardController.betSizes
-                                                .clear();
-                                            rouletteBoardController.betsInInt
-                                                .clear();
-                                            rouletteBoardController
-                                                .userResult.value = "";
-                                            rouletteBoardController
-                                                .userWon.value = false;
-                                          },
-                                          icon: const Icon(
-                                            Icons.close,
-                                            color: Colors.white,
-                                          ))
-                                      : Container(),
-                                ],
+                                    rouletteBoardController.spinning.value ==
+                                            false
+                                        ? IconButton(
+                                            onPressed: () {
+                                              rouletteBoardController
+                                                  .wheelSpinning.value = false;
+                                              rouletteBoardController
+                                                  .totalBetAmount.value = 0;
+                                              rouletteBoardController.zeroBets
+                                                  .fillRange(
+                                                      0,
+                                                      rouletteBoardController
+                                                          .zeroBets.length,
+                                                      false);
+                                              rouletteBoardController.cornerBets
+                                                  .fillRange(
+                                                      0,
+                                                      rouletteBoardController
+                                                          .cornerBets.length,
+                                                      false);
+                                              rouletteBoardController
+                                                  .betsOnBoardCount
+                                                  .fillRange(
+                                                      0,
+                                                      rouletteBoardController
+                                                          .betsOnBoardCount
+                                                          .length,
+                                                      0);
+                                              rouletteBoardController.bets
+                                                  .clear();
+                                              rouletteBoardController
+                                                  .betsOnBoard
+                                                  .fillRange(
+                                                      0,
+                                                      rouletteBoardController
+                                                          .betsOnBoard.length,
+                                                      false);
+                                              rouletteBoardController.betSizes
+                                                  .clear();
+                                              rouletteBoardController.betsInInt
+                                                  .clear();
+                                              rouletteBoardController
+                                                  .userResult.value = "";
+                                              rouletteBoardController
+                                                  .userWon.value = false;
+                                            },
+                                            icon: const Icon(
+                                              Icons.close,
+                                              color: Colors.white,
+                                            ))
+                                        : Container(),
+                                  ],
+                                ),
                               ),
-                            ),
-                            rouletteBoardController.spinning.value == false
-                                ? Container(
-                                    height: 0.15.sh,
-                                    width: 0.15.sw,
+                              rouletteBoardController.spinning.value == false
+                                  ? Container(
+                                      height: 0.15.sh,
+                                      width: 0.15.sw,
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10.sp))),
+                                      child: Text(
+                                          '${rouletteBoardController.spinResult.value}',
+                                          style: TextStyle(
+                                              color: Colors.green[900],
+                                              fontSize: 30)),
+                                    )
+                                  : Container()
+                            ],
+                          ),
+                          rouletteBoardController.spinning.value == false
+                              ? Obx(
+                                  () => Container(
+                                    margin: EdgeInsets.only(bottom: 0.05.sh),
+                                    height: 0.1.sh,
+                                    width: 0.25.sw,
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
                                         color: Colors.white,
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(10.sp))),
                                     child: Text(
-                                        '${rouletteBoardController.spinResult.value}',
+                                        rouletteBoardController
+                                            .userResult.value,
                                         style: TextStyle(
                                             color: Colors.green[900],
-                                            fontSize: 30)),
-                                  )
-                                : Container()
-                          ],
-                        ),
-                        rouletteBoardController.spinning.value == false
-                            ? Obx(
-                                () => Container(
-                                  margin: EdgeInsets.only(bottom: 0.05.sh),
-                                  height: 0.1.sh,
-                                  width: 0.25.sw,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10.sp))),
-                                  child: Text(
-                                      rouletteBoardController.userResult.value,
-                                      style: TextStyle(
-                                          color: Colors.green[900],
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 24)),
-                                ),
-                              )
-                            : Container()
-                      ],
-                    )
-                  : Container(),
-            ],
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 24)),
+                                  ),
+                                )
+                              : Container()
+                        ],
+                      )
+                    : Container(),
+              ],
+            ),
           ),
-        ),
-      );
-    });
+        );
+      }),
+    );
   }
 }

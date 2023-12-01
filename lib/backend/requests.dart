@@ -258,4 +258,60 @@ class BackendRequests {
       return false;
     }
   }
+
+  // Start new game
+  Future<bool> startGame(String userId, String moveNum, String gameStatus,
+      String last_bet_amount, String last_bet_won_lost) async {
+    try {
+      final response = await http.post(
+        Uri.parse('$baseUrl/users/$userId/game'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'user_id': userId,
+          'move_num': moveNum,
+          'game_status': gameStatus,
+          'last_bet_amount': last_bet_amount,
+          'last_bet_won_lost': last_bet_won_lost,
+        }),
+      );
+      if (response.statusCode == 201) {
+        // Handle successful response
+        print(response.body);
+        return true;
+      } else {
+        // Handle error response
+        print('Request failed with status: ${response.statusCode}.');
+        return false;
+      }
+    } catch (e) {
+      print('Error: $e');
+      return false;
+    }
+  }
+
+  // Get game of user
+  Future<Map<String, dynamic>?> getGameOfUser(String userId) async {
+    try {
+      final response = await http.get(
+        Uri.parse('$baseUrl/users/$userId/game'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+      if (response.statusCode == 200) {
+        // Handle successful response
+        final Map<String, dynamic> responseData = jsonDecode(response.body);
+        return responseData;
+      } else {
+        // Handle error response
+        print('Request failed with status: ${response.statusCode}.');
+        return null;
+      }
+    } catch (e) {
+      print('Error: $e');
+      return null;
+    }
+  }
 }

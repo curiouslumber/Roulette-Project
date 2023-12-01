@@ -4,6 +4,9 @@ class RouletteBoardController extends GetxController {
   var bets = [].obs;
   var betOn = true.obs;
 
+  var moveNum = 0.obs;
+  var gameStatus = "none".obs;
+
   var betsOnBoard = List<bool>.filled(36, false).obs;
   var zeroBets = List<bool>.filled(2, false).obs;
   var betsOnBoardCount = List<int>.filled(36, 0).obs;
