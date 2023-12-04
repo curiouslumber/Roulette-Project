@@ -191,6 +191,22 @@ class RoulettePageState extends State<RoulettePage> {
           print(
               "User id : ${userData.user_id.value} , Move number : ${rouletteBoardController.moveNum.value} , Game status : ${rouletteBoardController.gameStatus.value} , Last bet amount : ${rouletteBoardController.totalBetAmount.value} , Last bet won lost : won");
 
+          userData.number_of_games_won.value =
+              userData.number_of_games_won.value + 1;
+          userData.winningAmount.value =
+              rouletteBoardController.totalAmountWon.value +
+                  userData.winningAmount.value;
+          userData.total_amount_won.value = userData.winningAmount.value;
+
+          await BackendRequests().updateUserDashboard(
+              userData.user_id.value,
+              userData.number_of_games_played.value.toString(),
+              userData.number_of_games_won.value.toString(),
+              userData.number_of_games_lost.value.toString(),
+              userData.winningAmount.value.toString(),
+              userData.total_amount_won.value.toString(),
+              userData.total_amount_lost.value.toString());
+
           await BackendRequests().updateGame(
               rouletteBoardController.gameId.value,
               userData.user_id.value,
@@ -202,6 +218,17 @@ class RoulettePageState extends State<RoulettePage> {
         } else {
           print(
               "User id : ${userData.user_id.value} , Move number : ${rouletteBoardController.moveNum.value} , Game status : ${rouletteBoardController.gameStatus.value} , Last bet amount : ${rouletteBoardController.totalBetAmount.value} , Last bet won lost : lost");
+
+          userData.number_of_games_lost.value =
+              userData.number_of_games_lost.value + 1;
+          await BackendRequests().updateUserDashboard(
+              userData.user_id.value,
+              userData.number_of_games_played.value.toString(),
+              userData.number_of_games_won.value.toString(),
+              userData.number_of_games_lost.value.toString(),
+              userData.winningAmount.value.toString(),
+              userData.total_amount_won.value.toString(),
+              userData.total_amount_lost.value.toString());
 
           await BackendRequests().updateGame(
               rouletteBoardController.gameId.value,

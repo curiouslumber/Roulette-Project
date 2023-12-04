@@ -105,6 +105,18 @@ class RouletteMenuState extends State<RouletteMenu> {
                 }
 
                 rouletteBoardController.resetAll();
+
+                userData.number_of_games_played.value =
+                    userData.number_of_games_played.value + 1;
+                BackendRequests().updateUserDashboard(
+                    userData.user_id.value,
+                    userData.number_of_games_played.value.toString(),
+                    userData.number_of_games_won.value.toString(),
+                    userData.number_of_games_lost.value.toString(),
+                    userData.winningAmount.value.toString(),
+                    userData.total_amount_won.value.toString(),
+                    userData.total_amount_lost.value.toString());
+
                 rouletteBoardController.gameStatus.value = 'started';
                 await BackendRequests().updateGame(
                     rouletteBoardController.gameId.value,

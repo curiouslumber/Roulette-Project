@@ -387,4 +387,49 @@ class BackendRequests {
       return null;
     }
   }
+
+  // Updated user dashboard
+  Future<bool> updateUserDashboard(
+      String userId,
+      String number_of_games_played,
+      String number_of_games_won,
+      String number_of_games_lost,
+      String winningAmount,
+      String total_amount_won,
+      String total_amount_lost) async {
+    try {
+      final response = await http.put(
+        Uri.parse('$baseUrl/users/dashboard/$userId'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'number_of_games_played': number_of_games_played,
+          'number_of_wins': number_of_games_won,
+          'number_of_lossess': number_of_games_lost,
+          'winning_amount': winningAmount,
+          'total_amount_won': total_amount_won,
+          'total_amount_lost': total_amount_lost,
+        }),
+      );
+      if (response.statusCode == 204) {
+        // Handle successful response
+        print(response.body);
+        userData.number_of_games_played.value =
+            int.parse(number_of_games_played);
+        userData.number_of_games_won.value = int.parse(number_of_games_won);
+        userData.number_of_games_lost.value = int.parse(number_of_games_lost);
+        userData.total_amount_won.value = int.parse(total_amount_won);
+        userData.total_amount_lost.value = int.parse(total_amount_lost);
+        return true;
+      } else {
+        // Handle error response
+        print('Request failed with status: ${response.statusCode}.');
+        return false;
+      }
+    } catch (e) {
+      print('Error: $e');
+      return false;
+    }
+  }
 }

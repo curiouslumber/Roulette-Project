@@ -25,6 +25,7 @@ class UserData extends GetxController {
   var number_of_demo_games_lost = 0.obs;
   var total_amount_won_in_demo_games = 0.obs;
   var total_amount_lost_in_demo_games = 0.obs;
+  var winningAmount = 0.obs;
 
   var userConnection = false.obs;
 
