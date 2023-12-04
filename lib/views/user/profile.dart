@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:roulette_project/backend/requests.dart';
-import 'package:roulette_project/backend/user_data.dart';
+import 'package:roulette_project/backend/userdatacontroller.dart';
 import 'package:roulette_project/views/user/dashboard.dart';
 import 'package:roulette_project/views/user/settings.dart';
 import 'package:roulette_project/views/user/wallet.dart';

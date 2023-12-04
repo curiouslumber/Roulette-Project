@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:roulette_project/backend/private.dart';
-import 'package:roulette_project/backend/user_data.dart';
+import 'package:roulette_project/backend/userdatacontroller.dart';
 
 class BackendRequests {
   final String baseUrl = Private().baseUrl;

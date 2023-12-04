@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:roulette_project/backend/sharedpreferences.dart';
-import 'package:roulette_project/backend/user_data.dart';
+import 'package:roulette_project/backend/userdatacontroller.dart';
 
 class LoginHandler {
   UserData userData = Get.put(UserData());

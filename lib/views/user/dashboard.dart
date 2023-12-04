@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:roulette_project/backend/user_data.dart';
+import 'package:roulette_project/backend/userdatacontroller.dart';
 
 class Dashboard extends StatelessWidget {
   Dashboard({super.key});

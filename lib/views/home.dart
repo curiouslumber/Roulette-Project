@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:roulette_project/backend/loginhandler.dart';
 import 'package:roulette_project/backend/requests.dart';
 import 'package:roulette_project/backend/sharedpreferences.dart';
-import 'package:roulette_project/backend/user_data.dart';
+import 'package:roulette_project/backend/userdatacontroller.dart';
 import 'package:roulette_project/components/game_header.dart';
 import 'package:roulette_project/main.dart';
 import 'package:roulette_project/views/menu.dart';
@@ -30,6 +30,7 @@ class HomeState extends State<Home> {
             body: const Center(child: CircularProgressIndicator()),
           );
         } else if (snapshot.data == true) {
+          // Internet is available
           return FutureBuilder(
               future: SharedPreferencesManager.isLoggedIn(),
               builder: (context, snapshot) {
@@ -39,9 +40,11 @@ class HomeState extends State<Home> {
                     body: const Center(child: CircularProgressIndicator()),
                   );
                 } else if (snapshot.data == true) {
+                  // User is logged in
                   return FutureBuilder(
                     future: SharedPreferencesManager.getEmail(),
                     builder: (context, snapshot) {
+                      // get user email from shared preferences
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return Scaffold(
                           backgroundColor: Colors.green[900],
@@ -50,6 +53,7 @@ class HomeState extends State<Home> {
                         );
                       } else if (snapshot.connectionState ==
                           ConnectionState.done) {
+                        // get data from user email
                         return FutureBuilder(
                             future: BackendRequests()
                                 .checkPassword(snapshot.data.toString()),
@@ -63,6 +67,7 @@ class HomeState extends State<Home> {
                                 );
                               } else if (snapshot.connectionState ==
                                   ConnectionState.done) {
+                                // prepare for login
                                 var k = snapshot.data;
                                 userData.user_id.value =
                                     k!['user_id'].toString();
@@ -91,6 +96,7 @@ class HomeState extends State<Home> {
                                           child: CircularProgressIndicator());
                                     } else if (snapshot.connectionState ==
                                         ConnectionState.done) {
+                                      // update active user
                                       userData.active_user.value = true;
                                       userData.playingAsGuest.value = false;
 
@@ -111,6 +117,7 @@ class HomeState extends State<Home> {
                                             );
                                           } else if (snapshot.connectionState ==
                                               ConnectionState.done) {
+                                            // get user dashboard and login
                                             return HomePage(userData: userData);
                                           } else {
                                             return const Center(
@@ -157,9 +164,11 @@ class HomeState extends State<Home> {
                               const Center(child: CircularProgressIndicator()),
                         );
                       } else if (snapshot.data == true) {
+                        // playing as guest
                         userData.playingAsGuest.value = true;
                         return HomePage(userData: userData);
                       } else if (snapshot.data == false) {
+                        // not playing as guest
                         return FutureBuilder(
                             future: LoginHandler().checkUserLoginStatus(),
                             builder: (context, snapshot) {
@@ -172,6 +181,7 @@ class HomeState extends State<Home> {
                                 );
                               } else if (snapshot.data == true) {
                                 return FutureBuilder(
+                                  // get user id from shared preferences
                                   future: SharedPreferencesManager.getUserId(),
                                   builder: (context, snapshot) {
                                     if (snapshot.connectionState ==
@@ -228,6 +238,7 @@ class HomeState extends State<Home> {
                                   },
                                 );
                               } else if (snapshot.data == false) {
+                                // not logged in
                                 return const Login();
                               } else {
                                 return const Center(
@@ -318,7 +329,7 @@ class HomePage extends StatelessWidget {
                       // ignore: use_build_context_synchronously
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           content: Text('Internet connection established')));
-                      Get.offAll(MyApp());
+                      Get.offAll(const MyApp());
                     } else {
                       // ignore: use_build_context_synchronously
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

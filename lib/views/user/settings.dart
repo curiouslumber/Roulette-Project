@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:roulette_project/backend/requests.dart';
 import 'package:roulette_project/backend/sharedpreferences.dart';
-import 'package:roulette_project/backend/user_data.dart';
+import 'package:roulette_project/backend/userdatacontroller.dart';
 import 'package:roulette_project/views/roulette/rouletteboardcontroller.dart';
 
 class SettingsPage extends StatelessWidget {
