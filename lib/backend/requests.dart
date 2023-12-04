@@ -323,4 +323,68 @@ class BackendRequests {
       return null;
     }
   }
+
+  // Update a game via user id, move num, game status, last bet amount, last bet won lost
+  Future<Map<String, dynamic>?> updateGame(
+      String gameId,
+      String userId,
+      String gameStatus,
+      String moveNum,
+      String last_bet_amount,
+      String last_bet_win_amount,
+      String last_bet_won_lost) async {
+    try {
+      final response = await http.post(
+        Uri.parse('$baseUrl/users/$userId/game'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'game_id': gameId,
+          'user_id': userId,
+          'game_status': gameStatus,
+          'move_num': moveNum,
+          'last_bet_amount': last_bet_amount,
+          'last_bet_win_amount': last_bet_win_amount,
+          'last_bet_won_lost': last_bet_won_lost,
+        }),
+      );
+      if (response.statusCode == 201) {
+        // Handle successful response
+        final Map<String, dynamic> responseData = jsonDecode(response.body);
+        return responseData;
+      } else {
+        // Handle error response
+        print('Request failed with status: ${response.statusCode}.');
+        return null;
+      }
+    } catch (e) {
+      print('Error: $e');
+      return null;
+    }
+  }
+
+  // Get number of games
+  Future<Map<String, dynamic>?> getNumberOfGames() async {
+    try {
+      final response = await http.get(
+        Uri.parse('$baseUrl/games/number'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+      if (response.statusCode == 200) {
+        // Handle successful response
+        final Map<String, dynamic> responseData = jsonDecode(response.body);
+        return responseData;
+      } else {
+        // Handle error response
+        print('Request failed with status: ${response.statusCode}.');
+        return null;
+      }
+    } catch (e) {
+      print('Error: $e');
+      return null;
+    }
+  }
 }

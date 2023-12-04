@@ -171,7 +171,7 @@ class Wallet extends StatelessWidget {
                                             showMyDialog();
                                           },
                                           child: const Text(
-                                            'Deposit Wallet',
+                                            'Click to Deposit',
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 20,

@@ -4,6 +4,7 @@ class RouletteBoardController extends GetxController {
   var bets = [].obs;
   var betOn = true.obs;
 
+  var gameId = "".obs;
   var moveNum = 0.obs;
   var gameStatus = "none".obs;
 
@@ -19,6 +20,7 @@ class RouletteBoardController extends GetxController {
   var streetBets = List<bool>.filled(24, false).obs;
   var zeroSideBets = List<bool>.filled(4, false).obs;
   var betValue = 1;
+  var lastWinAmount = 0.obs;
   var totalBetAmount = 0.obs;
   var spinResult = 0.obs;
 
@@ -80,37 +82,33 @@ class RouletteBoardController extends GetxController {
       }
       betSizes.add(betsInInt[i].length);
     }
-
-    print(betSizes);
   }
 
   void checkBet(int spinResult) {
-    totalAmountWon.value = 0;
-    print(betsInInt);
+    lastWinAmount.value = 0;
     for (int i = 0; i < betsInInt.length; i++) {
       for (int j = 0; j < betsInInt[i].length; j++) {
         if (betsInInt[i][j] == spinResult) {
           userWon.value = true;
           userResult.value = "You won";
           if (betSizes[i] == 1) {
-            totalAmountWon.value =
-                betSizes[i] * straightUpMultiplier * betValue;
+            lastWinAmount.value = betSizes[i] * straightUpMultiplier * betValue;
           } else if (betSizes[i] == 2) {
-            totalAmountWon.value = betSizes[i] * splitMultiplier * betValue;
+            lastWinAmount.value = betSizes[i] * splitMultiplier * betValue;
           } else if (betSizes[i] == 3) {
-            totalAmountWon.value = betSizes[i] * streetMultiplier * betValue;
+            lastWinAmount.value = betSizes[i] * streetMultiplier * betValue;
           } else if (betSizes[i] == 4) {
-            totalAmountWon.value = betSizes[i] * cornerMultiplier * betValue;
+            lastWinAmount.value = betSizes[i] * cornerMultiplier * betValue;
           } else if (betSizes[i] == 6) {
-            totalAmountWon.value =
+            lastWinAmount.value =
                 betSizes[i] * doubleStreetMultiplier * betValue;
           } else if (betSizes[i] == 12) {
-            totalAmountWon.value = betSizes[i] * dozenMultiplier * betValue;
+            lastWinAmount.value = betSizes[i] * dozenMultiplier * betValue;
           } else if (betSizes[i] == 18) {
-            totalAmountWon.value = betSizes[i] * lowHighMultiplier * betValue;
+            lastWinAmount.value = betSizes[i] * lowHighMultiplier * betValue;
           }
-          print(totalAmountWon.value);
-          userBalance.value += totalAmountWon.value;
+          userBalance.value += lastWinAmount.value;
+          totalAmountWon.value += lastWinAmount.value;
         }
       }
     }

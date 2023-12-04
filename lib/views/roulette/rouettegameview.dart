@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:roulette_project/backend/requests.dart';
 import 'package:roulette_project/backend/sharedpreferences.dart';
 import 'package:roulette_project/backend/userdatacontroller.dart';
+import 'package:roulette_project/main.dart';
 import 'package:roulette_project/views/roulette/rouletteboard.dart';
 import 'package:roulette_project/views/roulette/rouletteboardcontroller.dart';
 
@@ -49,8 +51,21 @@ class RoulettePageState extends State<RoulettePage> {
                 foregroundColor: Colors.green[900],
               ),
               child: Text('Yes', style: TextStyle(color: Colors.green[900])),
-              onPressed: () {
+              onPressed: () async {
+                if (userData.gameType.value == 'real') {
+                  await BackendRequests().updateGame(
+                      rouletteBoardController.gameId.value,
+                      userData.user_id.value,
+                      "finished",
+                      rouletteBoardController.moveNum.value.toString(),
+                      "0",
+                      "0",
+                      "");
+                }
+
+                // ignore: use_build_context_synchronously
                 Navigator.of(context).pop();
+                // ignore: use_build_context_synchronously
                 Navigator.of(context).pop();
               },
             ),
@@ -72,8 +87,6 @@ class RoulettePageState extends State<RoulettePage> {
   @override
   void initState() {
     super.initState();
-    rouletteBoardController.wheelSpinning.value = false;
-    rouletteBoardController.spinning.value = false;
     rouletteBoardController.moveNum.value = 0;
     if (userData.gameType.value == 'demo') {
       rouletteBoardController.userBalance.value =
@@ -152,18 +165,52 @@ class RoulettePageState extends State<RoulettePage> {
         });
         time = time - 100;
       } else {
+        await userData.checkUserConnection();
+        if (userData.userConnection.value == false) {
+          // ignore: use_build_context_synchronously
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Internet Connection Required.'),
+            ),
+          );
+          rouletteBoardController.spinning.value = false;
+          rouletteBoardController.wheelSpinning.value = false;
+          timer.cancel();
+          Get.offAll(() => const MyApp());
+          return;
+        }
+
         rouletteBoardController.spinResult.value = value;
         rouletteBoardController.calculateBet();
         rouletteBoardController
             .checkBet(rouletteBoardController.spinResult.value);
         timer.cancel();
         rouletteBoardController.spinning.value = false;
+
         if (rouletteBoardController.userWon.value == true) {
           print(
               "User id : ${userData.user_id.value} , Move number : ${rouletteBoardController.moveNum.value} , Game status : ${rouletteBoardController.gameStatus.value} , Last bet amount : ${rouletteBoardController.totalBetAmount.value} , Last bet won lost : won");
+
+          await BackendRequests().updateGame(
+              rouletteBoardController.gameId.value,
+              userData.user_id.value,
+              rouletteBoardController.gameStatus.value,
+              rouletteBoardController.moveNum.value.toString(),
+              rouletteBoardController.totalBetAmount.value.toString(),
+              rouletteBoardController.lastWinAmount.value.toString(),
+              "Won");
         } else {
           print(
               "User id : ${userData.user_id.value} , Move number : ${rouletteBoardController.moveNum.value} , Game status : ${rouletteBoardController.gameStatus.value} , Last bet amount : ${rouletteBoardController.totalBetAmount.value} , Last bet won lost : lost");
+
+          await BackendRequests().updateGame(
+              rouletteBoardController.gameId.value,
+              userData.user_id.value,
+              rouletteBoardController.gameStatus.value,
+              rouletteBoardController.moveNum.value.toString(),
+              rouletteBoardController.totalBetAmount.value.toString(),
+              rouletteBoardController.lastWinAmount.value.toString(),
+              "Lost");
         }
       }
     });
@@ -438,7 +485,7 @@ class RoulettePageState extends State<RoulettePage> {
                                                     left: 8.0),
                                                 alignment: Alignment.center,
                                                 child: Text(
-                                                    'Last win : ${rouletteBoardController.totalAmountWon.value}',
+                                                    'Last win : ${rouletteBoardController.lastWinAmount.value}',
                                                     style: const TextStyle(
                                                         color: Colors.white)),
                                               ),
