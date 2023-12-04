@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -8,6 +10,7 @@ class BackendRequests {
   final String baseUrl = Private().baseUrl;
   final UserData userData = Get.put(UserData());
 
+// Get user data via email
   Future<void> getUser(String email) async {
     final response = await http.get(Uri.parse('$baseUrl/users/email/$email'));
     if (response.statusCode == 200) {
@@ -19,6 +22,7 @@ class BackendRequests {
     }
   }
 
+// Insert Users via name, email, password
   Future<bool> insertUsers(String name, String email, String password) async {
     try {
       final response = await http.post(
@@ -48,6 +52,7 @@ class BackendRequests {
     }
   }
 
+// get user Data via email
   Future<Map<String, dynamic>?> checkPassword(String email) async {
     try {
       final response = await http.get(Uri.parse('$baseUrl/users/email/$email'));
@@ -66,6 +71,7 @@ class BackendRequests {
     }
   }
 
+// get active user data via user id
   Future<Map<String, dynamic>?> checkUserActive(String userId) async {
     try {
       final response = await http.get(
@@ -89,6 +95,7 @@ class BackendRequests {
     }
   }
 
+// create active user via user id, last active date, last active time
   Future<bool> makeUserActive(
       String userId, String lastActiveDate, String lastActiveTime) async {
     try {
@@ -119,7 +126,7 @@ class BackendRequests {
     }
   }
 
-  // Update Active User
+  // Update Active User via user id, last active date, last active time
   Future<bool> updateActiveUser(
       String userId, String lastActiveDate, String lastActiveTime) async {
     try {
@@ -172,6 +179,7 @@ class BackendRequests {
     }
   }
 
+// create user dashboard via user id
   Future<bool> createUserDashboard(String userId) async {
     try {
       final response = await http.post(
@@ -198,6 +206,7 @@ class BackendRequests {
     }
   }
 
+// get user dashboard via user id
   Future<void> getUserDashboard(String id) async {
     try {
       final response = await http.get(
@@ -229,7 +238,7 @@ class BackendRequests {
     }
   }
 
-  // Add balance to User Dashboard
+  // Add balance to User Dashboard via user id, deposit amount, new user balance
   Future<bool> addBalanceToUserDashboard(
       String userId, String depositAmount, String newUserBalance) async {
     try {
@@ -259,7 +268,7 @@ class BackendRequests {
     }
   }
 
-  // Start new game
+  // Start new game via user id, move num, game status, last bet amount, last bet won lost
   Future<bool> startGame(String userId, String moveNum, String gameStatus,
       String last_bet_amount, String last_bet_won_lost) async {
     try {
@@ -291,7 +300,7 @@ class BackendRequests {
     }
   }
 
-  // Get game of user
+  // Get game of user via user id
   Future<Map<String, dynamic>?> getGameOfUser(String userId) async {
     try {
       final response = await http.get(

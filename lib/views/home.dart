@@ -86,6 +86,8 @@ class HomeState extends State<Home> {
                                     time[6] +
                                     time[7];
 
+                                // check if user is playing on another device
+
                                 return FutureBuilder(
                                   future: BackendRequests().updateActiveUser(
                                       k['user_id'].toString(), date, time),
