@@ -5,6 +5,7 @@ import 'package:roulette_project/backend/requests.dart';
 import 'package:roulette_project/backend/userdatacontroller.dart';
 import 'package:roulette_project/components/game_header.dart';
 import 'package:roulette_project/views/roulette/rouettegameview.dart';
+import 'package:roulette_project/views/roulette/rouletteboardcontroller.dart';
 import 'package:roulette_project/views/user/wallet.dart';
 
 class RouletteMenu extends StatefulWidget {
@@ -18,6 +19,7 @@ class RouletteMenu extends StatefulWidget {
 
 class RouletteMenuState extends State<RouletteMenu> {
   final UserData userData = Get.find();
+  final RouletteBoardController rouletteBoardController = Get.find();
 
   @override
   void initState() {
@@ -54,6 +56,7 @@ class RouletteMenuState extends State<RouletteMenu> {
                 ? Colors.grey
                 : Colors.white,
             onPressed: () {
+              rouletteBoardController.resetAll();
               if (userData.userConnection.value == false ||
                   userData.playingAsGuest.value == true) {
                 return;
@@ -76,8 +79,8 @@ class RouletteMenuState extends State<RouletteMenu> {
           MaterialButton(
             color: Colors.white,
             onPressed: () {
+              rouletteBoardController.resetAll();
               userData.gameType.value = 'demo';
-
               Get.to(() => const RoulettePage());
             },
             child: Text(

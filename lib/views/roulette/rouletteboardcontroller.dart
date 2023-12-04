@@ -41,6 +41,29 @@ class RouletteBoardController extends GetxController {
   var totalAmountWon = 0.obs;
   var userBalance = 0.obs;
 
+  void resetAll() {
+    betsOnBoard = List<bool>.filled(36, false).obs;
+    zeroBets = List<bool>.filled(2, false).obs;
+    betsOnBoardCount = List<int>.filled(36, 0).obs;
+    zeroBetsCount = List<int>.filled(2, 0).obs;
+    wheelSpinning = false.obs;
+    spinning = false.obs;
+    cornerBets = List<bool>.filled(52, false).obs;
+    verticalSideBets = List<bool>.filled(33, false).obs;
+    horizontalSideBets = List<bool>.filled(24, false).obs;
+    streetBets = List<bool>.filled(24, false).obs;
+    zeroSideBets = List<bool>.filled(4, false).obs;
+    betValue = 1;
+    totalBetAmount = 0.obs;
+    spinResult = 0.obs;
+    bets = [].obs;
+    betSizes = [];
+    betsInInt = List<List<int>>.empty(growable: true);
+    userResult = "You".obs;
+    userWon = false.obs;
+    totalAmountWon = 0.obs;
+  }
+
   void calculateBet() {
     for (int i = 0; i < bets.length; i++) {
       if (bets[i].toString().contains("[") == false) {
