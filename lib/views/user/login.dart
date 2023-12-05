@@ -21,6 +21,13 @@ class _LoginState extends State<Login> {
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
   final UserData userData = Get.put(UserData());
+  bool visible = false;
+
+  void changeVisibility() {
+    setState(() {
+      visible = !visible;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +40,18 @@ class _LoginState extends State<Login> {
             BoxDecoration(border: Border.all(color: Colors.white, width: 1)),
         child: SingleChildScrollView(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            const Padding(
-              padding: EdgeInsets.all(15.0),
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: Text(
+                'Welcome to Casino Games!',
+                style: TextStyle(color: Colors.white, fontSize: 16.sp),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
               child: Text(
                 'User login',
-                style: TextStyle(color: Colors.white, fontSize: 18),
+                style: TextStyle(color: Colors.white, fontSize: 14.sp),
               ),
             ),
             Padding(
@@ -64,11 +78,22 @@ class _LoginState extends State<Login> {
                 width: 450,
                 child: TextFormField(
                   style: const TextStyle(color: Colors.white),
+                  obscureText: visible ? false : true,
                   controller: password,
-                  decoration: const InputDecoration(
-                    enabledBorder: OutlineInputBorder(
+                  decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      splashColor: Colors.transparent,
+                      icon: visible
+                          ? const Icon(Icons.visibility)
+                          : const Icon(Icons.visibility_off),
+                      color: Colors.white,
+                      onPressed: () {
+                        changeVisibility();
+                      },
+                    ),
+                    enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white)),
-                    hintStyle: TextStyle(color: Colors.white),
+                    hintStyle: const TextStyle(color: Colors.white),
                     hintText: 'Password',
                   ),
                 ),
@@ -77,7 +102,7 @@ class _LoginState extends State<Login> {
             const SizedBox(height: 50),
             SizedBox(
               height: 50,
-              width: 300,
+              width: 0.5.sw,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(
@@ -87,8 +112,8 @@ class _LoginState extends State<Login> {
                     shape: RoundedRectangleBorder(
                         //to set border radius to button
                         borderRadius: BorderRadius.circular(30)),
-                    padding:
-                        const EdgeInsets.all(20) //content padding inside button
+                    padding: const EdgeInsets.all(
+                        12.0) //content padding inside button
                     ),
                 onPressed: () async {
                   await userData.checkUserConnection();
@@ -269,9 +294,12 @@ class _LoginState extends State<Login> {
 
                   return;
                 },
-                child: const Text(
-                  'Login',
-                  style: TextStyle(color: Colors.black),
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    'Login',
+                    style: TextStyle(color: Colors.black, fontSize: 16.sp),
+                  ),
                 ),
               ),
             ),
@@ -294,6 +322,7 @@ class _LoginState extends State<Login> {
                           child: const Text(
                             'Sign Up',
                             style: TextStyle(
+                                fontWeight: FontWeight.bold,
                                 fontSize: 14,
                                 color: Color.fromARGB(255, 255, 255, 255)),
                           ),
@@ -320,6 +349,7 @@ class _LoginState extends State<Login> {
                                   child: const Text(
                                     'Play as Guest',
                                     style: TextStyle(
+                                        fontWeight: FontWeight.bold,
                                         fontSize: 14,
                                         color:
                                             Color.fromARGB(255, 255, 255, 255)),
@@ -346,6 +376,7 @@ class _LoginState extends State<Login> {
                             ]),
                       )
                     : Container(),
+                const SizedBox(height: 10),
               ],
             )
           ]),

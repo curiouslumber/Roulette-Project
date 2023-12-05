@@ -88,9 +88,18 @@ class _AdminPageState extends State<AdminPage> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    const Text(
-                      'Number of games won: ',
-                      style: TextStyle(color: Colors.white),
+                    Obx(
+                      () => Text(
+                        'Number of rounds won: ${adminController.numberOfGamesWon.value}',
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Obx(
+                      () => Text(
+                        'Number of rounds lost: ${adminController.numberOfGamesLost.value}',
+                        style: const TextStyle(color: Colors.white),
+                      ),
                     ),
                   ]),
             ),

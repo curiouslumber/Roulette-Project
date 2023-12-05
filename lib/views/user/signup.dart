@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:roulette_project/backend/requests.dart';
 import 'package:roulette_project/backend/userdatacontroller.dart';
@@ -15,13 +16,19 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  TextEditingController name = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
   UserData userData = Get.find();
+  bool visible = false;
+  void changeVisibility() {
+    setState(() {
+      visible = !visible;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController name = TextEditingController();
-    TextEditingController email = TextEditingController();
-    TextEditingController password = TextEditingController();
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
     return Scaffold(
@@ -79,11 +86,20 @@ class _SignUpState extends State<SignUp> {
                 child: TextFormField(
                   style: const TextStyle(color: Colors.white),
                   controller: password,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    enabledBorder: OutlineInputBorder(
+                  obscureText: visible ? false : true,
+                  decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        changeVisibility();
+                      },
+                      icon: Icon(
+                        visible ? Icons.visibility : Icons.visibility_off,
+                        color: Colors.white,
+                      ),
+                    ),
+                    enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white)),
-                    hintStyle: TextStyle(color: Colors.white),
+                    hintStyle: const TextStyle(color: Colors.white),
                     hintText: 'Enter Password',
                   ),
                 ),
@@ -92,7 +108,7 @@ class _SignUpState extends State<SignUp> {
             const SizedBox(height: 50),
             SizedBox(
               height: 50,
-              width: 300,
+              width: 0.5.sw,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(
@@ -102,8 +118,8 @@ class _SignUpState extends State<SignUp> {
                     shape: RoundedRectangleBorder(
                         //to set border radius to button
                         borderRadius: BorderRadius.circular(30)),
-                    padding:
-                        const EdgeInsets.all(20) //content padding inside button
+                    padding: const EdgeInsets.all(
+                        12.0) //content padding inside button
                     ),
                 onPressed: () async {
                   var bytes = utf8.encode(password.text);
@@ -133,9 +149,12 @@ class _SignUpState extends State<SignUp> {
                     );
                   }
                 },
-                child: const Text(
-                  'Sign Up',
-                  style: TextStyle(color: Colors.black),
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    'Sign Up',
+                    style: TextStyle(fontSize: 16.sp, color: Colors.black),
+                  ),
                 ),
               ),
             ),
@@ -154,15 +173,17 @@ class _SignUpState extends State<SignUp> {
                   child: const Text(
                     'Sign In',
                     style: TextStyle(
+                        fontWeight: FontWeight.bold,
                         fontSize: 14,
                         color: Color.fromARGB(255, 255, 255, 255)),
                   ),
                   onTap: () {
-                    Get.to(() => Login());
+                    Get.to(() => const Login());
                   },
                 )
               ]),
-            )
+            ),
+            const SizedBox(height: 10)
           ]),
         ),
       ),
