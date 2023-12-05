@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:roulette_project/admin/admin.dart';
 import 'package:roulette_project/backend/requests.dart';
 import 'package:roulette_project/backend/sharedpreferences.dart';
 import 'package:roulette_project/backend/userdatacontroller.dart';
+import 'package:roulette_project/main.dart';
 import 'package:roulette_project/views/roulette/rouletteboardcontroller.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -170,6 +172,36 @@ class SettingsPage extends StatelessWidget {
                         style: TextStyle(color: Colors.green[900]),
                       ),
                     )
+                  : Container(),
+              const SizedBox(height: 10),
+              userData.userRole.value == 'admin'
+                  ? (userData.adminMode.value == false
+                      ? ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                          ),
+                          onPressed: () {
+                            userData.adminMode.value = true;
+                            Get.offAll(() => const AdminPage());
+                          },
+                          child: Text(
+                            "Switch to Admin",
+                            style: TextStyle(color: Colors.green[900]),
+                          ),
+                        )
+                      : ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                          ),
+                          onPressed: () {
+                            userData.adminMode.value = false;
+                            Get.offAll(() => const MyApp());
+                          },
+                          child: Text(
+                            "Switch to User",
+                            style: TextStyle(color: Colors.green[900]),
+                          ),
+                        ))
                   : Container(),
             ]),
           ),

@@ -124,7 +124,14 @@ class Profile extends StatelessWidget {
                   Expanded(
                       flex: 2,
                       child: GestureDetector(
-                        onTap: () {
+                        onTap: () async {
+                          var k = await BackendRequests()
+                              .checkRole(userData.user_id.value);
+                          if (k != null) {
+                            userData.userRole.value = k['role'];
+                          } else {
+                            userData.userRole.value = 'user';
+                          }
                           Get.to(() => SettingsPage());
                         },
                         child: const Text(

@@ -458,4 +458,28 @@ class BackendRequests {
       return false;
     }
   }
+
+  // Check role of user
+  Future<Map<String, dynamic>?> checkRole(String userId) async {
+    try {
+      final response = await http.get(
+        Uri.parse('$baseUrl/users/role/$userId'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+      if (response.statusCode == 200) {
+        // Handle successful response
+        final Map<String, dynamic> responseData = jsonDecode(response.body);
+        return responseData;
+      } else {
+        // Handle error response
+        print('Request failed with status: ${response.statusCode}.');
+        return null;
+      }
+    } catch (e) {
+      print('Error: $e');
+      return null;
+    }
+  }
 }
