@@ -132,6 +132,9 @@ class Profile extends StatelessWidget {
                           } else {
                             userData.userRole.value = 'user';
                           }
+                          if (userData.adminMode.value == true) {
+                            userData.adminMode.value = false;
+                          }
                           Get.to(() => SettingsPage());
                         },
                         child: const Text(

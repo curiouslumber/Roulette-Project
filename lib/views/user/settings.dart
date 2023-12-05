@@ -174,35 +174,33 @@ class SettingsPage extends StatelessWidget {
                     )
                   : Container(),
               const SizedBox(height: 10),
-              userData.userRole.value == 'admin'
-                  ? (userData.adminMode.value == false
-                      ? ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                          ),
-                          onPressed: () {
-                            userData.adminMode.value = true;
-                            Get.offAll(() => const AdminPage());
-                          },
-                          child: Text(
-                            "Switch to Admin",
-                            style: TextStyle(color: Colors.green[900]),
-                          ),
-                        )
-                      : ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                          ),
-                          onPressed: () {
-                            userData.adminMode.value = false;
-                            Get.offAll(() => const MyApp());
-                          },
-                          child: Text(
-                            "Switch to User",
-                            style: TextStyle(color: Colors.green[900]),
-                          ),
-                        ))
-                  : Container(),
+              userData.adminMode.value == false
+                  ? ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                      ),
+                      onPressed: () {
+                        userData.adminMode.value = true;
+                        Get.offAll(() => const AdminPage());
+                      },
+                      child: Text(
+                        "Switch to Admin",
+                        style: TextStyle(color: Colors.green[900]),
+                      ),
+                    )
+                  : ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                      ),
+                      onPressed: () {
+                        userData.adminMode.value = false;
+                        Get.offAll(() => const MyApp());
+                      },
+                      child: Text(
+                        "Switch to User",
+                        style: TextStyle(color: Colors.green[900]),
+                      ),
+                    )
             ]),
           ),
         ));
