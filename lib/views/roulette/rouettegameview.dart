@@ -231,7 +231,9 @@ class RoulettePageState extends State<RoulettePage> {
               userData.number_of_games_lost.value.toString(),
               userData.total_amount_won.value.toString(),
               userData.winningAmount.value.toString(),
-              rouletteBoardController.totalBetAmount.value.toString());
+              (userData.total_amount_lost +
+                      rouletteBoardController.totalBetAmount.value)
+                  .toString());
 
           await BackendRequests().updateGame(
               rouletteBoardController.gameId.value,
