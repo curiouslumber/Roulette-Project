@@ -432,4 +432,30 @@ class BackendRequests {
       return false;
     }
   }
+
+  // Update user balance
+  Future<bool> updateUserBalance(String userId, String currentBalance) async {
+    try {
+      final response = await http.put(
+        Uri.parse('$baseUrl/users/dashboard/balance/$userId'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{'current_balance': currentBalance}),
+      );
+      if (response.statusCode == 204) {
+        // Handle successful response
+        print(response.body);
+        userData.current_balance.value = int.parse(currentBalance);
+        return true;
+      } else {
+        // Handle error response
+        print('Request failed with status: ${response.statusCode}.');
+        return false;
+      }
+    } catch (e) {
+      print('Error: $e');
+      return false;
+    }
+  }
 }
