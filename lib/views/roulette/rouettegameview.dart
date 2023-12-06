@@ -166,7 +166,8 @@ class RoulettePageState extends State<RoulettePage> {
         time = time - 100;
       } else {
         await userData.checkUserConnection();
-        if (userData.userConnection.value == false) {
+        if (userData.userConnection.value == false &&
+            userData.gameType.value == 'real') {
           // ignore: use_build_context_synchronously
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
@@ -198,54 +199,90 @@ class RoulettePageState extends State<RoulettePage> {
                   userData.winningAmount.value;
           userData.total_amount_won.value = userData.winningAmount.value;
 
-          await BackendRequests().updateUserDashboard(
-              userData.user_id.value,
-              userData.number_of_games_played.value.toString(),
-              userData.number_of_games_won.value.toString(),
-              userData.number_of_games_lost.value.toString(),
-              rouletteBoardController.totalAmountWon.toString(),
-              userData.winningAmount.value.toString(),
-              userData.total_amount_lost.value.toString());
+          if (userData.gameType.value == 'real') {
+            await BackendRequests().updateUserDashboard(
+                userData.user_id.value,
+                userData.number_of_games_played.value.toString(),
+                userData.number_of_games_won.value.toString(),
+                userData.number_of_games_lost.value.toString(),
+                rouletteBoardController.totalAmountWon.toString(),
+                userData.winningAmount.value.toString(),
+                userData.total_amount_lost.value.toString());
 
-          await BackendRequests().updateGame(
-              rouletteBoardController.gameId.value,
-              userData.user_id.value,
-              rouletteBoardController.gameStatus.value,
-              rouletteBoardController.moveNum.value.toString(),
-              rouletteBoardController.totalBetAmount.value.toString(),
-              rouletteBoardController.lastWinAmount.value.toString(),
-              "Won");
+            await BackendRequests().updateGame(
+                rouletteBoardController.gameId.value,
+                userData.user_id.value,
+                rouletteBoardController.gameStatus.value,
+                rouletteBoardController.moveNum.value.toString(),
+                rouletteBoardController.totalBetAmount.value.toString(),
+                rouletteBoardController.lastWinAmount.value.toString(),
+                "Won");
 
-          await BackendRequests().updateUserBalance(userData.user_id.value,
-              rouletteBoardController.userBalance.value.toString());
+            await BackendRequests().updateUserBalance(userData.user_id.value,
+                rouletteBoardController.userBalance.value.toString());
+          } else {
+            SharedPreferencesManager.setDemoBalance(
+                rouletteBoardController.userBalance.value);
+            userData.current_demo_balance.value =
+                rouletteBoardController.userBalance.value;
+            SharedPreferencesManager.setNumberOfDemoGamesWon(
+                userData.number_of_games_won.value);
+            userData.number_of_demo_games_won.value =
+                userData.number_of_games_won.value;
+
+            SharedPreferencesManager.setTotalAmountWonInDemoGames(
+                userData.total_amount_won_in_demo_games.value +
+                    userData.winningAmount.value);
+            userData.total_amount_won_in_demo_games.value =
+                (await SharedPreferencesManager
+                    .getTotalAmountWonInDemoGames())!;
+          }
         } else {
           print(
               "User id : ${userData.user_id.value} , Move number : ${rouletteBoardController.moveNum.value} , Game status : ${rouletteBoardController.gameStatus.value} , Last bet amount : ${rouletteBoardController.totalBetAmount.value} , Last bet won lost : lost");
-
           userData.number_of_games_lost.value =
               userData.number_of_games_lost.value + 1;
-          await BackendRequests().updateUserDashboard(
-              userData.user_id.value,
-              userData.number_of_games_played.value.toString(),
-              userData.number_of_games_won.value.toString(),
-              userData.number_of_games_lost.value.toString(),
-              userData.total_amount_won.value.toString(),
-              userData.winningAmount.value.toString(),
-              (userData.total_amount_lost +
-                      rouletteBoardController.totalBetAmount.value)
-                  .toString());
 
-          await BackendRequests().updateGame(
-              rouletteBoardController.gameId.value,
-              userData.user_id.value,
-              rouletteBoardController.gameStatus.value,
-              rouletteBoardController.moveNum.value.toString(),
-              rouletteBoardController.totalBetAmount.value.toString(),
-              rouletteBoardController.lastWinAmount.value.toString(),
-              "Lost");
+          if (userData.gameType.value == 'real') {
+            await BackendRequests().updateUserDashboard(
+                userData.user_id.value,
+                userData.number_of_games_played.value.toString(),
+                userData.number_of_games_won.value.toString(),
+                userData.number_of_games_lost.value.toString(),
+                userData.total_amount_won.value.toString(),
+                userData.winningAmount.value.toString(),
+                (userData.total_amount_lost +
+                        rouletteBoardController.totalBetAmount.value)
+                    .toString());
 
-          await BackendRequests().updateUserBalance(userData.user_id.value,
-              rouletteBoardController.userBalance.value.toString());
+            await BackendRequests().updateGame(
+                rouletteBoardController.gameId.value,
+                userData.user_id.value,
+                rouletteBoardController.gameStatus.value,
+                rouletteBoardController.moveNum.value.toString(),
+                rouletteBoardController.totalBetAmount.value.toString(),
+                rouletteBoardController.lastWinAmount.value.toString(),
+                "Lost");
+
+            await BackendRequests().updateUserBalance(userData.user_id.value,
+                rouletteBoardController.userBalance.value.toString());
+          } else {
+            SharedPreferencesManager.setDemoBalance(
+                rouletteBoardController.userBalance.value);
+            userData.current_demo_balance.value =
+                rouletteBoardController.userBalance.value;
+            SharedPreferencesManager.setNumberOfDemoGamesLost(
+                userData.number_of_games_lost.value);
+            userData.number_of_demo_games_lost.value =
+                userData.number_of_games_lost.value;
+
+            SharedPreferencesManager.setTotalAmountLostInDemoGames(
+                userData.total_amount_lost_in_demo_games.value +
+                    rouletteBoardController.totalBetAmount.value);
+            userData.total_amount_lost_in_demo_games.value =
+                (await SharedPreferencesManager
+                    .getTotalAmountLostInDemoGames())!;
+          }
         }
       }
     });

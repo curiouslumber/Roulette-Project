@@ -135,9 +135,22 @@ class RouletteMenuState extends State<RouletteMenu> {
           ),
           MaterialButton(
             color: Colors.white,
-            onPressed: () {
+            onPressed: () async {
               rouletteBoardController.resetAll();
               userData.gameType.value = 'demo';
+              userData.number_of_demo_games_played.value =
+                  (await SharedPreferencesManager
+                      .getNumberOfDemoGamesPlayed())!;
+              userData.number_of_demo_games_played.value =
+                  userData.number_of_demo_games_played.value + 1;
+              await SharedPreferencesManager.setNumberOfDemoGamesPlayed(
+                  userData.number_of_demo_games_played.value);
+              userData.total_amount_won_in_demo_games.value =
+                  (await (SharedPreferencesManager
+                      .getTotalAmountWonInDemoGames()))!;
+              userData.total_amount_lost_in_demo_games.value =
+                  (await (SharedPreferencesManager
+                      .getTotalAmountLostInDemoGames()))!;
               Get.to(() => const RoulettePage());
             },
             child: Text(

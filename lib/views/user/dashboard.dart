@@ -65,14 +65,14 @@ class Dashboard extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                        'Number of games won : ${userData.number_of_games_won.value}',
+                                        'Number of rounds won : ${userData.number_of_games_won.value}',
                                         style: const TextStyle(
                                             color: Colors.white, fontSize: 18)),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                        'Number of games lost: ${userData.number_of_games_lost.value}',
+                                        'Number of rounds lost: ${userData.number_of_games_lost.value}',
                                         style: const TextStyle(
                                             color: Colors.white, fontSize: 18)),
                                   ),
@@ -114,14 +114,14 @@ class Dashboard extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                              'Number of demo games won : ${userData.number_of_demo_games_won.value}',
+                              'Number of demo rounds won : ${userData.number_of_demo_games_won.value}',
                               style: const TextStyle(
                                   color: Colors.white, fontSize: 18)),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                              'Number of demo games lost : ${userData.number_of_demo_games_lost.value}',
+                              'Number of demo rounds lost : ${userData.number_of_demo_games_lost.value}',
                               style: const TextStyle(
                                   color: Colors.white, fontSize: 18)),
                         ),

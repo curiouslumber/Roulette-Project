@@ -41,17 +41,10 @@ class _LoginState extends State<Login> {
         child: SingleChildScrollView(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             Padding(
-              padding: const EdgeInsets.only(top: 16.0),
+              padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
               child: Text(
                 'Welcome to Casino Games!',
                 style: TextStyle(color: Colors.white, fontSize: 16.sp),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Text(
-                'User login',
-                style: TextStyle(color: Colors.white, fontSize: 14.sp),
               ),
             ),
             Padding(
