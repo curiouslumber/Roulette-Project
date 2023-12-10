@@ -24,6 +24,17 @@ class RouletteBoardController extends GetxController {
   var totalBetAmount = 0.obs;
   var spinResult = 0.obs;
 
+  var straightUpBetsCount = 0.obs;
+  var splitBetsCount = 0.obs;
+  var streetBetsCount = 0.obs;
+  var cornerBetsCount = 0.obs;
+  var doubleStreetBetsCount = 0.obs;
+  var dozenBetsCount = 0.obs;
+  var columnBetsCount = 0.obs;
+  var evenOddBetsCount = 0.obs;
+  var colorBetsCount = 0.obs;
+  var lowHighBetsCount = 0.obs;
+
   var straightUpMultiplier = 35;
   var splitMultiplier = 17;
   var streetMultiplier = 11;

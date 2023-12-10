@@ -450,7 +450,7 @@ class RoulettePageState extends State<RoulettePage> {
                           width: 520.w,
                           alignment: Alignment.centerLeft,
                           color: Colors.green[800],
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -467,13 +467,182 @@ class RoulettePageState extends State<RoulettePage> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
+                                          MaterialButton(
+                                              color: Colors.white,
+                                              onPressed: () {
+                                                showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (BuildContext context) {
+                                                    return Expanded(
+                                                        child: AlertDialog(
+                                                      surfaceTintColor:
+                                                          Colors.white,
+                                                      backgroundColor:
+                                                          Colors.green[900],
+                                                      actions: [
+                                                        ElevatedButton(
+                                                            style:
+                                                                ElevatedButton
+                                                                    .styleFrom(
+                                                              backgroundColor:
+                                                                  Colors.white,
+                                                              foregroundColor:
+                                                                  Colors.green[
+                                                                      900],
+                                                            ),
+                                                            onPressed: () {
+                                                              Navigator.of(
+                                                                      context)
+                                                                  .pop();
+                                                            },
+                                                            child: const Text(
+                                                                'Close'))
+                                                      ],
+                                                      title: const Text(
+                                                        'My Bets',
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.white),
+                                                      ),
+                                                      content:
+                                                          SingleChildScrollView(
+                                                              child: Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(8.0),
+                                                            child: Text(
+                                                              'Straight Up Bets : ${rouletteBoardController.straightUpBetsCount.value}',
+                                                              style: const TextStyle(
+                                                                  color: Colors
+                                                                      .white),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(8.0),
+                                                            child: Text(
+                                                              'Split Bets : ${rouletteBoardController.splitBetsCount}',
+                                                              style: const TextStyle(
+                                                                  color: Colors
+                                                                      .white),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(8.0),
+                                                            child: Text(
+                                                              'Street Bets : ${rouletteBoardController.streetBetsCount}',
+                                                              style: const TextStyle(
+                                                                  color: Colors
+                                                                      .white),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(8.0),
+                                                            child: Text(
+                                                              'Corner Bets : ${rouletteBoardController.cornerBetsCount}',
+                                                              style: const TextStyle(
+                                                                  color: Colors
+                                                                      .white),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(8.0),
+                                                            child: Text(
+                                                              'Double Street Bets : ${rouletteBoardController.doubleStreetBetsCount}',
+                                                              style: const TextStyle(
+                                                                  color: Colors
+                                                                      .white),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(8.0),
+                                                            child: Text(
+                                                              'Dozen Bets : ${rouletteBoardController.dozenBetsCount}',
+                                                              style: const TextStyle(
+                                                                  color: Colors
+                                                                      .white),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(8.0),
+                                                            child: Text(
+                                                              'Column Bets : ${rouletteBoardController.columnBetsCount}',
+                                                              style: const TextStyle(
+                                                                  color: Colors
+                                                                      .white),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(8.0),
+                                                            child: Text(
+                                                              'Even/Odd Bets : ${rouletteBoardController.evenOddBetsCount}',
+                                                              style: const TextStyle(
+                                                                  color: Colors
+                                                                      .white),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(8.0),
+                                                            child: Text(
+                                                              'Red/Black Bets : ${rouletteBoardController.colorBetsCount}',
+                                                              style: const TextStyle(
+                                                                  color: Colors
+                                                                      .white),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(8.0),
+                                                            child: Text(
+                                                              'Low/High Bets : ${rouletteBoardController.lowHighBetsCount}',
+                                                              style: const TextStyle(
+                                                                  color: Colors
+                                                                      .white),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      )),
+                                                    ));
+                                                  },
+                                                );
+                                              },
+                                              child: Text(
+                                                'My Bets',
+                                                style: TextStyle(
+                                                    color: Colors.green[900]),
+                                              )),
                                           Container(
-                                            width: 280.w,
+                                            width: 230.w,
                                             alignment: Alignment.centerLeft,
                                             child: SingleChildScrollView(
                                               scrollDirection: Axis.horizontal,
                                               child: Text(
-                                                'Bets : ${rouletteBoardController.bets}',
+                                                'Total bet amount: ${rouletteBoardController.totalBetAmount.value}',
                                                 maxLines: 1,
                                                 style: const TextStyle(
                                                     color: Colors.white),
@@ -502,6 +671,11 @@ class RoulettePageState extends State<RoulettePage> {
                                             children: [
                                               MaterialButton(
                                                 onPressed: () {
+                                                  // Clear bet count values
+                                                  rouletteBoardController
+                                                      .straightUpBetsCount
+                                                      .value = 0;
+
                                                   rouletteBoardController
                                                       .totalBetAmount.value = 0;
                                                   rouletteBoardController

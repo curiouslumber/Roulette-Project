@@ -420,6 +420,7 @@ class RouletteBoard extends StatelessWidget {
                 Obx(
                   () => GestureDetector(
                     onTap: () {
+                      rbc.straightUpBetsCount.value++;
                       rbc.bets.add('0');
                       rbc.addZeroBet(1);
                     },
@@ -1152,7 +1153,8 @@ class RouletteBoard extends StatelessWidget {
                                                         child: GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(3);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('3');
                                                           },
                                                           child: Container(
@@ -1176,7 +1178,8 @@ class RouletteBoard extends StatelessWidget {
                                                         () => GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(3);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('3');
                                                           },
                                                           child: Container(
@@ -1399,6 +1402,8 @@ class RouletteBoard extends StatelessWidget {
                                                           onTap: () {
                                                             rbc.activeBet(6);
 
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('6');
                                                           },
                                                           child: Container(
@@ -1420,7 +1425,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(6);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('6');
                                                           },
                                                           child: Obx(
@@ -1652,7 +1658,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(9);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('9');
                                                           },
                                                           child: Container(
@@ -1675,7 +1682,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(9);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('9');
                                                           },
                                                           child: Obx(
@@ -1920,7 +1928,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(12);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('12');
                                                           },
                                                           child: Container(
@@ -1943,7 +1952,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(12);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('12');
                                                           },
                                                           child: Obx(
@@ -2182,7 +2192,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(15);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('15');
                                                           },
                                                           child: Container(
@@ -2205,7 +2216,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(15);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('15');
                                                           },
                                                           child: Obx(
@@ -2450,7 +2462,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(18);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('18');
                                                           },
                                                           child: Container(
@@ -2473,7 +2486,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(18);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('18');
                                                           },
                                                           child: Obx(
@@ -2718,7 +2732,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(21);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('21');
                                                           },
                                                           child: Container(
@@ -2741,7 +2756,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(21);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('21');
                                                           },
                                                           child: Obx(
@@ -2986,7 +3002,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(24);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('24');
                                                           },
                                                           child: Container(
@@ -3009,7 +3026,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(24);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('24');
                                                           },
                                                           child: Obx(
@@ -3254,7 +3272,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(27);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('27');
                                                           },
                                                           child: Container(
@@ -3277,7 +3296,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(27);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('27');
                                                           },
                                                           child: Obx(
@@ -3522,7 +3542,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(30);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('30');
                                                           },
                                                           child: Container(
@@ -3545,7 +3566,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(30);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('30');
                                                           },
                                                           child: Obx(
@@ -3790,7 +3812,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(33);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('33');
                                                           },
                                                           child: Container(
@@ -3813,7 +3836,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(33);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('33');
                                                           },
                                                           child: Obx(
@@ -4057,7 +4081,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(36);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('36');
                                                           },
                                                           child: Container(
@@ -4079,7 +4104,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(36);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('36');
                                                           },
                                                           child: Obx(
@@ -4325,7 +4351,8 @@ class RouletteBoard extends StatelessWidget {
                                                               onTap: () {
                                                                 rbc.activeBet(
                                                                     2);
-
+                                                                rbc.straightUpBetsCount
+                                                                    .value++;
                                                                 rbc.bets
                                                                     .add('2');
                                                               },
@@ -4356,7 +4383,8 @@ class RouletteBoard extends StatelessWidget {
                                                               onTap: () {
                                                                 rbc.activeBet(
                                                                     2);
-
+                                                                rbc.straightUpBetsCount
+                                                                    .value++;
                                                                 rbc.bets
                                                                     .add('2');
                                                               },
@@ -4673,7 +4701,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(5);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('5');
                                                           },
                                                           child: Container(
@@ -4695,7 +4724,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(5);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('5');
                                                           },
                                                           child: Obx(
@@ -4926,7 +4956,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(8);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('8');
                                                           },
                                                           child: Container(
@@ -4948,7 +4979,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(8);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('8');
                                                           },
                                                           child: Obx(
@@ -5177,7 +5209,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(11);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('11');
                                                           },
                                                           child: Container(
@@ -5200,7 +5233,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(11);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('11');
                                                           },
                                                           child: Obx(
@@ -5442,7 +5476,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(14);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('14');
                                                           },
                                                           child: Container(
@@ -5465,7 +5500,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(14);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('14');
                                                           },
                                                           child: Obx(
@@ -5707,7 +5743,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(17);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('17');
                                                           },
                                                           child: Container(
@@ -5730,7 +5767,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(17);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('17');
                                                           },
                                                           child: Obx(
@@ -5972,7 +6010,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(20);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('20');
                                                           },
                                                           child: Container(
@@ -5995,7 +6034,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(20);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('20');
                                                           },
                                                           child: Obx(
@@ -6236,7 +6276,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(23);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('23');
                                                           },
                                                           child: Container(
@@ -6258,7 +6299,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(23);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('23');
                                                           },
                                                           child: Obx(
@@ -6499,7 +6541,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(26);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('26');
                                                           },
                                                           child: Container(
@@ -6521,7 +6564,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(26);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('26');
                                                           },
                                                           child: Obx(
@@ -6749,7 +6793,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(29);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('29');
                                                           },
                                                           child: Container(
@@ -6771,7 +6816,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(29);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('29');
                                                           },
                                                           child: Obx(
@@ -7012,7 +7058,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(32);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('32');
                                                           },
                                                           child: Container(
@@ -7034,7 +7081,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(32);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('32');
                                                           },
                                                           child: Obx(
@@ -7535,7 +7583,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(1);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('1');
                                                           },
                                                           child: Container(
@@ -7557,7 +7606,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(1);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('1');
                                                           },
                                                           child: Obx(
@@ -7806,7 +7856,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(4);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('4');
                                                           },
                                                           child: Container(
@@ -7828,7 +7879,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(4);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('4');
                                                           },
                                                           child: Obx(
@@ -8069,7 +8121,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(7);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('7');
                                                           },
                                                           child: Container(
@@ -8091,7 +8144,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(7);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('7');
                                                           },
                                                           child: Obx(
@@ -8332,7 +8386,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(10);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('10');
                                                           },
                                                           child: Container(
@@ -8354,7 +8409,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(10);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('10');
                                                           },
                                                           child: Obx(
@@ -8595,7 +8651,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(13);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('13');
                                                           },
                                                           child: Container(
@@ -8617,7 +8674,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(13);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('13');
                                                           },
                                                           child: Obx(
@@ -8858,7 +8916,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(16);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('16');
                                                           },
                                                           child: Container(
@@ -8880,7 +8939,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(16);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('16');
                                                           },
                                                           child: Obx(
@@ -9121,7 +9181,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(19);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('19');
                                                           },
                                                           child: Container(
@@ -9143,7 +9204,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(19);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('19');
                                                           },
                                                           child: Obx(
@@ -9384,7 +9446,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(22);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('22');
                                                           },
                                                           child: Container(
@@ -9406,7 +9469,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(22);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('22');
                                                           },
                                                           child: Obx(
@@ -9647,7 +9711,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(25);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('25');
                                                           },
                                                           child: Container(
@@ -9669,7 +9734,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(25);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('25');
                                                           },
                                                           child: Obx(
@@ -9910,7 +9976,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(28);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('28');
                                                           },
                                                           child: Container(
@@ -9932,7 +9999,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(28);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('28');
                                                           },
                                                           child: Obx(
@@ -10173,7 +10241,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(31);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('31');
                                                           },
                                                           child: Container(
@@ -10195,7 +10264,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(31);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('31');
                                                           },
                                                           child: Obx(
@@ -10436,7 +10506,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(34);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('34');
                                                           },
                                                           child: Container(
@@ -10458,7 +10529,8 @@ class RouletteBoard extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             rbc.activeBet(34);
-
+                                                            rbc.straightUpBetsCount
+                                                                .value++;
                                                             rbc.bets.add('34');
                                                           },
                                                           child: Obx(
