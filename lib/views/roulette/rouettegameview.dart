@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:async';
 import 'dart:math';
 import 'package:blurrycontainer/blurrycontainer.dart';
@@ -443,7 +445,7 @@ class RoulettePageState extends State<RoulettePage> {
                       Container(
                           alignment: Alignment.center,
                           height: 180.h,
-                          child: RouletteBoard()),
+                          child: const RouletteBoard()),
                       SizedBox(
                         height: 100.h,
                         child: Container(

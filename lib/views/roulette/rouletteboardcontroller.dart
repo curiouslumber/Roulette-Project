@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:get/get.dart';
 
 class RouletteBoardController extends GetxController {
@@ -206,6 +208,7 @@ class RouletteBoardController extends GetxController {
       count += 1;
     }
 
+    // ignore: non_constant_identifier_names
     var lower_bound = index * 2 + count;
     for (var k = 0; k < 6; k++) {
       betsOnBoard[lower_bound - 1] = true;

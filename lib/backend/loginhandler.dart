@@ -28,6 +28,7 @@ class LoginHandler {
       return true;
       // Navigate to the home screen or perform other actions
     } else {
+      // ignore: avoid_print
       print('User is not logged in.');
       return false;
       // Navigate to the login screen or perform other actions

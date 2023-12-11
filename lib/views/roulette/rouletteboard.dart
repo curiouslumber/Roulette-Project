@@ -1405,6 +1405,8 @@ class _RouletteBoardState extends State<RouletteBoard> {
                         ),
                         GestureDetector(
                           onTap: () {
+                            rbc.doubleStreetBetsCount += 1;
+                            rbc.activeDoubleStreetBet(1);
                             rbc.bets.add('[3,2,1,6,5,4]');
                           },
                           child: Container(
@@ -1663,6 +1665,8 @@ class _RouletteBoardState extends State<RouletteBoard> {
                         ),
                         GestureDetector(
                           onTap: () {
+                            rbc.doubleStreetBetsCount += 1;
+                            rbc.activeDoubleStreetBet(2);
                             rbc.bets.add('[6,5,4,9,8,7]');
                           },
                           child: Container(
@@ -1680,6 +1684,8 @@ class _RouletteBoardState extends State<RouletteBoard> {
                     ),
                     GestureDetector(
                       onTap: () {
+                        rbc.doubleStreetBetsCount += 1;
+                        rbc.activeDoubleStreetBet(1);
                         rbc.bets.add('[3,2,1,6,5,4]');
                       },
                       child: Container(
@@ -1931,6 +1937,8 @@ class _RouletteBoardState extends State<RouletteBoard> {
                         ),
                         GestureDetector(
                           onTap: () {
+                            rbc.doubleStreetBetsCount += 1;
+                            rbc.activeDoubleStreetBet(3);
                             rbc.bets.add('[9,8,7,12,11,10]');
                           },
                           child: Container(
@@ -1949,6 +1957,8 @@ class _RouletteBoardState extends State<RouletteBoard> {
                     ),
                     GestureDetector(
                       onTap: () {
+                        rbc.doubleStreetBetsCount += 1;
+                        rbc.activeDoubleStreetBet(2);
                         rbc.bets.add('[6,5,4,9,8,7]');
                       },
                       child: Container(
@@ -2195,6 +2205,8 @@ class _RouletteBoardState extends State<RouletteBoard> {
                         ),
                         GestureDetector(
                           onTap: () {
+                            rbc.doubleStreetBetsCount += 1;
+                            rbc.activeDoubleStreetBet(4);
                             rbc.bets.add('[12,11,10,15,14,13]');
                           },
                           child: Container(
@@ -2213,6 +2225,8 @@ class _RouletteBoardState extends State<RouletteBoard> {
                     ),
                     GestureDetector(
                       onTap: () {
+                            rbc.doubleStreetBetsCount += 1;
+                            rbc.activeDoubleStreetBet(3);
                         rbc.bets.add('[9,8,7,12,11,10]');
                       },
                       child: Container(
@@ -4600,7 +4614,7 @@ class _RouletteBoardState extends State<RouletteBoard> {
                                         ),
                                       ],
                                     ),
-                                    Container(
+                                    SizedBox(
                                       height: box_size,
                                       width: betRadius / 2,
                                       child: Column(
@@ -10931,7 +10945,7 @@ class _RouletteBoardState extends State<RouletteBoard> {
                     ),
                   ],
                 ),
-                Container(
+                SizedBox(
                   height: betRadius / 2,
                   width: bottom_row_width * 3,
                   child: Row(
