@@ -75,7 +75,7 @@ class GameHeader extends StatelessWidget {
                       content: Text("Successfully logged out"),
                     ),
                   );
-                  Get.offAll(() => MyApp());
+                  Get.offAll(() => const MyApp());
                   print("Successfully deleted active user");
                 } else {
                   // ignore: use_build_context_synchronously
@@ -86,7 +86,7 @@ class GameHeader extends StatelessWidget {
                   );
                 }
               } else if (value == MenuItem.login) {
-                Get.to(() => Login());
+                Get.to(() => const Login());
               } else if (value == MenuItem.none) {
                 print("None");
               } else {

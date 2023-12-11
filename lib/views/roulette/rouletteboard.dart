@@ -4,11 +4,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:roulette_project/views/roulette/rouletteboardcontroller.dart';
 
-// ignore: must_be_immutable
-class RouletteBoard extends StatelessWidget {
-  RouletteBoardController rbc = Get.find();
+class RouletteBoard extends StatefulWidget {
+  const RouletteBoard({super.key});
 
-  RouletteBoard({super.key});
+  @override
+  State<RouletteBoard> createState() => _RouletteBoardState();
+}
+
+class _RouletteBoardState extends State<RouletteBoard> {
+  RouletteBoardController rbc = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -522,6 +526,8 @@ class RouletteBoard extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
+                              rbc.doubleStreetBetsCount.value += 1;
+                              rbc.activeDoubleStreetBet(1);
                               rbc.bets.add("[1,2,3,4,5,6]");
                             },
                             child: Container(
@@ -545,6 +551,8 @@ class RouletteBoard extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () {
+                              rbc.doubleStreetBetsCount.value += 1;
+                              rbc.activeDoubleStreetBet(1);
                               rbc.bets.add("[1,2,3,4,5,6]");
                             },
                             child: Container(
@@ -577,6 +585,8 @@ class RouletteBoard extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
+                              rbc.doubleStreetBetsCount.value += 1;
+                              rbc.activeDoubleStreetBet(2);
                               rbc.bets.add("[4,5,6,7,8,9]");
                             },
                             child: Container(
@@ -600,6 +610,8 @@ class RouletteBoard extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () {
+                              rbc.doubleStreetBetsCount.value += 1;
+                              rbc.activeDoubleStreetBet(2);
                               rbc.bets.add("[4,5,6,7,8,9]");
                             },
                             child: Container(
@@ -632,6 +644,8 @@ class RouletteBoard extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
+                              rbc.doubleStreetBetsCount.value += 1;
+                              rbc.activeDoubleStreetBet(3);
                               rbc.bets.add("7,8,9,10,11,12");
                             },
                             child: Container(
@@ -655,6 +669,8 @@ class RouletteBoard extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () {
+                              rbc.doubleStreetBetsCount.value += 1;
+                              rbc.activeDoubleStreetBet(3);
                               rbc.bets.add("[7,8,9,10,11,12]");
                             },
                             child: Container(
@@ -687,6 +703,8 @@ class RouletteBoard extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
+                              rbc.doubleStreetBetsCount.value += 1;
+                              rbc.activeDoubleStreetBet(4);
                               rbc.bets.add("[10,11,12,13,14,15]");
                             },
                             child: Container(
@@ -710,6 +728,8 @@ class RouletteBoard extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () {
+                              rbc.doubleStreetBetsCount.value += 1;
+                              rbc.activeDoubleStreetBet(4);
                               rbc.bets.add("[10,11,12,13,14,15]");
                             },
                             child: Container(
@@ -742,6 +762,8 @@ class RouletteBoard extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
+                              rbc.doubleStreetBetsCount.value += 1;
+                              rbc.activeDoubleStreetBet(5);
                               rbc.bets.add("[13,14,15,16,17,18]");
                             },
                             child: Container(
@@ -765,6 +787,8 @@ class RouletteBoard extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () {
+                              rbc.doubleStreetBetsCount.value += 1;
+                              rbc.activeDoubleStreetBet(5);
                               rbc.bets.add("[13,14,15,16,17,18]");
                             },
                             child: Container(
@@ -797,6 +821,8 @@ class RouletteBoard extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
+                              rbc.doubleStreetBetsCount.value += 1;
+                              rbc.activeDoubleStreetBet(6);
                               rbc.bets.add("[16,17,18,19,20,21]");
                             },
                             child: Container(
@@ -820,6 +846,8 @@ class RouletteBoard extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () {
+                              rbc.doubleStreetBetsCount.value += 1;
+                              rbc.activeDoubleStreetBet(6);
                               rbc.bets.add("[16,17,18,19,20,21]");
                             },
                             child: Container(
@@ -852,6 +880,8 @@ class RouletteBoard extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
+                              rbc.doubleStreetBetsCount.value += 1;
+                              rbc.activeDoubleStreetBet(7);
                               rbc.bets.add("[19,20,21,22,23,24]");
                             },
                             child: Container(
@@ -875,6 +905,8 @@ class RouletteBoard extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () {
+                              rbc.doubleStreetBetsCount.value += 1;
+                              rbc.activeDoubleStreetBet(7);
                               rbc.bets.add("[19,20,21,22,23,24]");
                             },
                             child: Container(
@@ -907,6 +939,8 @@ class RouletteBoard extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
+                              rbc.doubleStreetBetsCount.value += 1;
+                              rbc.activeDoubleStreetBet(8);
                               rbc.bets.add("[22,23,24,25,26,27]");
                             },
                             child: Container(
@@ -930,6 +964,8 @@ class RouletteBoard extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () {
+                              rbc.doubleStreetBetsCount.value += 1;
+                              rbc.activeDoubleStreetBet(8);
                               rbc.bets.add("[22,23,24,25,26,27]");
                             },
                             child: Container(
@@ -962,6 +998,8 @@ class RouletteBoard extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
+                              rbc.doubleStreetBetsCount.value += 1;
+                              rbc.activeDoubleStreetBet(9);
                               rbc.bets.add("[25,26,27,28,29,30]");
                             },
                             child: Container(
@@ -985,6 +1023,8 @@ class RouletteBoard extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () {
+                              rbc.doubleStreetBetsCount.value += 1;
+                              rbc.activeDoubleStreetBet(9);
                               rbc.bets.add("[25,26,27,28,29,30]");
                             },
                             child: Container(
@@ -1017,6 +1057,8 @@ class RouletteBoard extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
+                              rbc.doubleStreetBetsCount.value += 1;
+                              rbc.activeDoubleStreetBet(10);
                               rbc.bets.add("[28,29,30,31,32,33]");
                             },
                             child: Container(
@@ -1040,6 +1082,8 @@ class RouletteBoard extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () {
+                              rbc.doubleStreetBetsCount.value += 1;
+                              rbc.activeDoubleStreetBet(10);
                               rbc.bets.add("[28,29,30,31,32,33]");
                             },
                             child: Container(
@@ -1072,6 +1116,8 @@ class RouletteBoard extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
+                              rbc.doubleStreetBetsCount.value += 1;
+                              rbc.activeDoubleStreetBet(11);
                               rbc.bets.add("[31,32,33,34,35,36]");
                             },
                             child: Container(
@@ -1095,6 +1141,8 @@ class RouletteBoard extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () {
+                              rbc.doubleStreetBetsCount.value += 1;
+                              rbc.activeDoubleStreetBet(11);
                               rbc.bets.add("[31,32,33,34,35,36]");
                             },
                             child: Container(
@@ -1295,6 +1343,8 @@ class RouletteBoard extends StatelessWidget {
                                     ),
                                     GestureDetector(
                                       onTap: () {
+                                        rbc.activeStreetBet(1);
+                                        rbc.streetBetsCount += 1;
                                         rbc.bets.add('[3,2,1]');
                                       },
                                       child: Container(
@@ -7725,6 +7775,8 @@ class RouletteBoard extends StatelessWidget {
                                         ),
                                         GestureDetector(
                                           onTap: () {
+                                            rbc.activeStreetBet(1);
+                                            rbc.streetBetsCount += 1;
                                             rbc.bets.add('[1,2,3]');
                                           },
                                           child: Container(
@@ -7767,6 +7819,8 @@ class RouletteBoard extends StatelessWidget {
                                 ),
                                 GestureDetector(
                                   onTap: () {
+                                    rbc.doubleStreetBetsCount.value += 1;
+                                    rbc.activeDoubleStreetBet(1);
                                     rbc.bets.add('[1,2,3,4,5,6]');
                                   },
                                   child: Container(
@@ -7998,6 +8052,8 @@ class RouletteBoard extends StatelessWidget {
                                         ),
                                         GestureDetector(
                                           onTap: () {
+                                            rbc.activeStreetBet(1);
+                                            rbc.streetBetsCount += 1;
                                             rbc.bets.add('[4,5,6]');
                                           },
                                           child: Container(
@@ -8040,6 +8096,8 @@ class RouletteBoard extends StatelessWidget {
                                 ),
                                 GestureDetector(
                                   onTap: () {
+                                    rbc.doubleStreetBetsCount.value += 1;
+                                    rbc.activeDoubleStreetBet(2);
                                     rbc.bets.add('[4,5,6,7,8,9]');
                                   },
                                   child: Container(
@@ -8058,6 +8116,8 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(1);
                                 rbc.bets.add('[1,2,3,4,5,6]');
                               },
                               child: Container(
@@ -8263,6 +8323,8 @@ class RouletteBoard extends StatelessWidget {
                                         ),
                                         GestureDetector(
                                           onTap: () {
+                                            rbc.activeStreetBet(3);
+                                            rbc.streetBetsCount += 1;
                                             rbc.bets.add('[7,8,9]');
                                           },
                                           child: Container(
@@ -8305,6 +8367,8 @@ class RouletteBoard extends StatelessWidget {
                                 ),
                                 GestureDetector(
                                   onTap: () {
+                                    rbc.doubleStreetBetsCount.value += 1;
+                                    rbc.activeDoubleStreetBet(3);
                                     rbc.bets.add('[7,8,9,10,11,12]');
                                   },
                                   child: Container(
@@ -8323,6 +8387,8 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(2);
                                 rbc.bets.add('[4,5,6,7,8,9]');
                               },
                               child: Container(
@@ -8528,6 +8594,8 @@ class RouletteBoard extends StatelessWidget {
                                         ),
                                         GestureDetector(
                                           onTap: () {
+                                            rbc.activeStreetBet(4);
+                                            rbc.streetBetsCount += 1;
                                             rbc.bets.add('[10,11,12]');
                                           },
                                           child: Container(
@@ -8570,6 +8638,8 @@ class RouletteBoard extends StatelessWidget {
                                 ),
                                 GestureDetector(
                                   onTap: () {
+                                    rbc.doubleStreetBetsCount.value += 1;
+                                    rbc.activeDoubleStreetBet(4);
                                     rbc.bets.add('[10,11,12,13,14,15]');
                                   },
                                   child: Container(
@@ -8588,6 +8658,8 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(3);
                                 rbc.bets.add('[7,8,9,10,11,12]');
                               },
                               child: Container(
@@ -8793,6 +8865,8 @@ class RouletteBoard extends StatelessWidget {
                                         ),
                                         GestureDetector(
                                           onTap: () {
+                                            rbc.activeStreetBet(5);
+                                            rbc.streetBetsCount += 1;
                                             rbc.bets.add('[13,14,15]');
                                           },
                                           child: Container(
@@ -8835,6 +8909,8 @@ class RouletteBoard extends StatelessWidget {
                                 ),
                                 GestureDetector(
                                   onTap: () {
+                                    rbc.doubleStreetBetsCount.value += 1;
+                                    rbc.activeDoubleStreetBet(5);
                                     rbc.bets.add('[13,14,15,16,17,18]');
                                   },
                                   child: Container(
@@ -8853,6 +8929,8 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(4);
                                 rbc.bets.add('[10,11,12,13,14,15]');
                               },
                               child: Container(
@@ -9058,6 +9136,8 @@ class RouletteBoard extends StatelessWidget {
                                         ),
                                         GestureDetector(
                                           onTap: () {
+                                            rbc.activeStreetBet(6);
+                                            rbc.streetBetsCount += 1;
                                             rbc.bets.add('[16,17,18]');
                                           },
                                           child: Container(
@@ -9100,6 +9180,8 @@ class RouletteBoard extends StatelessWidget {
                                 ),
                                 GestureDetector(
                                   onTap: () {
+                                    rbc.doubleStreetBetsCount.value += 1;
+                                    rbc.activeDoubleStreetBet(6);
                                     rbc.bets.add('[16,17,18,19,20,21]');
                                   },
                                   child: Container(
@@ -9118,6 +9200,8 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(5);
                                 rbc.bets.add('[13,14,15,16,17,18]');
                               },
                               child: Container(
@@ -9323,6 +9407,8 @@ class RouletteBoard extends StatelessWidget {
                                         ),
                                         GestureDetector(
                                           onTap: () {
+                                            rbc.activeStreetBet(7);
+                                            rbc.streetBetsCount += 1;
                                             rbc.bets.add('[19,20,21]');
                                           },
                                           child: Container(
@@ -9365,6 +9451,8 @@ class RouletteBoard extends StatelessWidget {
                                 ),
                                 GestureDetector(
                                   onTap: () {
+                                    rbc.doubleStreetBetsCount.value += 1;
+                                    rbc.activeDoubleStreetBet(7);
                                     rbc.bets.add('[19,20,21,22,23,24]');
                                   },
                                   child: Container(
@@ -9383,6 +9471,8 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(6);
                                 rbc.bets.add('[16,17,18,19,20,21]');
                               },
                               child: Container(
@@ -9588,6 +9678,8 @@ class RouletteBoard extends StatelessWidget {
                                         ),
                                         GestureDetector(
                                           onTap: () {
+                                            rbc.activeStreetBet(8);
+                                            rbc.streetBetsCount += 1;
                                             rbc.bets.add('[22,23,24]');
                                           },
                                           child: Container(
@@ -9630,6 +9722,8 @@ class RouletteBoard extends StatelessWidget {
                                 ),
                                 GestureDetector(
                                   onTap: () {
+                                    rbc.doubleStreetBetsCount.value += 1;
+                                    rbc.activeDoubleStreetBet(8);
                                     rbc.bets.add('[22,23,24,25,26,27]');
                                   },
                                   child: Container(
@@ -9648,6 +9742,8 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(7);
                                 rbc.bets.add('[19,20,21,22,23,24]');
                               },
                               child: Container(
@@ -9853,6 +9949,8 @@ class RouletteBoard extends StatelessWidget {
                                         ),
                                         GestureDetector(
                                           onTap: () {
+                                            rbc.activeStreetBet(9);
+                                            rbc.streetBetsCount += 1;
                                             rbc.bets.add('[25,26,27]');
                                           },
                                           child: Container(
@@ -9895,6 +9993,8 @@ class RouletteBoard extends StatelessWidget {
                                 ),
                                 GestureDetector(
                                   onTap: () {
+                                    rbc.doubleStreetBetsCount.value += 1;
+                                    rbc.activeDoubleStreetBet(9);
                                     rbc.bets.add('[25,26,27,28,29,30]');
                                   },
                                   child: Container(
@@ -9913,6 +10013,8 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(8);
                                 rbc.bets.add('[22,23,24,25,26,27]');
                               },
                               child: Container(
@@ -10118,6 +10220,8 @@ class RouletteBoard extends StatelessWidget {
                                         ),
                                         GestureDetector(
                                           onTap: () {
+                                            rbc.activeStreetBet(10);
+                                            rbc.streetBetsCount += 1;
                                             rbc.bets.add('[28,29,30]');
                                           },
                                           child: Container(
@@ -10160,6 +10264,8 @@ class RouletteBoard extends StatelessWidget {
                                 ),
                                 GestureDetector(
                                   onTap: () {
+                                    rbc.doubleStreetBetsCount.value += 1;
+                                    rbc.activeDoubleStreetBet(10);
                                     rbc.bets.add('[28,29,30,31,32,33]');
                                   },
                                   child: Container(
@@ -10178,6 +10284,8 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(9);
                                 rbc.bets.add('[25,26,27,28,29,30]');
                               },
                               child: Container(
@@ -10383,6 +10491,8 @@ class RouletteBoard extends StatelessWidget {
                                         ),
                                         GestureDetector(
                                           onTap: () {
+                                            rbc.activeStreetBet(11);
+                                            rbc.streetBetsCount += 1;
                                             rbc.bets.add('[31,32,33]');
                                           },
                                           child: Container(
@@ -10425,6 +10535,8 @@ class RouletteBoard extends StatelessWidget {
                                 ),
                                 GestureDetector(
                                   onTap: () {
+                                    rbc.doubleStreetBetsCount.value += 1;
+                                    rbc.activeDoubleStreetBet(11);
                                     rbc.bets.add('[31,32,33,34,35,36]');
                                   },
                                   child: Container(
@@ -10443,6 +10555,8 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(10);
                                 rbc.bets.add('[28,29,30,31,32,33]');
                               },
                               child: Container(
@@ -10645,6 +10759,8 @@ class RouletteBoard extends StatelessWidget {
                                         ),
                                         GestureDetector(
                                           onTap: () {
+                                            rbc.activeStreetBet(12);
+                                            rbc.streetBetsCount += 1;
                                             rbc.bets.add('[34,35,36]');
                                           },
                                           child: Container(
@@ -10702,6 +10818,8 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(11);
                                 rbc.bets.add('[31,32,33,34,35,36]');
                               },
                               child: Container(
@@ -10848,6 +10966,8 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.activeStreetBet(1);
+                                rbc.streetBetsCount += 1;
                                 rbc.bets.add("[1,2,3]");
                               },
                               child: Container(
@@ -10866,6 +10986,8 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(1);
                                 rbc.bets.add("[1,2,3,4,5,6]");
                               },
                               child: Container(
@@ -10890,6 +11012,8 @@ class RouletteBoard extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(1);
                                 rbc.bets.add("[1,2,3,4,5,6]");
                               },
                               child: Container(
@@ -10905,6 +11029,7 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.activeStreetBet(2);
                                 rbc.bets.add("[4,5,6]");
                               },
                               child: Container(
@@ -10923,6 +11048,8 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(2);
                                 rbc.bets.add("[4,5,6,7,8,9]");
                               },
                               child: Container(
@@ -10947,6 +11074,8 @@ class RouletteBoard extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(2);
                                 rbc.bets.add("[4,5,6,7,8,9]");
                               },
                               child: Container(
@@ -10962,6 +11091,7 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.activeStreetBet(3);
                                 rbc.bets.add("[7,8,9]");
                               },
                               child: Container(
@@ -10980,6 +11110,8 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(3);
                                 rbc.bets.add("7,8,9,10,11,12");
                               },
                               child: Container(
@@ -11004,6 +11136,8 @@ class RouletteBoard extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(3);
                                 rbc.bets.add("[7,8,9,10,11,12]");
                               },
                               child: Container(
@@ -11019,6 +11153,7 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.activeStreetBet(4);
                                 rbc.bets.add("[10,11,12]");
                               },
                               child: Container(
@@ -11037,6 +11172,8 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(4);
                                 rbc.bets.add("[10,11,12,13,14,15]");
                               },
                               child: Container(
@@ -11061,6 +11198,8 @@ class RouletteBoard extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(4);
                                 rbc.bets.add("[10,11,12,13,14,15]");
                               },
                               child: Container(
@@ -11076,6 +11215,7 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.activeStreetBet(5);
                                 rbc.bets.add("[13,14,15]");
                               },
                               child: Container(
@@ -11094,6 +11234,8 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(5);
                                 rbc.bets.add("[13,14,15,16,17,18]");
                               },
                               child: Container(
@@ -11118,6 +11260,8 @@ class RouletteBoard extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(5);
                                 rbc.bets.add("[13,14,15,16,17,18]");
                               },
                               child: Container(
@@ -11133,6 +11277,7 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.activeStreetBet(6);
                                 rbc.bets.add("[16,17,18]");
                               },
                               child: Container(
@@ -11151,6 +11296,8 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(6);
                                 rbc.bets.add("[16,17,18,19,20,21]");
                               },
                               child: Container(
@@ -11175,6 +11322,8 @@ class RouletteBoard extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(6);
                                 rbc.bets.add("[16,17,18,19,20,21]");
                               },
                               child: Container(
@@ -11190,6 +11339,7 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.activeStreetBet(7);
                                 rbc.bets.add("[19,20,21]");
                               },
                               child: Container(
@@ -11208,6 +11358,8 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(7);
                                 rbc.bets.add("[19,20,21,22,23,24]");
                               },
                               child: Container(
@@ -11232,6 +11384,8 @@ class RouletteBoard extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(7);
                                 rbc.bets.add("[19,20,21,22,23,24]");
                               },
                               child: Container(
@@ -11247,6 +11401,7 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.activeStreetBet(8);
                                 rbc.bets.add("[22,23,24]");
                               },
                               child: Container(
@@ -11265,6 +11420,8 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(8);
                                 rbc.bets.add("[22,23,24,25,26,27]");
                               },
                               child: Container(
@@ -11289,6 +11446,8 @@ class RouletteBoard extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(8);
                                 rbc.bets.add("[22,23,24,25,26,27]");
                               },
                               child: Container(
@@ -11304,6 +11463,7 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.activeStreetBet(9);
                                 rbc.bets.add("[25,26,27]");
                               },
                               child: Container(
@@ -11322,6 +11482,8 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(9);
                                 rbc.bets.add("[25,26,27,28,29,30]");
                               },
                               child: Container(
@@ -11346,6 +11508,8 @@ class RouletteBoard extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(9);
                                 rbc.bets.add("[25,26,27,28,29,30]");
                               },
                               child: Container(
@@ -11361,6 +11525,7 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.activeStreetBet(10);
                                 rbc.bets.add("[28,29,30]");
                               },
                               child: Container(
@@ -11379,6 +11544,8 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(10);
                                 rbc.bets.add("[28,29,30,31,32,33]");
                               },
                               child: Container(
@@ -11403,6 +11570,8 @@ class RouletteBoard extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(10);
                                 rbc.bets.add("[28,29,30,31,32,33]");
                               },
                               child: Container(
@@ -11418,6 +11587,7 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.activeStreetBet(11);
                                 rbc.bets.add("[31,32,33]");
                               },
                               child: Container(
@@ -11436,6 +11606,8 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(11);
                                 rbc.bets.add("[31,32,33,34,35,36]");
                               },
                               child: Container(
@@ -11460,6 +11632,8 @@ class RouletteBoard extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
+                                rbc.doubleStreetBetsCount.value += 1;
+                                rbc.activeDoubleStreetBet(11);
                                 rbc.bets.add("[31,32,33,34,35,36]");
                               },
                               child: Container(
@@ -11475,6 +11649,7 @@ class RouletteBoard extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                rbc.activeStreetBet(12);
                                 rbc.bets.add("[34,35,36]");
                               },
                               child: Container(

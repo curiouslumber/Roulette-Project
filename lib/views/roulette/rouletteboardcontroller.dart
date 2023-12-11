@@ -18,6 +18,7 @@ class RouletteBoardController extends GetxController {
   var verticalSideBets = List<bool>.filled(33, false).obs;
   var horizontalSideBets = List<bool>.filled(24, false).obs;
   var streetBets = List<bool>.filled(13, false).obs;
+  var doubleStreetBets = List<bool>.filled(13, false).obs;
   var zeroSideBets = List<bool>.filled(4, false).obs;
   var betValue = 1;
   var lastWinAmount = 0.obs;
@@ -186,6 +187,11 @@ class RouletteBoardController extends GetxController {
       print("Not enough money");
       return;
     }
+
+    for (var i = ((index * 3) - 3); i < (index * 3); i++) {
+      betsOnBoard[i] = true;
+    }
+
     streetBets[index - 1] = true;
     totalBetAmount.value += betValue * 3;
   }
@@ -195,7 +201,18 @@ class RouletteBoardController extends GetxController {
       print("Not enough money");
       return;
     }
-    streetBets[index - 1] = true;
+    var count = -1;
+    for (var i = 1; i < index; i++) {
+      count += 1;
+    }
+
+    var lower_bound = index * 2 + count;
+    for (var k = 0; k < 6; k++) {
+      betsOnBoard[lower_bound - 1] = true;
+      lower_bound += 1;
+    }
+
+    doubleStreetBets[index - 1] = true;
     totalBetAmount.value += betValue * 6;
   }
 
