@@ -17,7 +17,7 @@ class RouletteBoardController extends GetxController {
   var cornerBets = List<bool>.filled(52, false).obs;
   var verticalSideBets = List<bool>.filled(33, false).obs;
   var horizontalSideBets = List<bool>.filled(24, false).obs;
-  var streetBets = List<bool>.filled(24, false).obs;
+  var streetBets = List<bool>.filled(13, false).obs;
   var zeroSideBets = List<bool>.filled(4, false).obs;
   var betValue = 1;
   var lastWinAmount = 0.obs;
