@@ -60,6 +60,7 @@ class RouletteBoard extends StatelessWidget {
                         GestureDetector(
                           onTap: () {
                             rbc.bets.add('00');
+                            rbc.straightUpBetsCount.value += 1;
                             rbc.addZeroBet(2);
                           },
                           child: Container(
@@ -229,6 +230,7 @@ class RouletteBoard extends StatelessWidget {
                       () => GestureDetector(
                         onTap: () {
                           rbc.bets.add('00');
+                          rbc.straightUpBetsCount.value += 1;
                           rbc.addZeroBet(2);
                         },
                         child: Container(
@@ -255,6 +257,7 @@ class RouletteBoard extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         rbc.bets.add('0');
+                        rbc.straightUpBetsCount.value += 1;
                         rbc.addZeroBet(1);
                       },
                       child: Container(
@@ -10732,6 +10735,7 @@ class RouletteBoard extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
+                        rbc.dozenBetsCount += 1;
                         rbc.activeFirst12();
                         rbc.bets.add('[1,2,3,4,5,6,7,8,9,10,11,12]');
                       },
@@ -10749,6 +10753,7 @@ class RouletteBoard extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
+                        rbc.dozenBetsCount += 1;
                         rbc.activeSecond12();
                         rbc.bets.add('[13,14,15,16,17,18,19,20,21,22,23,24]');
                       },
@@ -10766,6 +10771,7 @@ class RouletteBoard extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
+                        rbc.dozenBetsCount += 1;
                         rbc.activeThird12();
                         rbc.bets.add('[25,26,27,28,29,30,31,32,33,34,35,36]');
                       },
@@ -11482,6 +11488,7 @@ class RouletteBoard extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
+                    rbc.lowHighBetsCount += 1;
                     rbc.active1to18();
                     rbc.bets
                         .add('[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]');
@@ -11500,7 +11507,7 @@ class RouletteBoard extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    print('EVEN');
+                    rbc.evenOddBetsCount.value += 1;
                     rbc.activeEven();
                     rbc.bets.add('[2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32'
                         ',34,36]');
@@ -11519,6 +11526,7 @@ class RouletteBoard extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
+                    rbc.colorBetsCount += 1;
                     rbc.activeRed();
                     rbc.bets.add('[1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32'
                         ',34,36]');
@@ -11541,6 +11549,7 @@ class RouletteBoard extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
+                    rbc.colorBetsCount += 1;
                     rbc.activeBlack();
                     rbc.bets.add('[2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31'
                         ',33,35]');
@@ -11563,7 +11572,7 @@ class RouletteBoard extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    print('ODD');
+                    rbc.evenOddBetsCount.value += 1;
                     rbc.activeOdd();
                     rbc.bets.add('[1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31'
                         ',33,35]');
@@ -11582,6 +11591,7 @@ class RouletteBoard extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
+                    rbc.lowHighBetsCount += 1;
                     rbc.active19to36();
                     rbc.bets.add(
                         '[19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36]');
@@ -11610,6 +11620,7 @@ class RouletteBoard extends StatelessWidget {
                 color: upperExtraAreaColor),
             GestureDetector(
               onTap: () {
+                rbc.columnBetsCount += 1;
                 rbc.activeThirdColumn();
                 rbc.bets.add('[3,6,9,12,15,18,21,24,27,30,33,36]');
               },
@@ -11634,6 +11645,7 @@ class RouletteBoard extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
+                rbc.columnBetsCount += 1;
                 rbc.activeSecondColumn();
                 rbc.bets.add('[2,5,8,11,14,17,20,23,26,29,32,35]');
               },
@@ -11657,6 +11669,7 @@ class RouletteBoard extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
+                rbc.columnBetsCount += 1;
                 rbc.activeFirstColumn();
                 rbc.bets.add('[1,4,7,10,13,16,19,22,25,28,31,34]');
               },

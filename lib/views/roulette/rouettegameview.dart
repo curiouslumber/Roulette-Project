@@ -675,6 +675,30 @@ class RoulettePageState extends State<RoulettePage> {
                                                   rouletteBoardController
                                                       .straightUpBetsCount
                                                       .value = 0;
+                                                  rouletteBoardController
+                                                      .splitBetsCount.value = 0;
+                                                  rouletteBoardController
+                                                      .streetBetsCount
+                                                      .value = 0;
+                                                  rouletteBoardController
+                                                      .cornerBetsCount
+                                                      .value = 0;
+                                                  rouletteBoardController
+                                                      .doubleStreetBetsCount
+                                                      .value = 0;
+                                                  rouletteBoardController
+                                                      .dozenBetsCount.value = 0;
+                                                  rouletteBoardController
+                                                      .columnBetsCount
+                                                      .value = 0;
+                                                  rouletteBoardController
+                                                      .evenOddBetsCount
+                                                      .value = 0;
+                                                  rouletteBoardController
+                                                      .colorBetsCount.value = 0;
+                                                  rouletteBoardController
+                                                      .lowHighBetsCount
+                                                      .value = 0;
 
                                                   rouletteBoardController
                                                       .totalBetAmount.value = 0;
