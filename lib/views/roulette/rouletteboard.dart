@@ -4,27 +4,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:roulette_project/views/roulette/rouletteboardcontroller.dart';
 
-class RouletteBoard extends StatefulWidget {
-  const RouletteBoard({super.key});
-
-  @override
-  State<RouletteBoard> createState() => _RouletteBoardState();
-}
-
-class _RouletteBoardState extends State<RouletteBoard> {
+// ignore: must_be_immutable
+class RouletteBoard extends StatelessWidget {
+  RouletteBoard({super.key});
   RouletteBoardController rbc = Get.find();
+
+  final zero_height = 49.75.h;
+  final bottom_row_width = 132.h;
+  final box_size = 33.h;
+  final betColor = Colors.orange;
+  final betOffColor = Colors.transparent;
+  final upperExtraAreaColor = Colors.transparent;
+  final circularRadius = 12.h;
+  final betRadius = 12.h;
 
   @override
   Widget build(BuildContext context) {
-    final zero_height = 49.75.h;
-    final bottom_row_width = 132.h;
-    final box_size = 33.h;
-    const betColor = Colors.orange;
-    const betOffColor = Colors.transparent;
-    const upperExtraAreaColor = Colors.transparent;
-    final circularRadius = 12.h;
-    final betRadius = 12.h;
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -2225,8 +2220,8 @@ class _RouletteBoardState extends State<RouletteBoard> {
                     ),
                     GestureDetector(
                       onTap: () {
-                            rbc.doubleStreetBetsCount += 1;
-                            rbc.activeDoubleStreetBet(3);
+                        rbc.doubleStreetBetsCount += 1;
+                        rbc.activeDoubleStreetBet(3);
                         rbc.bets.add('[9,8,7,12,11,10]');
                       },
                       child: Container(
